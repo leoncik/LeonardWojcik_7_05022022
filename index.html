@@ -4,11 +4,26 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- CSS Style -->
         <link
             href="style/style.css"
             rel="stylesheet"
             type="text/css"
         />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato&family=Roboto&display=swap" rel="stylesheet"> 
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+        <link rel="manifest" href="assets/favicons/site.webmanifest">
+        <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#d14e4e">
+        <link rel="shortcut icon" href="assets/favicons/favicon.ico">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-config" content="assets/favicons/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
         <!-- JavaScript (development) -->
         <script src="/polyfill.bundle.js" defer></script>
         <script src="/app.bundle.js" defer></script>
@@ -22,9 +37,45 @@
             <img src="assets/icons/logo.svg" alt="Logo Les petits plats" />
             <h1>Les petits plats</h1>
         </header>
-        <main id="results">
-            <div class="api-error"></div>
-            <div class="recipes"></div>
+        <main>
+            <!-- PRIMARY SEARCH -->
+            <section class="primary-search">
+                <input type="text" placeholder="Rechercher une recette">
+            </section>
+
+            <!-- SECONDARY SEARCH -->
+            <section class="secondary-search">
+                <div class="filter-selected"></div>
+                <div class="search-options">
+                    <div class="ingredient-search">
+                        <input class="dropdown-button" type="button" value="Ingrédients">
+                        <svg class="dropdown-arrow" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
+                            </svg>
+                        <ul class="ingredient-list"></ul>
+                    </div>
+                    <div class="appliance-search">
+                        <input class="dropdown-button" type="button" value="Appareils">
+                        <svg class="dropdown-arrow" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
+                            </svg>
+                        <ul class="appliance-list"></ul>
+                    </div>
+                    <div class="ustensils-search">
+                        <input class="dropdown-button" type="button" value="Ustensiles">
+                        <svg class="dropdown-arrow" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.12 0.453369L8 6.56004L1.88 0.453369L0 2.33337L8 10.3334L16 2.33337L14.12 0.453369Z" fill="white"/>
+                            </svg>
+                        <ul class="ustensils-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEARCH RESULTS -->
+            <section class="results">
+                <div class="api-error"></div>
+                <div class="recipes"></div>
+            </section>
         </main>
     </body>
 </html>

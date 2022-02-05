@@ -19,7 +19,7 @@ Project carried out as part of the Front-End Web Development Career Path of Open
 
 ## Live demo
 
-Use this link to try the project : (WIP).
+Use this link to try the project : https://leoncik.github.io/LeonardWojcik_7_05022022/
 
 ## File structure
 
