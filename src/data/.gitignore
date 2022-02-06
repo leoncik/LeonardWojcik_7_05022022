@@ -1,8 +1,0 @@
-# Node dependencies
-node_modules/
-
-#ESLint cache
-.eslintcache
-
-# Personal system files
-.directory
