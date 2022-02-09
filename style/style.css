@@ -163,15 +163,24 @@ h1 {
     transform: translateY(-50%);
 }
 
-.ingredient-search input {
+.ingredients-search input {
     background: var(--ingredient-color);
+}
+.ingredients-search ul {
+    background-color: var(--ingredient-color);
 }
 
 .appliance-search input {
     background: var(--appliance-color);
 }
+.appliance-search ul {
+    background: var(--appliance-color);
+}
 
 .ustensils-search input {
+    background: var(--ustensils-color);
+}
+.ustensils-search ul {
     background: var(--ustensils-color);
 }
 

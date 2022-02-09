@@ -1,5 +1,6 @@
 import { recipes } from '../data/recipes.js';
 import { Recipe } from './classes/Recipe.js';
+import { FilterList } from './classes/FilterList.js';
 
 // DOM elements
 const mainResults = document.querySelector('.results');
@@ -13,18 +14,21 @@ const displayRecipes = (recipe) => {
     });
 }
 
-// Display filter options lists (WIP)
-// const displayFilterLists = (recipe) => {
-//     recipe.forEach((element) => {
-//         let recipeModel = new Recipe(element);
-//         const listOption = recipeModel.createFilterLists(appliance);
-//     });
-// }
+// Display filter options lists
+const displayFilterLists = (recipes) => {
+    recipes.forEach((element) => {
+        let recipeModel = new FilterList(element);
+        const listOptionIngredients = recipeModel.createFilterList('ingredients');
+        const listOptionAppliance = recipeModel.createFilterList('appliance');
+        const listOptionUstensils = recipeModel.createFilterList('ustensils');
+    })
+
+}
 
 // Initialize recipes page
 const initRecipesPage = () => {
     displayRecipes(recipes);
-    // displayFilterLists(recipesArray);
+    displayFilterLists(recipes);
 }
 
 initRecipesPage();

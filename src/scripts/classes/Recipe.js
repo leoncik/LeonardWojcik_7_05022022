@@ -48,14 +48,15 @@
 
      }
 
-     createFilterLists(type) {
-        // TODO : sort by alphabetical order
+    //  createFilterLists(type) {
+    //     // TODO : sort by alphabetical order
 
-        for (const iterator of this.type) {
-            console.log(iterator.type);
-            const listItem = document.createElement('li');
-            listItem.textContent = iterator.type;
-            document.querySelector(`.${type}-list`).appendChild(listItem);
-        }
-     }
+    //     for (const iterator of this.type) {
+    //         console.log(iterator.type);
+    //         const listItem = document.createElement('li');
+    //         listItem.textContent = iterator.type;
+    //         document.querySelector(`.${type}-list`).appendChild(listItem);
+    //     }
+    //  }
+    // ? Use extend ?
  }
