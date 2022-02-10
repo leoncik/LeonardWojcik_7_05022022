@@ -41,6 +41,7 @@ export const enableDropdown = () => {
                     currentTrigger.type = 'text';
                     currentListContainer.classList.add('expanded');
                     currentTrigger.value = '';
+                    currentTrigger.classList.add('search-mode');
                     currentTrigger.setAttribute('placeholder', 'Rechercher un appareil');
                     break;
 
@@ -50,6 +51,7 @@ export const enableDropdown = () => {
                     currentTrigger.type = 'text';
                     currentListContainer.classList.add('expanded');
                     currentTrigger.value = '';
+                    currentTrigger.classList.add('search-mode');
                     currentTrigger.setAttribute('placeholder', 'Rechercher un ustensile');
                     break;
 
@@ -58,10 +60,13 @@ export const enableDropdown = () => {
             }
         });
         // Close dropdown
-        iterator.addEventListener('blur', (e) => {
+        iterator.addEventListener('blur', () => {
             document.querySelector('.ingredients-search .dropdown-button').value = 'Ingrédients';
+            document.querySelector('.ingredients-search .dropdown-button').classList.remove('search-mode');
             document.querySelector('.appliance-search .dropdown-button').value = 'Appareils';
+            document.querySelector('.appliance-search .dropdown-button').classList.remove('search-mode');
             document.querySelector('.ustensils-search .dropdown-button').value = 'Ustensiles';
+            document.querySelector('.ustensils-search .dropdown-button').classList.remove('search-mode');
             document.querySelector('.ingredients-search ul').classList.remove('expanded');
             document.querySelector('.appliance-search ul').classList.remove('expanded');
             document.querySelector('.ustensils-search ul').classList.remove('expanded');
@@ -70,4 +75,14 @@ export const enableDropdown = () => {
         // Close dropdown
         // iterator.addEventListener('blur', closeDropdown(e));
     }
+}
+
+
+export const enableSelectFilter = (e) => {
+    let dropdownOptions = document.querySelectorAll('.search-options li');
+    for (const iterator of dropdownOptions) {
+        iterator.addEventListener('click', () => {
+            console.log("L'option X a été sélectionnée");
+        })        
+    }  
 }

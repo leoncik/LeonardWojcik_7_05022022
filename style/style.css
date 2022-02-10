@@ -77,6 +77,10 @@ body
     --ustensils-color: #ED6454;
 }
 
+.search-options li {
+    color: white;
+}
+
 /* ==================
     4. Layout
    ================== */
@@ -157,6 +161,11 @@ h1 {
     cursor: pointer;
 }
 
+.search-mode {
+    width: 100%;
+    transition: 0.4s;
+}
+
 .search-options > * {
     position: relative;
 }
@@ -171,7 +180,6 @@ h1 {
 }
 .ingredients-search ul {
     background-color: var(--ingredient-color);
-    min-width: 800px;
 }
 
 .appliance-search input {
@@ -179,7 +187,6 @@ h1 {
 }
 .appliance-search ul {
     background: var(--appliance-color);
-    min-width: 400px;
 }
 
 .ustensils-search input {
@@ -188,6 +195,11 @@ h1 {
 .ustensils-search ul {
     background: var(--ustensils-color);
     min-width: 900px;
+}
+
+.search-options li:hover {
+    cursor: pointer;
+    background-color: rgb(8, 185, 67);
 }
 
 /* Dropdown rules */
@@ -199,10 +211,8 @@ h1 {
 }
 
 .expanded {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 400px;
+    display: block;
+    columns: 100px 3;
 }
 
 /* Lists */
