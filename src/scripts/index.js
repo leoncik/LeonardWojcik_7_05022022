@@ -1,6 +1,7 @@
 import { recipes } from '../data/recipes.js';
 import { Recipe } from './classes/Recipe.js';
 import { FilterList } from './classes/FilterList.js';
+import { enableDropdown } from './classes/components/dropdownFilters.js';
 
 // DOM elements
 const mainResults = document.querySelector('.results');
@@ -29,6 +30,7 @@ const displayFilterLists = (recipes) => {
 const initRecipesPage = () => {
     displayRecipes(recipes);
     displayFilterLists(recipes);
+    enableDropdown();
 }
 
 initRecipesPage();

@@ -32,6 +32,10 @@ a
     text-decoration: none;
 }
 
+li {
+    list-style: none;
+}
+
 :root
 {
     --common-radius: 5px;
@@ -159,8 +163,7 @@ h1 {
 .dropdown-arrow {
     position: absolute;
     right: 12px;
-    top: 40%;
-    transform: translateY(-50%);
+    top: 30px;
 }
 
 .ingredients-search input {
@@ -168,6 +171,7 @@ h1 {
 }
 .ingredients-search ul {
     background-color: var(--ingredient-color);
+    min-width: 800px;
 }
 
 .appliance-search input {
@@ -175,6 +179,7 @@ h1 {
 }
 .appliance-search ul {
     background: var(--appliance-color);
+    min-width: 400px;
 }
 
 .ustensils-search input {
@@ -182,6 +187,28 @@ h1 {
 }
 .ustensils-search ul {
     background: var(--ustensils-color);
+    min-width: 900px;
+}
+
+/* Dropdown rules */
+
+.ingredients-list,
+.appliance-list,
+.ustensils-list {
+    display: none;
+}
+
+.expanded {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 400px;
+}
+
+/* Lists */
+
+.search-options ul {
+    margin-top: 0;
 }
 
 /* 5.2 RECIPE CARDS */
