@@ -3,20 +3,18 @@ const listContainers = document.querySelectorAll('.search-options ul');
 
 
 
-// Open and close dropdown functions
-
-// const triggerDropdown = () => {
-//     console.log(e.target);
-//     document.querySelector('.ingredients-search .dropdown-button').type = 'text';
-//     document.querySelector('.ingredients-search ul').classList.remove('unexpanded');
-//     document.querySelector('.ingredients-search .dropdown-button').value = '';
-//     document.querySelector('.ingredients-search .dropdown-button').setAttribute('placeholder', 'Rechercher un INGRÉDIENT');
-// }
-
-// const closeDropdown = () => {
-//     document.querySelector('.ingredients-search .dropdown-button').value = 'Ingrédients / Appareils / Ustensiles';
-//     document.querySelector('.ingredients-search ul').classList.add('unexpanded');
-// }
+// Open dropdown
+const openDropdown = (elt, placeholder) => {
+    let currentTrigger = document.querySelector(
+        `${elt} .dropdown-button`
+    );
+    let currentListContainer = document.querySelector(`${elt} ul`);
+    currentTrigger.type = 'text';
+    currentListContainer.classList.add('expanded');
+    currentTrigger.value = '';
+    currentTrigger.classList.add('search-mode');
+    currentTrigger.setAttribute('placeholder', placeholder);
+}
 
 // Enable dropdown
 export const enableDropdown = () => {
@@ -26,40 +24,32 @@ export const enableDropdown = () => {
         iterator.addEventListener('click', (e) => {
             switch (e.target.value) {
                 case 'Ingrédients':
-                    let currentTrigger = document.querySelector('.ingredients-search .dropdown-button');
-                    let currentListContainer = document.querySelector('.ingredients-search ul'); 
-                    currentTrigger.type = 'text';
-                    currentListContainer.classList.add('expanded');
-                    currentTrigger.value = '';
-                    currentTrigger.classList.add('search-mode');
-                    currentTrigger.setAttribute('placeholder', 'Rechercher un ingrédient');
+                    openDropdown(
+                        '.ingredients-search',
+                        'Rechercher un ingrédient'
+                    );                    
                     break;
 
                 case 'Appareils':
-                    currentTrigger = document.querySelector('.appliance-search .dropdown-button');
-                    currentListContainer = document.querySelector('.appliance-search ul'); 
-                    currentTrigger.type = 'text';
-                    currentListContainer.classList.add('expanded');
-                    currentTrigger.value = '';
-                    currentTrigger.classList.add('search-mode');
-                    currentTrigger.setAttribute('placeholder', 'Rechercher un appareil');
+                    openDropdown(
+                        '.appliance-search',
+                        'Rechercher un appareil'
+                    );
                     break;
 
                 case 'Ustensiles':
-                    currentTrigger = document.querySelector('.ustensils-search .dropdown-button');
-                    currentListContainer = document.querySelector('.ustensils-search ul'); 
-                    currentTrigger.type = 'text';
-                    currentListContainer.classList.add('expanded');
-                    currentTrigger.value = '';
-                    currentTrigger.classList.add('search-mode');
-                    currentTrigger.setAttribute('placeholder', 'Rechercher un ustensile');
+                    openDropdown(
+                        '.ustensils-search',
+                        'Rechercher un ustensile'
+                    );
                     break;
-
+            
                 default:
                     break;
             }
         });
         // Close dropdown
+        // iterator.addEventListener('blur', closeDropdown(e));
         iterator.addEventListener('blur', () => {
             document.querySelector('.ingredients-search .dropdown-button').value = 'Ingrédients';
             document.querySelector('.ingredients-search .dropdown-button').classList.remove('search-mode');
@@ -72,8 +62,6 @@ export const enableDropdown = () => {
             document.querySelector('.ustensils-search ul').classList.remove('expanded');
 
         });
-        // Close dropdown
-        // iterator.addEventListener('blur', closeDropdown(e));
     }
 }
 
