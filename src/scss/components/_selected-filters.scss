@@ -1,0 +1,45 @@
+@use "../utils/variables";
+
+.selected-filters {
+    color: white;
+    display: flex;
+    gap: 25px;
+    padding-left: 0;
+}
+
+.selected-filters__item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: 37px;
+    padding: 8px 22px 9px 20px;
+    border-radius: variables.$common-radius;
+    font-weight: bold;
+    cursor: pointer;
+    &::after {
+        content: "";
+        display: block;
+        background-image: url("/assets/icons/remove-filter.svg");
+        background-size: 28px 28px;
+        height: 28px;
+        width: 28px;
+    }
+    &:hover::after {
+        transform: scale(1.1);
+    }
+
+}
+
+.selected-filters__item_ingredient {
+    background-color: variables.$ingredient-color;
+}
+
+.selected-filters__item_appliance {
+    background-color: variables.$appliance-color;
+}
+
+.selected-filters__item_ustensils {
+    background-color: variables.$ustensils-color;
+}

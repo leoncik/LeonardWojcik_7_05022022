@@ -45,14 +45,13 @@
 
             <!-- SECONDARY SEARCH -->
             <section class="secondary-search">
-                <div class="selected-filters">
+                <ul class="selected-filters">
                     <!-- Example template. Must be removed when implementing search and display scripts -->
-                    <ul>
-                        <li class="selected-filters__item_ingredient">Option 1</li>
-                        <li class="selected-filters__item_appliance">Option 2</li>
-                        <li class="selected-filters__item_ustensil">Option 3</li>
-                    </ul>
-                </div>
+                    <li class="selected-filters__item selected-filters__item_ingredient">Option 1</li>
+                    <li class="selected-filters__item selected-filters__item_appliance">Option 2</li>
+                    <li class="selected-filters__item selected-filters__item_ustensils">Option 3</li>
+                </ul>
+                
                 <div class="search-options">
                     <div class="ingredients-search">
                         <input class="dropdown-button" type="button" value="Ingrédients">
@@ -89,15 +88,15 @@
                     </div>
                     <div class="recipe__description">
                         <div class="recipe__main-info">
-                            <h2>Titre recette</h2>
-                            <p>Temps de cuisson (avec before icon)</p>
+                            <h2 class="recipe__name">Titre recette</h2>
+                            <p class="recipe__duration">Xmin</p>
                         </div>
 
                         <div class="recipe__secondary-info">
                             <ul class="recipe__ingredients">
-                                <li>ingredient 1</li>
-                                <li>ingredient 2</li>
-                                <li>ingredient 3</li>
+                                <li><span class="recipe__ingredient-name">Ingrédient 1:</span> <span class="recipe__ingredient-quantity">quantité1</span></li>
+                                <li><span class="recipe__ingredient-name">Ingrédient 2:</span> <span class="recipe__ingredient-quantity">quantité2</span></li>
+                                <li><span class="recipe__ingredient-name">Ingrédient 3:</span> <span class="recipe__ingredient-quantity">quantité3</span></li>
                             </ul>
                             <p class="recipe__steps">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio provident assumenda suscipit corrupti odit ullam.</p>
                         </div>

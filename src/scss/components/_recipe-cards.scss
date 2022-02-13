@@ -1,5 +1,71 @@
-article {
-    width: 300px;
+@use "../utils/variables";
+
+.recipe {
+    width: 380px;
+}
+
+.reccipe__image-preview a {
+    display: flex;
+    overflow: hidden;
+}
+
+.reccipe__image-preview img {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    overflow: hidden;
+    transition: 0.4s all ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.recipe__description {
+    background: #E7E7E7;
+    border-radius: 0 0 variables.$common-radius variables.$common-radius;
+}
+
+.recipe__main-info {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.recipe__duration {
+    font-weight: bold;
+    display: flex;
+    gap: 7px;
+    &::before {
+        content: "";
+        display: block;
+        background-image: url("/assets/icons/cooking-time.svg");
+        background-size: 20px 20px;
+        height: 20px;
+        width: 20px;
+    }
+}
+
+.recipe__secondary-info {
+    padding: 0 18px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.recipe__ingredients,
+.recipe__steps {
+    flex: 0 50%;
+    font-size: 0.8rem;
+}
+
+.recipe__ingredient-name {
+    font-weight: bold;
+}
+
+
+// Old rules
+.article {
+    width: 380px;
 }
 
 article img {
