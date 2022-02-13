@@ -1,0 +1,73 @@
+@use "../utils/variables";
+
+.dropdown-button {
+    width: 170px;
+    height: 69px;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+    border-radius: variables.$common-radius;
+    border: none;
+    cursor: pointer;
+}
+
+.search-mode {
+    width: 100%;
+    transition: 0.4s;
+}
+
+.search-options > * {
+    position: relative;
+}
+.dropdown-arrow {
+    position: absolute;
+    right: 12px;
+    top: 30px;
+    pointer-events: none;
+}
+
+.ingredients-search input {
+    background: variables.$ingredient-color;
+}
+.ingredients-search ul {
+    background-color: variables.$ingredient-color;
+}
+
+.appliance-search input {
+    background: variables.$appliance-color;
+}
+.appliance-search ul {
+    background: variables.$appliance-color;
+}
+
+.ustensils-search input {
+    background: variables.$ustensils-color;
+}
+.ustensils-search ul {
+    background: variables.$ustensils-color;
+    min-width: 900px;
+}
+
+.search-options li:hover {
+    cursor: pointer;
+    background-color: rgb(8, 185, 67);
+}
+
+/* Dropdown rules */
+
+.ingredients-list,
+.appliance-list,
+.ustensils-list {
+    display: none;
+}
+
+.expanded {
+    display: block;
+    columns: 100px 3;
+}
+
+/* Lists */
+
+.search-options ul {
+    margin-top: 0;
+}

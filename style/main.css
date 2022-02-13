@@ -1,0 +1,165 @@
+/* General styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 40px 100px;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.dropdown-button {
+  width: 170px;
+  height: 69px;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-mode {
+  width: 100%;
+  transition: 0.4s;
+}
+
+.search-options > * {
+  position: relative;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 30px;
+  pointer-events: none;
+}
+
+.ingredients-search input {
+  background: #3282F7;
+}
+
+.ingredients-search ul {
+  background-color: #3282F7;
+}
+
+.appliance-search input {
+  background: #68D9A4;
+}
+
+.appliance-search ul {
+  background: #68D9A4;
+}
+
+.ustensils-search input {
+  background: #ED6454;
+}
+
+.ustensils-search ul {
+  background: #ED6454;
+  min-width: 900px;
+}
+
+.search-options li:hover {
+  cursor: pointer;
+  background-color: #08b943;
+}
+
+/* Dropdown rules */
+.ingredients-list,
+.appliance-list,
+.ustensils-list {
+  display: none;
+}
+
+.expanded {
+  display: block;
+  columns: 100px 3;
+}
+
+/* Lists */
+.search-options ul {
+  margin-top: 0;
+}
+
+article {
+  width: 300px;
+}
+
+article img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+}
+
+.search-options li {
+  color: white;
+}
+
+/* 4.1 HEADER */
+header {
+  text-align: center;
+}
+
+h1 {
+  margin-top: 0;
+  font-family: "DM Sans", sans-serif;
+  color: #D04F4F;
+}
+
+/* 4.2 PRIMARY SEARCH */
+.primary-search input {
+  position: relative;
+  width: 100%;
+  height: 69px;
+  padding-left: 17px;
+  background: #E7E7E7;
+  border-radius: 5px;
+  border: none;
+}
+
+.primary-search {
+  position: relative;
+}
+
+.primary-search::after {
+  content: "";
+  display: block;
+  background-image: url("/assets/icons/search-icon.svg");
+  background-size: 28px 28px;
+  height: 28px;
+  width: 28px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+
+/* 4.3 SECONDARY SEARCH */
+.search-options {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+/* 4.4 RESULTS */
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack serve",
+    "sass": "sass --watch src/scss/main.scss:style/main.css",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -28,5 +29,8 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "sass": "^1.49.7"
   }
 }

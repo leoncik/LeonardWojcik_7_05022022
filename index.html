@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- CSS Style -->
         <link
-            href="style/style.css"
+            href="style/main.css"
             rel="stylesheet"
             type="text/css"
         />
@@ -45,7 +45,14 @@
 
             <!-- SECONDARY SEARCH -->
             <section class="secondary-search">
-                <div class="filter-selected"></div>
+                <div class="selected-filters">
+                    <!-- Example template. Must be removed when implementing search and display scripts -->
+                    <ul>
+                        <li class="selected-filters__item_ingredient">Option 1</li>
+                        <li class="selected-filters__item_appliance">Option 2</li>
+                        <li class="selected-filters__item_ustensil">Option 3</li>
+                    </ul>
+                </div>
                 <div class="search-options">
                     <div class="ingredients-search">
                         <input class="dropdown-button" type="button" value="Ingrédients">
@@ -73,6 +80,29 @@
 
             <!-- SEARCH RESULTS -->
             <section class="results">
+                <!-- Example template. Must be removed when implementing search and display scripts -->
+                <article class="recipe">
+                    <div class="reccipe__image-preview">
+                        <a href="#">
+                            <img src="./assets/preview-recipe.jpg" alt="preview recette">
+                        </a>
+                    </div>
+                    <div class="recipe__description">
+                        <div class="recipe__main-info">
+                            <h2>Titre recette</h2>
+                            <p>Temps de cuisson (avec before icon)</p>
+                        </div>
+
+                        <div class="recipe__secondary-info">
+                            <ul class="recipe__ingredients">
+                                <li>ingredient 1</li>
+                                <li>ingredient 2</li>
+                                <li>ingredient 3</li>
+                            </ul>
+                            <p class="recipe__steps">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio provident assumenda suscipit corrupti odit ullam.</p>
+                        </div>
+                    </div>
+                </article>
             </section>
         </main>
     </body>

@@ -1,0 +1,64 @@
+@use "../utils/variables";
+
+.search-options li {
+    color: white;
+}
+
+/* 4.1 HEADER */
+
+header {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+    font-family: variables.$DM-Sans;
+    color: variables.$main-color;
+}
+
+/* 4.2 PRIMARY SEARCH */
+
+.primary-search input {
+    position: relative;
+    width: 100%;
+    height: 69px;
+    padding-left: 17px;
+    background: #E7E7E7;
+    border-radius: variables.$common-radius;
+    border: none;
+}
+
+.primary-search {
+    position: relative;
+}
+.primary-search::after {
+    content: "";
+    display: block;
+    background-image: url('/assets/icons/search-icon.svg');
+    background-size: 28px 28px;
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+}
+
+/* 4.3 SECONDARY SEARCH */
+
+.search-options {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+/* 4.4 RESULTS */
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}

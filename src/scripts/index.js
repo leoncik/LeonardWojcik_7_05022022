@@ -1,7 +1,7 @@
 import { recipes } from '../data/recipes.js';
 import { Recipe } from './classes/Recipe.js';
 import { FilterList } from './classes/FilterList.js';
-import { enableDropdown, enableSelectFilter } from './classes/components/dropdownFilters.js';
+import { enableDropdown, enableSelectFilter } from './components/dropdownFilters.js';
 
 // DOM elements
 const mainResults = document.querySelector('.results');
