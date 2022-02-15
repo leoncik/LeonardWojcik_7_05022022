@@ -1,7 +1,7 @@
 /*
 ! NEW VERSION */
 // TODO : close dropdown if menu is open and user clicks outside of It to prevent bugs
-
+/*
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
 const textFields = document.querySelectorAll('.text-field');
 
@@ -56,9 +56,9 @@ export const enableDropdown = () => {
       })
     }
   }
-
+*/
 /*
-! OLD VERSION
+! OLD VERSION */
 
 // DOM elements
 const listContainers = document.querySelectorAll('.search-options ul');
@@ -83,7 +83,7 @@ export const enableDropdown = () => {
     const dropdownTrigger = document.querySelectorAll('.dropdown-button')
     for (const iterator of dropdownTrigger) {
         // Expand dropdown
-        iterator.addEventListener('click', (e) => {
+        iterator.addEventListener('mousedown', (e) => {
             switch (e.target.value) {
                 case 'Ingrédients':
                     openDropdown(
@@ -112,23 +112,48 @@ export const enableDropdown = () => {
         });
         // Close dropdown
         // iterator.addEventListener('blur', closeDropdown(e));
-        iterator.addEventListener('blur', () => {
-            document.querySelector('.ingredients-search .dropdown-button').value = 'Ingrédients';
-            document.querySelector('.ingredients-search .dropdown-button').type = 'button';
-            document.querySelector('.ingredients-search .dropdown-button').classList.remove('search-mode');
-            document.querySelector('.appliance-search .dropdown-button').value = 'Appareils';
-            document.querySelector('.appliance-search .dropdown-button').type = 'button';
-            document.querySelector('.appliance-search .dropdown-button').classList.remove('search-mode');
-            document.querySelector('.ustensils-search .dropdown-button').value = 'Ustensiles';
-            document.querySelector('.ustensils-search .dropdown-button').type = 'button';
-            document.querySelector('.ustensils-search .dropdown-button').classList.remove('search-mode');
-            document.querySelector('.ingredients-search ul').classList.remove('expanded');
-            document.querySelector('.appliance-search ul').classList.remove('expanded');
-            document.querySelector('.ustensils-search ul').classList.remove('expanded');
+        iterator.addEventListener('blur', (e) => {
+          console.log(e.target);
+          switch (e.target.className) {
+            case 'ingredients-button dropdown-button search-mode':
+              document.querySelector('.ingredients-search .dropdown-button').value = 'Ingrédients';
+              document.querySelector('.ingredients-search .dropdown-button').type = 'button';
+              document.querySelector('.ingredients-search .dropdown-button').classList.remove('search-mode');
+              document.querySelector('.ingredients-search ul').classList.remove('expanded');                 
+                break;
+
+            case 'appliance-button dropdown-button search-mode':
+              document.querySelector('.appliance-search .dropdown-button').value = 'Appareils';
+              document.querySelector('.appliance-search .dropdown-button').type = 'button';
+              document.querySelector('.appliance-search .dropdown-button').classList.remove('search-mode');
+              document.querySelector('.appliance-search ul').classList.remove('expanded');
+                break;
+
+            case 'ustensils-button dropdown-button search-mode':
+              document.querySelector('.ustensils-search .dropdown-button').value = 'Ustensiles';
+              document.querySelector('.ustensils-search .dropdown-button').type = 'button';
+              document.querySelector('.ustensils-search .dropdown-button').classList.remove('search-mode');
+              document.querySelector('.ustensils-search ul').classList.remove('expanded');
+                break;
+        
+            default:
+                break;
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         });
     }
-} */
+}
 
 
 export const enableSelectFilter = (e) => {
