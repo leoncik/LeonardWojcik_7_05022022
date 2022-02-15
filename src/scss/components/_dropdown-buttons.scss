@@ -1,73 +1,139 @@
 @use "../utils/variables";
 
-.dropdown-button {
-    width: 170px;
-    height: 69px;
-    text-align: left;
-    color: white;
-    font-weight: bold;
-    border-radius: variables.$common-radius;
-    border: none;
-    cursor: pointer;
-}
+//!  OLD VERSION
 
-.search-mode {
-    width: 100%;
-    transition: 0.4s;
-}
+// .dropdown-button {
+//     width: 170px;
+//     height: 69px;
+//     text-align: left;
+//     color: white;
+//     font-weight: bold;
+//     border-radius: variables.$common-radius;
+//     border: none;
+//     cursor: pointer;
+// }
 
-.search-options > * {
-    position: relative;
-}
-.dropdown-arrow {
-    position: absolute;
-    right: 12px;
-    top: 30px;
-    pointer-events: none;
-}
+// .search-mode {
+//     width: 100%;
+//     // transition: 0.3s;
+// }
 
-.ingredients-search input {
-    background: variables.$ingredient-color;
-}
-.ingredients-search ul {
-    background-color: variables.$ingredient-color;
-}
+// .search-options > * {
+//     position: relative;
+// }
+// .dropdown-arrow {
+//     position: absolute;
+//     right: 12px;
+//     top: 30px;
+//     pointer-events: none;
+// }
 
-.appliance-search input {
-    background: variables.$appliance-color;
-}
-.appliance-search ul {
-    background: variables.$appliance-color;
-}
+// .ingredients-search input {
+//     background: variables.$ingredient-color;
+// }
+// .ingredients-search ul {
+//     background-color: variables.$ingredient-color;
+// }
 
-.ustensils-search input {
-    background: variables.$ustensils-color;
-}
-.ustensils-search ul {
-    background: variables.$ustensils-color;
-    min-width: 900px;
-}
+// .appliance-search input {
+//     background: variables.$appliance-color;
+// }
+// .appliance-search ul {
+//     background: variables.$appliance-color;
+// }
 
-.search-options li:hover {
-    cursor: pointer;
-    background-color: rgb(8, 185, 67);
-}
+// .ustensils-search input {
+//     background: variables.$ustensils-color;
+// }
+// .ustensils-search ul {
+//     background: variables.$ustensils-color;
+//     min-width: 900px;
+// }
 
-/* Dropdown rules */
+// .search-options li:hover {
+//     cursor: pointer;
+//     background-color: rgb(8, 185, 67);
+// }
 
-.ingredients-list,
-.appliance-list,
-.ustensils-list {
+// /* Dropdown rules */
+
+// .ingredients-list,
+// .appliance-list,
+// .ustensils-list {
+//     display: none;
+// }
+
+// .expanded {
+//     display: block;
+//     columns: 100px 3;
+// }
+
+// /* Lists */
+
+// .search-options ul {
+//     margin-top: 0;
+// }
+
+
+// Test animation
+
+// Test 1 (the entire container should be animated but It is not the case)
+// .ingredients-search {
+//     transition: width 0.4s;
+// }
+
+// Test 2 the input and options are animated separately.
+// .ingredients-list,
+// .appliance-list,
+// .ustensils-list {
+//     animation: growDown 300ms ease-in-out forwards;
+//     animation: growLeft 300ms ease-in-out forwards;
+//     transform-origin: top center;
+// }
+
+// @keyframes growDown {
+
+//     0% {
+//         transform: scaleY(0);  
+//     }
+  
+//     100% {
+//         transform: scaleY(1);
+//     }
+//   }
+
+//   @keyframes growLeft {
+//     0% {
+//         transform: scaleX(0);
+//     }
+  
+//     100% {
+//         transform: scaleX(1);
+//     }
+//   }
+
+// ! NEW VERSION
+.ingredients__text-field,
+.appliance__text-field,
+.ustensils__text-field,
+.ingredients__list,
+.appliance__list,
+.ustensils__list {
     display: none;
 }
 
-.expanded {
-    display: block;
-    columns: 100px 3;
+.ingredients__list,
+.appliance__list,
+.ustensils__list {
+    background-color: green;
 }
 
-/* Lists */
+.show {
+    display: block;
+}
 
-.search-options ul {
-    margin-top: 0;
+span {
+    cursor: pointer;
+    display: block;
+    width: 100%;
 }
