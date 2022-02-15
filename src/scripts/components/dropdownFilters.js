@@ -1,7 +1,6 @@
 /*
 ! NEW VERSION */
-// TODO : close dropdown if menu is open and user clicks outside of It to prevent bugs
-/*
+
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
 const textFields = document.querySelectorAll('.text-field');
 
@@ -9,20 +8,25 @@ export const enableDropdown = () => {
     // Open dropdown
     for (const iterator of dropdownTriggers) {
       iterator.addEventListener('mousedown', (e) => {
+        e.preventDefault();
         switch (e.target.className) {
           case 'ingredients__dropdown-trigger dropdown-trigger':
+            console.log('hallo');
             document.querySelector('.ingredients__list').classList.add('show');
             document.querySelector('.ingredients__text-field').classList.add('show');
+            document.querySelector('.ingredients__text-field').focus();
             break;
   
           case 'appliance__dropdown-trigger dropdown-trigger':
             document.querySelector('.appliance__list').classList.add('show');
             document.querySelector('.appliance__text-field').classList.add('show');
+            document.querySelector('.appliance__text-field').focus();
             break;
   
           case 'ustensils__dropdown-trigger dropdown-trigger':
             document.querySelector('.ustensils__list').classList.add('show');
             document.querySelector('.ustensils__text-field').classList.add('show');
+            document.querySelector('.ustensils__text-field').focus();
             break;
         
           default:
@@ -56,10 +60,10 @@ export const enableDropdown = () => {
       })
     }
   }
-*/
+
 /*
 ! OLD VERSION */
-
+/*
 // DOM elements
 const listContainers = document.querySelectorAll('.search-options ul');
 
@@ -139,21 +143,9 @@ export const enableDropdown = () => {
             default:
                 break;
         }
-
-
-
-
-
-
-
-
-
-
-
-
         });
     }
-}
+} */
 
 
 export const enableSelectFilter = (e) => {
