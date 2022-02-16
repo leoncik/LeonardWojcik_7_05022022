@@ -23,6 +23,40 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.dropdown-trigger {
+  width: 170px;
+  height: 69px;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.ingredients__label,
+.appliance__label,
+.ustensils__label {
+  display: inline-block;
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+.ingredients {
+  background: #3282F7;
+  height: fit-content;
+}
+
+.appliance {
+  background: #68D9A4;
+  height: fit-content;
+}
+
+.ustensils {
+  background: #ED6454;
+  height: fit-content;
+}
+
 .ingredients__text-field,
 .appliance__text-field,
 .ustensils__text-field,
@@ -32,21 +66,18 @@ body {
   display: none;
 }
 
-.ingredients__list,
-.appliance__list,
-.ustensils__list {
-  background-color: green;
-}
-
 .show {
   display: block;
+}
+
+.hide {
+  display: none;
 }
 
 span {
   cursor: pointer;
   display: block;
   width: 100%;
-  background-color: crimson;
 }
 
 .recipe {

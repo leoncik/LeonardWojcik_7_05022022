@@ -1,9 +1,31 @@
-/*
-! NEW VERSION */
+// TODO: try to open dropdown with label instead of span
 
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
 const textFields = document.querySelectorAll('.text-field');
 
+// Open / close functions
+const openDropdown = (element, placeholder) => {
+  let currentList = document.querySelector(`${element}__list`);
+  let currentTextField = document.querySelector(`${element}__text-field`);
+  let currentTrigger = document.querySelector(`${element}__dropdown-trigger`);
+  currentList.classList.add('show');
+  currentTextField.classList.add('show');
+  currentTextField.setAttribute('placeholder', placeholder)
+  currentTrigger.classList.add('hide');
+  currentTextField.focus();
+}
+
+const closeDropdown = (element) => {
+  let currentList = document.querySelector(`${element}__list`);
+  let currentTextField = document.querySelector(`${element}__text-field`);
+  let currentTrigger = document.querySelector(`${element}__dropdown-trigger`);
+  currentList.classList.remove('show');
+  currentTextField.classList.remove('show');
+  currentTextField.value = '';
+  currentTrigger.classList.remove('hide');
+}
+
+// Enable dropdown
 export const enableDropdown = () => {
     // Open dropdown
     for (const iterator of dropdownTriggers) {
@@ -11,22 +33,15 @@ export const enableDropdown = () => {
         e.preventDefault();
         switch (e.target.className) {
           case 'ingredients__dropdown-trigger dropdown-trigger':
-            console.log('hallo');
-            document.querySelector('.ingredients__list').classList.add('show');
-            document.querySelector('.ingredients__text-field').classList.add('show');
-            document.querySelector('.ingredients__text-field').focus();
+            openDropdown('.ingredients', 'Rechercher un ingrédient');
             break;
   
           case 'appliance__dropdown-trigger dropdown-trigger':
-            document.querySelector('.appliance__list').classList.add('show');
-            document.querySelector('.appliance__text-field').classList.add('show');
-            document.querySelector('.appliance__text-field').focus();
+            openDropdown('.appliance', 'Rechercher un appareil');
             break;
   
           case 'ustensils__dropdown-trigger dropdown-trigger':
-            document.querySelector('.ustensils__list').classList.add('show');
-            document.querySelector('.ustensils__text-field').classList.add('show');
-            document.querySelector('.ustensils__text-field').focus();
+            openDropdown('.ustensils', 'Rechercher un ustensile');
             break;
         
           default:
@@ -40,18 +55,15 @@ export const enableDropdown = () => {
       iterator.addEventListener('blur', (e) => {
         switch (e.target.className) {
           case 'ingredients__text-field text-field show':
-            document.querySelector('.ingredients__list').classList.remove('show');
-            document.querySelector('.ingredients__text-field').classList.remove('show');
+            closeDropdown('.ingredients');
             break;
   
           case 'appliance__text-field text-field show':
-            document.querySelector('.appliance__list').classList.remove('show');
-            document.querySelector('.appliance__text-field').classList.remove('show');
+            closeDropdown('.appliance');
             break;
   
           case 'ustensils__text-field text-field show':
-            document.querySelector('.ustensils__list').classList.remove('show');
-            document.querySelector('.ustensils__text-field').classList.remove('show');
+            closeDropdown('.ustensils');
             break;
         
           default:
@@ -60,92 +72,6 @@ export const enableDropdown = () => {
       })
     }
   }
-
-/*
-! OLD VERSION */
-/*
-// DOM elements
-const listContainers = document.querySelectorAll('.search-options ul');
-
-
-
-// Open dropdown
-const openDropdown = (elt, placeholder) => {
-    let currentTrigger = document.querySelector(
-        `${elt} .dropdown-button`
-    );
-    let currentListContainer = document.querySelector(`${elt} ul`);
-    currentTrigger.type = 'text';
-    currentListContainer.classList.add('expanded');
-    currentTrigger.value = '';
-    currentTrigger.classList.add('search-mode');
-    currentTrigger.setAttribute('placeholder', placeholder);
-}
-
-// Enable dropdown
-export const enableDropdown = () => {
-    const dropdownTrigger = document.querySelectorAll('.dropdown-button')
-    for (const iterator of dropdownTrigger) {
-        // Expand dropdown
-        iterator.addEventListener('mousedown', (e) => {
-            switch (e.target.value) {
-                case 'Ingrédients':
-                    openDropdown(
-                        '.ingredients-search',
-                        'Rechercher un ingrédient'
-                    );                    
-                    break;
-
-                case 'Appareils':
-                    openDropdown(
-                        '.appliance-search',
-                        'Rechercher un appareil'
-                    );
-                    break;
-
-                case 'Ustensiles':
-                    openDropdown(
-                        '.ustensils-search',
-                        'Rechercher un ustensile'
-                    );
-                    break;
-            
-                default:
-                    break;
-            }
-        });
-        // Close dropdown
-        // iterator.addEventListener('blur', closeDropdown(e));
-        iterator.addEventListener('blur', (e) => {
-          console.log(e.target);
-          switch (e.target.className) {
-            case 'ingredients-button dropdown-button search-mode':
-              document.querySelector('.ingredients-search .dropdown-button').value = 'Ingrédients';
-              document.querySelector('.ingredients-search .dropdown-button').type = 'button';
-              document.querySelector('.ingredients-search .dropdown-button').classList.remove('search-mode');
-              document.querySelector('.ingredients-search ul').classList.remove('expanded');                 
-                break;
-
-            case 'appliance-button dropdown-button search-mode':
-              document.querySelector('.appliance-search .dropdown-button').value = 'Appareils';
-              document.querySelector('.appliance-search .dropdown-button').type = 'button';
-              document.querySelector('.appliance-search .dropdown-button').classList.remove('search-mode');
-              document.querySelector('.appliance-search ul').classList.remove('expanded');
-                break;
-
-            case 'ustensils-button dropdown-button search-mode':
-              document.querySelector('.ustensils-search .dropdown-button').value = 'Ustensiles';
-              document.querySelector('.ustensils-search .dropdown-button').type = 'button';
-              document.querySelector('.ustensils-search .dropdown-button').classList.remove('search-mode');
-              document.querySelector('.ustensils-search ul').classList.remove('expanded');
-                break;
-        
-            default:
-                break;
-        }
-        });
-    }
-} */
 
 
 export const enableSelectFilter = (e) => {
