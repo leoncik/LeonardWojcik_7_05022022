@@ -28,7 +28,7 @@ const displayFilterLists = (recipes) => {
 
 // Initialize recipes page
 const initRecipesPage = () => {
-    displayRecipes(recipes);
+    // displayRecipes(recipes);
     //displayFilterLists(recipes);
     enableDropdown();
     //enableSelectFilter();

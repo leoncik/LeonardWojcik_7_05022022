@@ -1,4 +1,5 @@
- export class Recipe {
+/*
+export class Recipe {
      constructor(data) {
          this.name = data.name;
          this.ingredients = data.ingredients;
@@ -8,7 +9,7 @@
 
      createRecipeCard() {
 
-        /* <article> ... Write structure here to improve readability </article> */
+        // <article> ... Write structure here to improve readability </article>
 
 
         const article = document.createElement('article');
@@ -59,4 +60,4 @@
     //     }
     //  }
     // ? Use extend ?
- }
+ } */

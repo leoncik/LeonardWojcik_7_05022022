@@ -29,6 +29,10 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.search-options {
+  position: absolute;
+}
+
 .dropdown-trigger {
   display: flex;
   align-items: center;
@@ -55,6 +59,7 @@ body {
   border-radius: 5px;
   height: fit-content;
   position: relative;
+  z-index: 1;
 }
 
 .ingredients__label,
@@ -295,7 +300,6 @@ h1 {
 
 /* 4.3 SECONDARY SEARCH */
 .search-options {
-  margin-top: 20px;
   display: flex;
   gap: 15px;
 }
@@ -306,7 +310,7 @@ h1 {
   grid-template-columns: repeat(auto-fill, 300px);
   justify-content: space-between;
   gap: 30px;
-  margin-top: 20px;
+  margin-top: 114px;
   margin-bottom: 50px;
 }
 

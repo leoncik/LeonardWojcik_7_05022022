@@ -1,3 +1,4 @@
+/*
 export class FilterList {
     constructor(data) {
         this.ingredients = data.ingredients;
@@ -52,4 +53,4 @@ export class FilterList {
     // }
 
     }
-}
+} */

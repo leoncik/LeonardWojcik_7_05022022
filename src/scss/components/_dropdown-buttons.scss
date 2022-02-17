@@ -1,6 +1,10 @@
 @use "../utils/variables";
 
 // Dropdown button (static style)
+.search-options {
+    position: absolute;
+}
+
 .dropdown-trigger {
     display: flex;
     align-items: center;
@@ -27,6 +31,7 @@
     border-radius: variables.$common-radius;
     height: fit-content;
     position: relative;
+    z-index: 1;
 }
 
 .ingredients__label,
