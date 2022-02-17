@@ -1,122 +1,12 @@
 @use "../utils/variables";
 
-//!  OLD VERSION
-
-// .dropdown-button {
-//     width: 170px;
-//     height: 69px;
-//     text-align: left;
-//     color: white;
-//     font-weight: bold;
-//     border-radius: variables.$common-radius;
-//     border: none;
-//     cursor: pointer;
-// }
-
-// .search-mode {
-//     width: 100%;
-//     // transition: 0.3s;
-// }
-
-// .search-options > * {
-//     position: relative;
-// }
-// .dropdown-arrow {
-//     position: absolute;
-//     right: 12px;
-//     top: 30px;
-//     pointer-events: none;
-// }
-
-// .ingredients-search input {
-//     background: variables.$ingredient-color;
-// }
-// .ingredients-search ul {
-//     background-color: variables.$ingredient-color;
-// }
-
-// .appliance-search input {
-//     background: variables.$appliance-color;
-// }
-// .appliance-search ul {
-//     background: variables.$appliance-color;
-// }
-
-// .ustensils-search input {
-//     background: variables.$ustensils-color;
-// }
-// .ustensils-search ul {
-//     background: variables.$ustensils-color;
-//     min-width: 900px;
-// }
-
-// .search-options li:hover {
-//     cursor: pointer;
-//     background-color: rgb(8, 185, 67);
-// }
-
-// /* Dropdown rules */
-
-// .ingredients-list,
-// .appliance-list,
-// .ustensils-list {
-//     display: none;
-// }
-
-// .expanded {
-//     display: block;
-//     columns: 100px 3;
-// }
-
-// /* Lists */
-
-// .search-options ul {
-//     margin-top: 0;
-// }
-
-
-// Test animation
-
-// Test 1 (the entire container should be animated but It is not the case)
-// .ingredients-search {
-//     transition: width 0.4s;
-// }
-
-// Test 2 the input and options are animated separately.
-// .ingredients-list,
-// .appliance-list,
-// .ustensils-list {
-//     animation: growDown 300ms ease-in-out forwards;
-//     animation: growLeft 300ms ease-in-out forwards;
-//     transform-origin: top center;
-// }
-
-// @keyframes growDown {
-
-//     0% {
-//         transform: scaleY(0);  
-//     }
-  
-//     100% {
-//         transform: scaleY(1);
-//     }
-//   }
-
-//   @keyframes growLeft {
-//     0% {
-//         transform: scaleX(0);
-//     }
-  
-//     100% {
-//         transform: scaleX(1);
-//     }
-//   }
-
-// ! NEW VERSION
+// Dropdown button (static style)
 .dropdown-trigger {
+    display: flex;
+    align-items: center;
     width: 170px;
     height: 69px;
-    text-align: left;
+    padding-left: 22px;
     color: white;
     font-weight: bold;
     border-radius: variables.$common-radius;
@@ -124,27 +14,36 @@
     cursor: pointer;
 }
 
+.dropdown-arrow {
+    position: absolute;
+    right: 12px;
+    top: 30px;
+    pointer-events: none;
+}
+
+.ingredients,
+.appliance,
+.ustensils {
+    border-radius: variables.$common-radius;
+    height: fit-content;
+    position: relative;
+}
+
 .ingredients__label,
 .appliance__label,
 .ustensils__label {
     display: inline-block;
-    padding: 12px 0;
     cursor: pointer;
 }
 
-
 .ingredients {
     background: variables.$ingredient-color;
-    height: fit-content;
 }
-
 .appliance {
     background: variables.$appliance-color;
-    height: fit-content;
-
-}.ustensils {
+}
+.ustensils {
     background: variables.$ustensils-color;
-    height: fit-content;
 }
 
 .ingredients__text-field,
@@ -156,23 +55,54 @@
     display: none;
 }
 
-// .ingredients__list,
-// .appliance__list,
-// .ustensils__list {
-//     background-color: rgba(0, 128, 0, 0.432);
-// }
-
-.show {
-    display: block;
+// Dropdown button (expanded style)
+.ingredients__label_expanded,
+.appliance__label_expanded,
+.ustensils__label_expanded {
+    height: 69px;
+    width: 100%;
 }
 
+.search-options input {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80%;
+    margin-left: 19px;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+}
+
+// Lists
+// TODO: test CSS grid for better responsivity
+.search-options ul {
+    margin-left: 19px;
+    height: 150px;
+    columns: 100px 3;
+}
+
+.search-options li:hover {
+    cursor: pointer;
+}
+
+.ingredients__list li:hover {
+    background-color: darken(variables.$ingredient-color, 10%);
+}
+.appliance__list li:hover {
+    background-color: darken(variables.$appliance-color, 10%);
+}
+.ustensils__list li:hover {
+    background-color: darken(variables.$ustensils-color, 10%);
+}
+
+// Helpers
 .hide {
     display: none;
 }
 
-span {
-    cursor: pointer;
+.show {
     display: block;
-    width: 100%;
-    //background-color: crimson;
 }

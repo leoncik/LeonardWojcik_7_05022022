@@ -1,4 +1,10 @@
 /* General styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -24,9 +30,11 @@ body {
 }
 
 .dropdown-trigger {
+  display: flex;
+  align-items: center;
   width: 170px;
   height: 69px;
-  text-align: left;
+  padding-left: 22px;
   color: white;
   font-weight: bold;
   border-radius: 5px;
@@ -34,27 +42,38 @@ body {
   cursor: pointer;
 }
 
+.dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 30px;
+  pointer-events: none;
+}
+
+.ingredients,
+.appliance,
+.ustensils {
+  border-radius: 5px;
+  height: fit-content;
+  position: relative;
+}
+
 .ingredients__label,
 .appliance__label,
 .ustensils__label {
   display: inline-block;
-  padding: 12px 0;
   cursor: pointer;
 }
 
 .ingredients {
   background: #3282F7;
-  height: fit-content;
 }
 
 .appliance {
   background: #68D9A4;
-  height: fit-content;
 }
 
 .ustensils {
   background: #ED6454;
-  height: fit-content;
 }
 
 .ingredients__text-field,
@@ -66,18 +85,54 @@ body {
   display: none;
 }
 
-.show {
-  display: block;
+.ingredients__label_expanded,
+.appliance__label_expanded,
+.ustensils__label_expanded {
+  height: 69px;
+  width: 100%;
+}
+
+.search-options input {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80%;
+  margin-left: 19px;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+}
+
+.search-options ul {
+  margin-left: 19px;
+  height: 150px;
+  columns: 100px 3;
+}
+
+.search-options li:hover {
+  cursor: pointer;
+}
+
+.ingredients__list li:hover {
+  background-color: #0966ed;
+}
+
+.appliance__list li:hover {
+  background-color: #3fcf8b;
+}
+
+.ustensils__list li:hover {
+  background-color: #e83a26;
 }
 
 .hide {
   display: none;
 }
 
-span {
-  cursor: pointer;
+.show {
   display: block;
-  width: 100%;
 }
 
 .recipe {
@@ -227,10 +282,11 @@ h1 {
 .primary-search::after {
   content: "";
   display: block;
-  background-image: url("/assets/icons/search-icon.svg");
+  background-image: url("../assets/icons/search-icon.svg");
   background-size: 28px 28px;
   height: 28px;
   width: 28px;
+  margin-right: 16.44px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

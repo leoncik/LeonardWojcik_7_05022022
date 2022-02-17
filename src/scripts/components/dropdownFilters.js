@@ -5,23 +5,27 @@ const textFields = document.querySelectorAll('.text-field');
 
 // Open / close functions
 const openDropdown = (element, placeholder) => {
-  let currentList = document.querySelector(`${element}__list`);
-  let currentTextField = document.querySelector(`${element}__text-field`);
-  let currentTrigger = document.querySelector(`${element}__dropdown-trigger`);
+  let currentList = document.querySelector(`.${element}__list`);
+  let currentTextField = document.querySelector(`.${element}__text-field`);
+  let currentTrigger = document.querySelector(`.${element}__dropdown-trigger`);
+  let currentLabel = document.querySelector(`.${element}__label`);
   currentList.classList.add('show');
   currentTextField.classList.add('show');
-  currentTextField.setAttribute('placeholder', placeholder)
+  currentTextField.setAttribute('placeholder', placeholder);
   currentTrigger.classList.add('hide');
+  currentLabel.classList.add(`${element}__label_expanded`);
   currentTextField.focus();
 }
 
 const closeDropdown = (element) => {
-  let currentList = document.querySelector(`${element}__list`);
-  let currentTextField = document.querySelector(`${element}__text-field`);
-  let currentTrigger = document.querySelector(`${element}__dropdown-trigger`);
+  let currentList = document.querySelector(`.${element}__list`);
+  let currentTextField = document.querySelector(`.${element}__text-field`);
+  let currentTrigger = document.querySelector(`.${element}__dropdown-trigger`);
+  let currentLabel = document.querySelector(`.${element}__label`);
   currentList.classList.remove('show');
   currentTextField.classList.remove('show');
   currentTextField.value = '';
+  currentLabel.classList.remove(`${element}__label_expanded`);
   currentTrigger.classList.remove('hide');
 }
 
@@ -33,15 +37,15 @@ export const enableDropdown = () => {
         e.preventDefault();
         switch (e.target.className) {
           case 'ingredients__dropdown-trigger dropdown-trigger':
-            openDropdown('.ingredients', 'Rechercher un ingrédient');
+            openDropdown('ingredients', 'Rechercher un ingrédient');
             break;
   
           case 'appliance__dropdown-trigger dropdown-trigger':
-            openDropdown('.appliance', 'Rechercher un appareil');
+            openDropdown('appliance', 'Rechercher un appareil');
             break;
   
           case 'ustensils__dropdown-trigger dropdown-trigger':
-            openDropdown('.ustensils', 'Rechercher un ustensile');
+            openDropdown('ustensils', 'Rechercher un ustensile');
             break;
         
           default:
@@ -55,15 +59,15 @@ export const enableDropdown = () => {
       iterator.addEventListener('blur', (e) => {
         switch (e.target.className) {
           case 'ingredients__text-field text-field show':
-            closeDropdown('.ingredients');
+            closeDropdown('ingredients');
             break;
   
           case 'appliance__text-field text-field show':
-            closeDropdown('.appliance');
+            closeDropdown('appliance');
             break;
   
           case 'ustensils__text-field text-field show':
-            closeDropdown('.ustensils');
+            closeDropdown('ustensils');
             break;
         
           default:

@@ -34,10 +34,11 @@ h1 {
 .primary-search::after {
     content: "";
     display: block;
-    background-image: url('/assets/icons/search-icon.svg');
+    background-image: url('../assets/icons/search-icon.svg');
     background-size: 28px 28px;
     height: 28px;
     width: 28px;
+    margin-right: 16.44px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
