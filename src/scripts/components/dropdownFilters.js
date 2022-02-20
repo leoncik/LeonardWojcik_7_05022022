@@ -1,7 +1,6 @@
-// TODO: try to open dropdown with label instead of span
-
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
-const textFields = document.querySelectorAll('.text-field');
+// const textFields = document.querySelectorAll('.text-field');
+// const searchOptions = document.querySelectorAll('.search-options >*');
 
 // Open / close functions
 const openDropdown = (element, placeholder) => {
@@ -11,11 +10,13 @@ const openDropdown = (element, placeholder) => {
         `.${element}__dropdown-trigger`
     );
     let currentLabel = document.querySelector(`.${element}__label`);
+    let currentOption = document.querySelector(`.${element}`);
     currentList.classList.add('show');
     currentTextField.classList.add('show');
     currentTextField.setAttribute('placeholder', placeholder);
     currentTrigger.classList.add('hide');
     currentLabel.classList.add(`${element}__label_expanded`);
+    currentOption.classList.add('active-option');
     currentTextField.focus();
 };
 
@@ -26,10 +27,12 @@ const closeDropdown = (element) => {
         `.${element}__dropdown-trigger`
     );
     let currentLabel = document.querySelector(`.${element}__label`);
+    let currentOption = document.querySelector(`.${element}`);
     currentList.classList.remove('show');
     currentTextField.classList.remove('show');
     currentTextField.value = '';
     currentLabel.classList.remove(`${element}__label_expanded`);
+    currentOption.classList.remove('active-option');
     currentTrigger.classList.remove('hide');
 };
 
@@ -37,7 +40,7 @@ const closeDropdown = (element) => {
 export const enableDropdown = () => {
     // Open dropdown
     for (const iterator of dropdownTriggers) {
-        iterator.addEventListener('mousedown', (e) => {
+        iterator.addEventListener('click', (e) => {
             e.preventDefault();
             switch (e.target.className) {
                 case 'ingredients__dropdown-trigger dropdown-trigger':
@@ -59,26 +62,79 @@ export const enableDropdown = () => {
     }
 
     // Close dropdown
-    for (const iterator of textFields) {
-        iterator.addEventListener('blur', (e) => {
-            switch (e.target.className) {
-                case 'ingredients__text-field text-field show':
-                    closeDropdown('ingredients');
-                    break;
+    // ! Needs refactor
+    document.addEventListener('click', (e) => {
+        // ingredients
+        let specifiedElementIngredients =
+            document.querySelector('.ingredients');
+        let specifiedElementLabelIngredients = document.querySelector(
+            '.ingredients__label'
+        );
+        let isClickInsideIngredients = specifiedElementIngredients.contains(
+            e.target
+        );
+        let isClickInsideLabelIngredients =
+            specifiedElementLabelIngredients.contains(e.target);
+        // appliance
+        let specifiedElementAppliance = document.querySelector('.appliance');
+        let specifiedElementLabelAppliance =
+            document.querySelector('.appliance__label');
+        let isClickInsideAppliance = specifiedElementAppliance.contains(
+            e.target
+        );
+        let isClickInsideLabelAppliance =
+            specifiedElementLabelAppliance.contains(e.target);
+        // ustensils
+        let specifiedElementUstensils = document.querySelector('.ustensils');
+        let specifiedElementLabel = document.querySelector('.ustensils__label');
+        let isClickInsideUstensils = specifiedElementUstensils.contains(
+            e.target
+        );
+        let isClickInsideLabelUstensils = specifiedElementLabel.contains(
+            e.target
+        );
 
-                case 'appliance__text-field text-field show':
-                    closeDropdown('appliance');
-                    break;
-
-                case 'ustensils__text-field text-field show':
-                    closeDropdown('ustensils');
-                    break;
-
-                default:
-                    break;
-            }
-        });
-    }
+        /* Close ingredients dropdown if clicked outside container and if container is active */
+        if (
+            !isClickInsideIngredients &&
+            specifiedElementIngredients.classList.contains('active-option')
+        ) {
+            closeDropdown('ingredients');
+            console.log('fermeture ingrédients');
+            /* Close ingredients dropdown if clicked on label and if label is expanded */
+        } else if (
+            isClickInsideLabelIngredients &&
+            e.target.classList.contains('ingredients__label_expanded')
+        ) {
+            closeDropdown('ingredients');
+            console.log('fermeture ingredients via label');
+            /* Repetition for appliance and ustensils... */
+        } else if (
+            !isClickInsideAppliance &&
+            specifiedElementAppliance.classList.contains('active-option')
+        ) {
+            closeDropdown('appliance');
+            console.log('fermeture appareils');
+        } else if (
+            isClickInsideLabelAppliance &&
+            e.target.classList.contains('appliance__label_expanded')
+        ) {
+            closeDropdown('appliance');
+            console.log('fermeture appareils via label');
+        } else if (
+            !isClickInsideUstensils &&
+            specifiedElementUstensils.classList.contains('active-option')
+        ) {
+            closeDropdown('ustensils');
+            console.log('fermeture ustensiles');
+        } else if (
+            isClickInsideLabelUstensils &&
+            e.target.classList.contains('ustensils__label_expanded')
+        ) {
+            closeDropdown('ustensils');
+            console.log('fermeture ustensiles via label');
+        }
+    });
 };
 
 export const enableSelectFilter = () => {

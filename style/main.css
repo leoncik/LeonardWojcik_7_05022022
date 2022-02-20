@@ -2,83 +2,83 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 40px 100px;
+    margin: 40px 100px;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 ul {
-  padding-left: 0;
+    padding-left: 0;
 }
 
 li {
-  list-style: none;
+    list-style: none;
 }
 
 body {
-  font-family: "Lato", sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 .search-options {
-  position: absolute;
+    position: absolute;
 }
 
 .dropdown-trigger {
-  display: flex;
-  align-items: center;
-  width: 170px;
-  height: 69px;
-  padding-left: 22px;
-  color: white;
-  font-weight: bold;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 170px;
+    height: 69px;
+    padding-left: 22px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .dropdown-arrow {
-  position: absolute;
-  right: 12px;
-  top: 30px;
-  pointer-events: none;
+    position: absolute;
+    right: 12px;
+    top: 30px;
+    pointer-events: none;
 }
 
 .ingredients,
 .appliance,
 .ustensils {
-  border-radius: 5px;
-  height: fit-content;
-  position: relative;
-  z-index: 1;
+    border-radius: 5px;
+    height: fit-content;
+    position: relative;
+    z-index: 1;
 }
 
 .ingredients__label,
 .appliance__label,
 .ustensils__label {
-  display: inline-block;
-  cursor: pointer;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .ingredients {
-  background: #3282F7;
+    background: #3282f7;
 }
 
 .appliance {
-  background: #68D9A4;
+    background: #68d9a4;
 }
 
 .ustensils {
-  background: #ED6454;
+    background: #ed6454;
 }
 
 .ingredients__text-field,
@@ -87,231 +87,231 @@ body {
 .ingredients__list,
 .appliance__list,
 .ustensils__list {
-  display: none;
+    display: none;
 }
 
 .ingredients__label_expanded,
 .appliance__label_expanded,
 .ustensils__label_expanded {
-  height: 69px;
-  width: 100%;
+    height: 69px;
+    width: 100%;
 }
 
 .search-options input {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 80%;
-  margin-left: 19px;
-  background: none;
-  border: none;
-  outline: none;
-  color: white;
-  font-weight: bold;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80%;
+    margin-left: 19px;
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
 }
 
 .search-options ul {
-  margin-left: 19px;
-  height: 150px;
-  columns: 100px 3;
+    margin-left: 19px;
+    height: 150px;
+    columns: 100px 3;
 }
 
 .search-options li:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .ingredients__list li:hover {
-  background-color: #0966ed;
+    background-color: #0966ed;
 }
 
 .appliance__list li:hover {
-  background-color: #3fcf8b;
+    background-color: #3fcf8b;
 }
 
 .ustensils__list li:hover {
-  background-color: #e83a26;
+    background-color: #e83a26;
 }
 
 .hide {
-  display: none;
+    display: none;
 }
 
 .show {
-  display: block;
+    display: block;
 }
 
 .recipe {
-  width: 380px;
+    max-width: 380px;
 }
 
 .reccipe__image-preview a {
-  display: flex;
-  overflow: hidden;
+    display: flex;
+    overflow: hidden;
 }
 
 .reccipe__image-preview img {
-  border-radius: 5px 5px 0 0;
-  width: 100%;
-  overflow: hidden;
-  transition: 0.4s all ease-in-out;
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    overflow: hidden;
+    transition: 0.4s all ease-in-out;
 }
 .reccipe__image-preview img:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .recipe__description {
-  background: #E7E7E7;
-  border-radius: 0 0 5px 5px;
+    background: #e7e7e7;
+    border-radius: 0 0 5px 5px;
 }
 
 .recipe__main-info {
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 25px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
 }
 
 .recipe__duration {
-  font-weight: bold;
-  display: flex;
-  gap: 7px;
+    font-weight: bold;
+    display: flex;
+    gap: 7px;
 }
 .recipe__duration::before {
-  content: "";
-  display: block;
-  background-image: url("../assets/icons/cooking-time.svg");
-  background-size: 20px 20px;
-  height: 20px;
-  width: 20px;
+    content: '';
+    display: block;
+    background-image: url('../assets/icons/cooking-time.svg');
+    background-size: 20px 20px;
+    height: 20px;
+    width: 20px;
 }
 
 .recipe__secondary-info {
-  padding: 0 18px 0 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 25px;
+    padding: 0 18px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
 }
 
 .recipe__ingredients,
 .recipe__steps {
-  flex: 0 50%;
-  font-size: 0.8rem;
+    flex: 0 50%;
+    font-size: 0.8rem;
 }
 
 .recipe__ingredient-name {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .article {
-  width: 380px;
+    width: 380px;
 }
 
 article img {
-  border-radius: 5px 5px 0 0;
-  width: 100%;
+    border-radius: 5px 5px 0 0;
+    width: 100%;
 }
 
 .selected-filters {
-  color: white;
-  display: flex;
-  gap: 25px;
-  padding-left: 0;
+    color: white;
+    display: flex;
+    gap: 25px;
+    padding-left: 0;
 }
 
 .selected-filters__item {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  height: 37px;
-  padding: 8px 22px 9px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: 37px;
+    padding: 8px 22px 9px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
 }
 .selected-filters__item::after {
-  content: "";
-  display: block;
-  background-image: url("../assets/icons/remove-filter.svg");
-  background-size: 28px 28px;
-  height: 28px;
-  width: 28px;
+    content: '';
+    display: block;
+    background-image: url('../assets/icons/remove-filter.svg');
+    background-size: 28px 28px;
+    height: 28px;
+    width: 28px;
 }
 .selected-filters__item:hover::after {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .selected-filters__item_ingredient {
-  background-color: #3282F7;
+    background-color: #3282f7;
 }
 
 .selected-filters__item_appliance {
-  background-color: #68D9A4;
+    background-color: #68d9a4;
 }
 
 .selected-filters__item_ustensils {
-  background-color: #ED6454;
+    background-color: #ed6454;
 }
 
 .search-options li {
-  color: white;
+    color: white;
 }
 
 /* 4.1 HEADER */
 header {
-  text-align: center;
+    text-align: center;
 }
 
 h1 {
-  margin-top: 0;
-  font-family: "DM Sans", sans-serif;
-  color: #D04F4F;
+    margin-top: 0;
+    font-family: 'DM Sans', sans-serif;
+    color: #d04f4f;
 }
 
 /* 4.2 PRIMARY SEARCH */
 .primary-search input {
-  position: relative;
-  width: 100%;
-  height: 69px;
-  padding-left: 17px;
-  background: #E7E7E7;
-  border-radius: 5px;
-  border: none;
+    position: relative;
+    width: 100%;
+    height: 69px;
+    padding-left: 17px;
+    background: #e7e7e7;
+    border-radius: 5px;
+    border: none;
 }
 
 .primary-search {
-  position: relative;
+    position: relative;
 }
 
 .primary-search::after {
-  content: "";
-  display: block;
-  background-image: url("../assets/icons/search-icon.svg");
-  background-size: 28px 28px;
-  height: 28px;
-  width: 28px;
-  margin-right: 16.44px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 0;
+    content: '';
+    display: block;
+    background-image: url('../assets/icons/search-icon.svg');
+    background-size: 28px 28px;
+    height: 28px;
+    width: 28px;
+    margin-right: 16.44px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
 }
 
 /* 4.3 SECONDARY SEARCH */
 .search-options {
-  display: flex;
-  gap: 15px;
+    display: flex;
+    gap: 15px;
 }
 
 /* 4.4 RESULTS */
 .results {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
-  justify-content: space-between;
-  gap: 30px;
-  margin-top: 114px;
-  margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, max-content));
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 114px;
+    margin-bottom: 50px;
 }
 
 /*# sourceMappingURL=main.css.map */
