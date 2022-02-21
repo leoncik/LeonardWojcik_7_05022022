@@ -59,8 +59,8 @@ export const enableDropdown = () => {
                     openDropdown('appliance', 'Rechercher un appareil');
                     break;
 
-                case 'ustensils__dropdown-trigger dropdown-trigger':
-                    openDropdown('ustensils', 'Rechercher un ustensile');
+                case 'utensils__dropdown-trigger dropdown-trigger':
+                    openDropdown('utensils', 'Rechercher un ustensile');
                     break;
 
                 default:
@@ -92,13 +92,11 @@ export const enableDropdown = () => {
         );
         let isClickInsideLabelAppliance =
             specifiedElementLabelAppliance.contains(e.target);
-        // ustensils
-        let specifiedElementUstensils = document.querySelector('.ustensils');
-        let specifiedElementLabel = document.querySelector('.ustensils__label');
-        let isClickInsideUstensils = specifiedElementUstensils.contains(
-            e.target
-        );
-        let isClickInsideLabelUstensils = specifiedElementLabel.contains(
+        // utensils
+        let specifiedElementUtensils = document.querySelector('.utensils');
+        let specifiedElementLabel = document.querySelector('.utensils__label');
+        let isClickInsideUtensils = specifiedElementUtensils.contains(e.target);
+        let isClickInsideLabelUtensils = specifiedElementLabel.contains(
             e.target
         );
 
@@ -116,7 +114,7 @@ export const enableDropdown = () => {
         ) {
             closeDropdown('ingredients');
             console.log('fermeture ingredients via label');
-            /* Repetition for appliance and ustensils... */
+            /* Repetition for appliance and utensils... */
         } else if (
             !isClickInsideAppliance &&
             specifiedElementAppliance.classList.contains('active-option')
@@ -130,16 +128,16 @@ export const enableDropdown = () => {
             closeDropdown('appliance');
             console.log('fermeture appareils via label');
         } else if (
-            !isClickInsideUstensils &&
-            specifiedElementUstensils.classList.contains('active-option')
+            !isClickInsideUtensils &&
+            specifiedElementUtensils.classList.contains('active-option')
         ) {
-            closeDropdown('ustensils');
+            closeDropdown('utensils');
             console.log('fermeture ustensiles');
         } else if (
-            isClickInsideLabelUstensils &&
-            e.target.classList.contains('ustensils__label_expanded')
+            isClickInsideLabelUtensils &&
+            e.target.classList.contains('utensils__label_expanded')
         ) {
-            closeDropdown('ustensils');
+            closeDropdown('utensils');
             console.log('fermeture ustensiles via label');
         }
     });

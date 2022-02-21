@@ -35,7 +35,7 @@
 
 .ingredients,
 .appliance,
-.ustensils {
+.utensils {
     border-radius: variables.$common-radius;
     height: fit-content;
     position: relative;
@@ -44,7 +44,7 @@
 
 .ingredients__label,
 .appliance__label,
-.ustensils__label {
+.utensils__label {
     display: inline-block;
     cursor: pointer;
 }
@@ -55,23 +55,23 @@
 .appliance {
     background: variables.$appliance-color;
 }
-.ustensils {
-    background: variables.$ustensils-color;
+.utensils {
+    background: variables.$utensils-color;
 }
 
 .ingredients__text-field,
 .appliance__text-field,
-.ustensils__text-field,
+.utensils__text-field,
 .ingredients__list,
 .appliance__list,
-.ustensils__list {
+.utensils__list {
     display: none;
 }
 
 // Dropdown button (expanded style)
 .ingredients__label_expanded,
 .appliance__label_expanded,
-.ustensils__label_expanded {
+.utensils__label_expanded {
     height: 69px;
     width: 100%;
 }
@@ -108,8 +108,8 @@
 .appliance__list li:hover {
     background-color: darken(variables.$appliance-color, 10%);
 }
-.ustensils__list li:hover {
-    background-color: darken(variables.$ustensils-color, 10%);
+.utensils__list li:hover {
+    background-color: darken(variables.$utensils-color, 10%);
 }
 
 // Helpers

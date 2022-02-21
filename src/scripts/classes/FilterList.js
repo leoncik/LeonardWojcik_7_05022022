@@ -3,7 +3,7 @@ export class FilterList {
     constructor(data) {
         this.ingredients = data.ingredients;
         this.appliance = data.appliance;
-        this.ustensils = data.ustensils;
+        this.utensils = data.utensils;
     }
 
     // get ingredients() {
@@ -14,8 +14,8 @@ export class FilterList {
     //     return this.appliance;
     // }
 
-    // get ustensils() {
-    //     return this.ustensils;
+    // get utensils() {
+    //     return this.utensils;
     // }
 
     createFilterList(type) {
@@ -35,10 +35,10 @@ export class FilterList {
                 document.querySelector('.appliance-list').appendChild(applianceListItem);
                 break;
 
-            case 'ustensils':
-                const ustensilsListItem = document.createElement('li');
-                ustensilsListItem.textContent = `${this.ustensils}`
-                document.querySelector('.ustensils-list').appendChild(ustensilsListItem);
+            case 'utensils':
+                const utensilsListItem = document.createElement('li');
+                utensilsListItem.textContent = `${this.utensils}`
+                document.querySelector('.utensils-list').appendChild(utensilsListItem);
         
             default:
                 break;

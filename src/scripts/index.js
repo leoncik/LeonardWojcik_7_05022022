@@ -25,7 +25,7 @@ import {
 //         const listOptionIngredients =
 //             recipeModel.createFilterList('ingredients');
 //         const listOptionAppliance = recipeModel.createFilterList('appliance');
-//         const listOptionUstensils = recipeModel.createFilterList('ustensils');
+//         const listOptionUtensils = recipeModel.createFilterList('utensils');
 //     });
 // };
 

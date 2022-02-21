@@ -4,7 +4,7 @@ export class Recipe {
          this.name = data.name;
          this.ingredients = data.ingredients;
          this.appliance = data.appliance;
-         this.ustensils = data.ustensils;
+         this.utensils = data.utensils;
      }
 
      createRecipeCard() {
@@ -40,10 +40,10 @@ export class Recipe {
         recipeAppliance.textContent = this.appliance;
         article.appendChild(recipeAppliance);
 
-        // USTENSILS
-        const recipeUstensils = document.createElement('p');
-        recipeUstensils.textContent = this.ustensils;
-        article.appendChild(recipeUstensils);
+        // UTENSILS
+        const recipeUtensils = document.createElement('p');
+        recipeUtensils.textContent = this.utensils;
+        article.appendChild(recipeUtensils);
 
         return article;
 
