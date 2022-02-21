@@ -11,12 +11,16 @@ const openDropdown = (element, placeholder) => {
     );
     let currentLabel = document.querySelector(`.${element}__label`);
     let currentOption = document.querySelector(`.${element}`);
+    let currentDropdownArrow = document.querySelector(
+        `.${element} .dropdown-arrow`
+    );
     currentList.classList.add('show');
     currentTextField.classList.add('show');
     currentTextField.setAttribute('placeholder', placeholder);
     currentTrigger.classList.add('hide');
     currentLabel.classList.add(`${element}__label_expanded`);
     currentOption.classList.add('active-option');
+    currentDropdownArrow.classList.toggle('dropdown-arrow_rotate');
     currentTextField.focus();
 };
 
@@ -28,11 +32,15 @@ const closeDropdown = (element) => {
     );
     let currentLabel = document.querySelector(`.${element}__label`);
     let currentOption = document.querySelector(`.${element}`);
+    let currentDropdownArrow = document.querySelector(
+        `.${element} .dropdown-arrow`
+    );
     currentList.classList.remove('show');
     currentTextField.classList.remove('show');
     currentTextField.value = '';
     currentLabel.classList.remove(`${element}__label_expanded`);
     currentOption.classList.remove('active-option');
+    currentDropdownArrow.classList.toggle('dropdown-arrow_rotate');
     currentTrigger.classList.remove('hide');
 };
 

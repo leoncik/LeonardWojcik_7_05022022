@@ -25,6 +25,14 @@
     pointer-events: none;
 }
 
+.dropdown-arrow_rotate {
+    position: absolute;
+    right: 12px;
+    top: 30px;
+    pointer-events: none;
+    transform: rotate(180deg);
+}
+
 .ingredients,
 .appliance,
 .ustensils {
@@ -85,7 +93,8 @@
 // TODO: test CSS grid for better responsivity
 .search-options ul {
     margin-left: 19px;
-    height: 150px;
+    // fixing height is causing responsive bugs
+    // height: 150px;
     columns: 100px 3;
 }
 
