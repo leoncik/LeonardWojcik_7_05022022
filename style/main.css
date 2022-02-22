@@ -151,18 +151,18 @@ body {
   max-width: 380px;
 }
 
-.reccipe__image-preview a {
+.recipe__image-preview a {
   display: flex;
   overflow: hidden;
 }
 
-.reccipe__image-preview img {
+.recipe__image-preview img {
   border-radius: 5px 5px 0 0;
   width: 100%;
   overflow: hidden;
   transition: 0.4s all ease-in-out;
 }
-.reccipe__image-preview img:hover {
+.recipe__image-preview img:hover {
   transform: scale(1.1);
 }
 
