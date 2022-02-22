@@ -37,6 +37,7 @@ export class Recipe {
         </article> */
 
         const recipeCard = document.createElement('article');
+        recipeCard.classList.add('recipe');
 
         // PREVIEW IMAGE
         // TODO : improve alt text.

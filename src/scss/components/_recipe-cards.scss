@@ -2,6 +2,8 @@
 
 .recipe {
     max-width: 380px;
+    height: 364px;
+    overflow: hidden;
 }
 
 .recipe__image-preview a {
@@ -12,6 +14,7 @@
 .recipe__image-preview img {
     border-radius: 5px 5px 0 0;
     width: 100%;
+    max-height: 178px;
     overflow: hidden;
     transition: 0.4s all ease-in-out;
     &:hover {
@@ -20,8 +23,23 @@
 }
 
 .recipe__description {
+    position: relative;
+    height: 186px;
     background: #E7E7E7;
     border-radius: 0 0 variables.$common-radius variables.$common-radius;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2rem;
+        width: 100%;
+        border-radius: 0 0 5px 5px;
+        // TODO : improve linear-gradient
+        background: linear-gradient(0deg, #e7e7e7 0%, #f1f1f186 50%, rgba(255,255,255,0) 100%);
+        pointer-events: none;
+
+    }
 }
 
 .recipe__main-info {
@@ -31,7 +49,14 @@
     gap: 25px;
 }
 
+.recipe__name {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: unset;
+}
+
 .recipe__duration {
+    margin-top: 20px;
     font-weight: bold;
     display: flex;
     gap: 7px;
@@ -50,25 +75,16 @@
     display: flex;
     justify-content: space-between;
     gap: 25px;
+    overflow: hidden;
 }
 
 .recipe__ingredients,
 .recipe__steps {
     flex: 0 50%;
     font-size: 0.8rem;
+    overflow: hidden;
 }
 
 .recipe__ingredient-name {
     font-weight: bold;
-}
-
-
-// Old rules
-.article {
-    width: 380px;
-}
-
-article img {
-    border-radius: 5px 5px 0 0;
-    width: 100%;
 }
