@@ -21,9 +21,13 @@ export class FilterList {
         switch (type) {
             case 'ingredients': {
                 const ingredientsListItem = document.createElement('li');
-                for (const iterator of this.ingredients) {
-                    ingredientsListItem.textContent = iterator.ingredient;
-                }
+                this.ingredients.forEach((element) => {
+                    ingredientsListItem.textContent = element.ingredient;
+                });
+                // Replaced with forEach
+                // for (const iterator of this.ingredients) {
+                //     ingredientsListItem.textContent = iterator.ingredient;
+                // }
                 document
                     .querySelector('.ingredients__list')
                     .appendChild(ingredientsListItem);
@@ -51,13 +55,37 @@ export class FilterList {
             default:
                 break;
         }
+    }
 
-        // Test : generic creation of filter list
-        // for (const iterator of this.type) {
-        //     console.log(iterator.type);
-        //     const listItem = document.createElement('li');
-        //     listItem.textContent = iterator.type;
-        //     document.querySelector(`.${type}-list`).appendChild(listItem);
-        // }
+    createFilterListTest(ingredientList) {
+        const ingredientsListItemTest = document.createElement('li');
+        ingredientList.forEach((element) => {
+            ingredientsListItemTest.textContent = element;
+        });
+        document
+            .querySelector('.ingredients__list')
+            .appendChild(ingredientsListItemTest);
+    }
+
+    sortFilterList(type) {
+        switch (type) {
+            case 'ingredients': {
+                // Sort code here
+                break;
+            }
+
+            case 'appliance': {
+                // Sort code here
+                break;
+            }
+
+            case 'utensils': {
+                // Sort code here
+                break;
+            }
+
+            default:
+                break;
+        }
     }
 }

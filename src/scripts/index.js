@@ -5,6 +5,7 @@ import {
     enableDropdown,
     enableSelectFilter,
 } from './components/dropdownFilters.js';
+// import { sortAlphabetically } from './utils/helpers.js';
 
 // DOM elements
 const mainResults = document.querySelector('.results');
@@ -19,25 +20,70 @@ const displayRecipes = (recipe) => {
 };
 
 // Display filter options lists
-// ! Needs refactor (Eslint error : listOptionIngredients' is assigned a value but never used)
-/* eslint-disable */
 const displayFilterLists = (recipes) => {
     recipes.forEach((element) => {
         let recipeModel = new FilterList(element);
-        const listOptionIngredients =
-            recipeModel.createFilterList('ingredients');
-        const listOptionAppliance = recipeModel.createFilterList('appliance');
-        const listOptionUtensils = recipeModel.createFilterList('utensils');
+        // Display
+        recipeModel.createFilterList('ingredients');
+        recipeModel.createFilterList('appliance');
+        recipeModel.createFilterList('utensils');
+        // Sort
+        recipeModel.sortFilterList('ingredients');
+        recipeModel.sortFilterList('appliance');
+        recipeModel.sortFilterList('utensils');
     });
 };
-/* eslint-enable */
+
+// Get ingredient list (test)
+let testList = [];
+let completeTestList = [];
+const getListTest = () => {
+    // Get all ingredients objects from recipes
+    recipes.forEach((element) => {
+        testList.push(element.ingredients);
+    });
+    console.log(testList);
+    // Get all individual ingredients from "ingredients"objects
+    testList.forEach((element) => {
+        element.forEach((innerElement) => {
+            // Prevent duplication of ingredients
+            if (!completeTestList.includes(innerElement.ingredient)) {
+                completeTestList.push(innerElement.ingredient);
+            }
+        });
+    });
+    console.log(completeTestList);
+    return completeTestList;
+    // ? 254 ingredients (when not preventing duplication) is more than what is displayed inside filter dropdown
+};
+
+// Sort ingredient list (test)
+const sortListTest = (list) => {
+    list.sort((a, b) => {
+        return a.localeCompare(b);
+    });
+    console.log(completeTestList);
+};
+
+// Display ingredient list (test)
+const displayListTest = (list) => {
+    list.forEach((element) => {
+        let recipeModelTest = new FilterList(element);
+        // Display
+        recipeModelTest.createFilterListTest(completeTestList);
+    });
+};
 
 // Initialize recipes page
 const initRecipesPage = () => {
     displayRecipes(recipes);
     displayFilterLists(recipes);
+    // sortAlphabetically(recipes, '.ingredients__list');
     enableDropdown();
     enableSelectFilter();
+    getListTest();
+    sortListTest(completeTestList);
+    displayListTest(completeTestList);
 };
 
 initRecipesPage();
