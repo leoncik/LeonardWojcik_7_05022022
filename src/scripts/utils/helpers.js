@@ -1,5 +1,5 @@
 // Empty an HTML element
-const emptyHtmlElement = (element) => {
+export const emptyHtmlElement = (element) => {
     document.querySelector(element).innerHTML = ' ';
 };
 

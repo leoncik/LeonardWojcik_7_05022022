@@ -59,9 +59,7 @@ export class FilterList {
 
     createFilterListTest(ingredientList) {
         const ingredientsListItemTest = document.createElement('li');
-        ingredientList.forEach((element) => {
-            ingredientsListItemTest.textContent = element;
-        });
+        ingredientsListItemTest.textContent = ingredientList;
         document
             .querySelector('.ingredients__list')
             .appendChild(ingredientsListItemTest);

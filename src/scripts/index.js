@@ -6,6 +6,7 @@ import {
     enableSelectFilter,
 } from './components/dropdownFilters.js';
 // import { sortAlphabetically } from './utils/helpers.js';
+import { emptyHtmlElement } from './utils/helpers.js';
 
 // DOM elements
 const mainResults = document.querySelector('.results');
@@ -67,10 +68,13 @@ const sortListTest = (list) => {
 
 // Display ingredient list (test)
 const displayListTest = (list) => {
+    // clear previous content for better readability
+    emptyHtmlElement('.ingredients__list');
+
     list.forEach((element) => {
         let recipeModelTest = new FilterList(element);
         // Display
-        recipeModelTest.createFilterListTest(completeTestList);
+        recipeModelTest.createFilterListTest(element);
     });
 };
 
