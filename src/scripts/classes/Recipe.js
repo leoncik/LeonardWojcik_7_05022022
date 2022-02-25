@@ -1,3 +1,5 @@
+import { createHtmlElement } from '../utils/helpers';
+
 export class Recipe {
     constructor(data) {
         this.name = data.name;
@@ -66,14 +68,14 @@ export class Recipe {
         mainInfo.classList.add('recipe__main-info');
         descriptionContainer.appendChild(mainInfo);
         // Recipe name
-        const recipeName = document.createElement('h2');
-        recipeName.classList.add('recipe__name');
-        recipeName.textContent = this.name;
+        const recipeName = createHtmlElement('h2', 'recipe__name', this.name);
         mainInfo.appendChild(recipeName);
         // Recipe duration
-        const recipeDuration = document.createElement('p');
-        recipeDuration.classList.add('recipe__duration');
-        recipeDuration.textContent = `${this.time} min`;
+        const recipeDuration = createHtmlElement(
+            'p',
+            'recipe__duration',
+            `${this.time} min`
+        );
         mainInfo.appendChild(recipeDuration);
 
         // Secondary info
@@ -102,9 +104,11 @@ export class Recipe {
             }
         }
         // Recipe steps
-        const recipeSteps = document.createElement('p');
-        recipeSteps.classList.add('recipe__steps');
-        recipeSteps.textContent = this.description;
+        const recipeSteps = createHtmlElement(
+            'p',
+            'recipe__steps',
+            this.description
+        );
         secondaryInfo.appendChild(recipeSteps);
 
         return recipeCard;
