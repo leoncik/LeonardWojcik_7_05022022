@@ -17,17 +17,79 @@ export class FilterList {
     //     return this.utensils;
     // }
 
-    createFilterList(type) {
+    // Get filters lists and avoids duplicates
+    getFilterLists(recipes, type) {
+        switch (type) {
+            case 'ingredients': {
+                let ingredientsList = [];
+                let innerIngredientsList = [];
+                // Get all ingredients objects from recipes
+                recipes.forEach((element) => {
+                    ingredientsList.push(element.ingredients);
+                });
+                // Get all individual ingredients from "ingredients"objects
+                ingredientsList.forEach((element) => {
+                    element.forEach((innerElement) => {
+                        // Prevent duplication of ingredients
+                        if (
+                            !innerIngredientsList.includes(
+                                innerElement.ingredient
+                            )
+                        ) {
+                            innerIngredientsList.push(innerElement.ingredient);
+                        }
+                    });
+                });
+                return innerIngredientsList;
+            }
+
+            case 'appliance': {
+                let applianceList = [];
+                recipes.forEach((element) => {
+                    if (!applianceList.includes(element.appliance)) {
+                        applianceList.push(element.appliance);
+                    }
+                });
+                return applianceList;
+            }
+
+            case 'utensils': {
+                let utensilsList = [];
+                let innerUtensilsList = [];
+                // Get all utensils arrays from recipes
+                recipes.forEach((element) => {
+                    utensilsList.push(element.utensils);
+                });
+                // Get all individual utensils from utensilsList
+                utensilsList.forEach((element) => {
+                    element.forEach((innerElement) => {
+                        // Prevent duplication of ingredients
+                        if (!innerUtensilsList.includes(innerElement)) {
+                            innerUtensilsList.push(innerElement);
+                        }
+                    });
+                });
+                return innerUtensilsList;
+            }
+
+            default:
+                break;
+        }
+    }
+
+    // Sort list
+    sortList(list) {
+        list.sort((a, b) => {
+            return a.localeCompare(b);
+        });
+        console.log(list);
+    }
+
+    createFilterList(list, type) {
         switch (type) {
             case 'ingredients': {
                 const ingredientsListItem = document.createElement('li');
-                this.ingredients.forEach((element) => {
-                    ingredientsListItem.textContent = element.ingredient;
-                });
-                // Replaced with forEach
-                // for (const iterator of this.ingredients) {
-                //     ingredientsListItem.textContent = iterator.ingredient;
-                // }
+                ingredientsListItem.textContent = list;
                 document
                     .querySelector('.ingredients__list')
                     .appendChild(ingredientsListItem);
@@ -36,7 +98,7 @@ export class FilterList {
 
             case 'appliance': {
                 const applianceListItem = document.createElement('li');
-                applianceListItem.textContent = `${this.appliance}`;
+                applianceListItem.textContent = list;
                 document
                     .querySelector('.appliance__list')
                     .appendChild(applianceListItem);
@@ -45,7 +107,7 @@ export class FilterList {
 
             case 'utensils': {
                 const utensilsListItem = document.createElement('li');
-                utensilsListItem.textContent = `${this.utensils}`;
+                utensilsListItem.textContent = list;
                 document
                     .querySelector('.utensils__list')
                     .appendChild(utensilsListItem);
@@ -57,71 +119,11 @@ export class FilterList {
         }
     }
 
-    createFilterListTest(ingredientList) {
-        const ingredientsListItemTest = document.createElement('li');
-        ingredientsListItemTest.textContent = ingredientList;
-        document
-            .querySelector('.ingredients__list')
-            .appendChild(ingredientsListItemTest);
-    }
-
-    sortFilterList(type) {
-        switch (type) {
-            case 'ingredients': {
-                // Sort code here
-                break;
-            }
-
-            case 'appliance': {
-                // Sort code here
-                break;
-            }
-
-            case 'utensils': {
-                // Sort code here
-                break;
-            }
-
-            default:
-                break;
-        }
-    }
-
-    // Get ingredient list (test)
-    getListTest(recipes) {
-        let testList = [];
-        let completeTestList = [];
-        // Get all ingredients objects from recipes
-        recipes.forEach((element) => {
-            testList.push(element.ingredients);
-        });
-        console.log(testList);
-        // Get all individual ingredients from "ingredients"objects
-        testList.forEach((element) => {
-            element.forEach((innerElement) => {
-                // Prevent duplication of ingredients
-                if (!completeTestList.includes(innerElement.ingredient)) {
-                    completeTestList.push(innerElement.ingredient);
-                }
-            });
-        });
-        console.log(completeTestList);
-        return completeTestList;
-    }
-
-    // Sort ingredient list (test)
-    sortListTest(list) {
-        list.sort((a, b) => {
-            return a.localeCompare(b);
-        });
-        console.log(list);
-    }
-
-    // Display ingredient list (test)
-    displayListTest(list) {
+    // Display list
+    displayList(list, type) {
         list.forEach((element) => {
-            let recipeModelTest = new FilterList(element);
-            recipeModelTest.createFilterListTest(element);
+            let recipeModel = new FilterList(element);
+            recipeModel.createFilterList(element, type);
         });
     }
 }

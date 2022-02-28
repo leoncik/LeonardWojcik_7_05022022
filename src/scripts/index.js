@@ -6,34 +6,28 @@ import {
     enableSelectFilter,
 } from './components/dropdownFilters.js';
 
-// Display filter options lists (OLD VERSION)
-// const displayFilterLists = (recipes) => {
-//     recipes.forEach((element) => {
-//         let recipeModel = new FilterList(element);
-//         // Display
-//         recipeModel.createFilterList('ingredients');
-//         recipeModel.createFilterList('appliance');
-//         recipeModel.createFilterList('utensils');
-//         // Sort
-//         recipeModel.sortFilterList('ingredients');
-//         recipeModel.sortFilterList('appliance');
-//         recipeModel.sortFilterList('utensils');
-//     });
-// };
-
 // Initialize recipes page
 const initRecipesPage = () => {
-    // Init filter lists
-    const myFilterList = new FilterList(recipes);
-    let currentList = myFilterList.getListTest(recipes);
-    myFilterList.sortListTest(currentList);
-    myFilterList.displayListTest(currentList);
+    // INIT FILTER LISTS
+    const filterList = new FilterList(recipes);
+    // Get lists
+    let ingredientList = filterList.getFilterLists(recipes, 'ingredients');
+    let applianceList = filterList.getFilterLists(recipes, 'appliance');
+    let utensilsList = filterList.getFilterLists(recipes, 'utensils');
+    // Filter lists
+    filterList.sortList(ingredientList);
+    filterList.sortList(applianceList);
+    filterList.sortList(utensilsList);
+    // Display lists
+    filterList.displayList(ingredientList, 'ingredients');
+    filterList.displayList(applianceList, 'appliance');
+    filterList.displayList(utensilsList, 'utensils');
 
-    // Init recipes
-    const myRecipe = new Recipe(recipes);
-    myRecipe.displayRecipes(recipes);
+    // INIT RECIPES
+    const recipe = new Recipe(recipes);
+    recipe.displayRecipes(recipes);
 
-    // Enable dropdown
+    // ENABLE DROPDOWN
     enableDropdown();
     enableSelectFilter();
 };
