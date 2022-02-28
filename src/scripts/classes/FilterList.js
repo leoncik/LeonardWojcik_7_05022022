@@ -5,15 +5,15 @@ export class FilterList {
         this.utensils = data.utensils;
     }
 
-    // get ingredients() {
+    // get getIngredients() {
     //     return this.ingredients;
     // }
 
-    // get appliance() {
+    // get getAppliance() {
     //     return this.appliance;
     // }
 
-    // get utensils() {
+    // get getUtensils() {
     //     return this.utensils;
     // }
 
@@ -85,5 +85,43 @@ export class FilterList {
             default:
                 break;
         }
+    }
+
+    // Get ingredient list (test)
+    getListTest(recipes) {
+        let testList = [];
+        let completeTestList = [];
+        // Get all ingredients objects from recipes
+        recipes.forEach((element) => {
+            testList.push(element.ingredients);
+        });
+        console.log(testList);
+        // Get all individual ingredients from "ingredients"objects
+        testList.forEach((element) => {
+            element.forEach((innerElement) => {
+                // Prevent duplication of ingredients
+                if (!completeTestList.includes(innerElement.ingredient)) {
+                    completeTestList.push(innerElement.ingredient);
+                }
+            });
+        });
+        console.log(completeTestList);
+        return completeTestList;
+    }
+
+    // Sort ingredient list (test)
+    sortListTest(list) {
+        list.sort((a, b) => {
+            return a.localeCompare(b);
+        });
+        console.log(list);
+    }
+
+    // Display ingredient list (test)
+    displayListTest(list) {
+        list.forEach((element) => {
+            let recipeModelTest = new FilterList(element);
+            recipeModelTest.createFilterListTest(element);
+        });
     }
 }

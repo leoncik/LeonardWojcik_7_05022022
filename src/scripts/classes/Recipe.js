@@ -11,8 +11,6 @@ export class Recipe {
     }
 
     createRecipeCard() {
-        // Version without template string
-
         // Card structure
         /*
         <article class="recipe">
@@ -112,87 +110,15 @@ export class Recipe {
         secondaryInfo.appendChild(recipeSteps);
 
         return recipeCard;
-
-        // Version using template string
-        /*
-        const recipeCard = document.createElement('article');
-        recipeCard.classList.add('recipe');
-
-        // Getters (not used anymore)
-        // const getIngredients = () => {
-        //     let ingredientsList = []
-        //     for (const iterator of this.ingredients) {
-        //         ingredientsList.push(`${iterator.ingredient}`)
-        //     }
-        //     return ingredientsList; 
-        // }
-
-        // const getQuantity = () => {
-        //     let quantityList = []
-        //     for (const iterator of this.ingredients) {
-        //         quantityList.push(`${iterator.quantity}`)
-        //     }
-        //     return quantityList; 
-        // }
-
-        const makeIngredientList = () => {
-            for (const iterator of this.ingredients) {
-                const ingredientContainer = document.createElement('li');
-                // Create ingredient
-                const ingredientValue = document.createElement('span');
-                ingredientValue.classList.add('recipe__ingredient-name');
-                ingredientValue.textContent = `${iterator.ingredient}:`;
-                ingredientContainer.appendChild(ingredientValue);
-                // Create quantity
-                const quantityValue = document.createElement('span');
-                quantityValue.classList.add('recipe__ingredient-quantity');
-                quantityValue.textContent = ` ${iterator.quantity}`;
-                ingredientContainer.appendChild(quantityValue);
-                // Create units (if available)
-                if (iterator.unit) {
-                    const unitValue = document.createElement('span');
-                    unitValue.classList.add('recipe__ingredient-unit');
-                    unitValue.textContent = `${iterator.unit}`;
-                    ingredientContainer.appendChild(unitValue);
-                }
-                return ingredientContainer.innerHTML;
-
-                // ingredientItem.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}:</span> <span class="recipe__ingredient-quantity">${iterator.quantity} ${iterator.unit}</span>`;
-                // return ingredientItem.innerHTML;
-            }          
-        }
-
-        recipeCard.innerHTML = `
-        <div class="recipe__image-preview">
-        <a href="#">
-            <img src="./assets/preview-recipe.jpg" alt="preview recette">
-        </a>
-        </div>
-        <div class="recipe__description">
-            <div class="recipe__main-info">
-                <h2 class="recipe__name">${this.name}</h2>
-                <p class="recipe__duration">${this.time} min</p>
-            </div>
-
-            <div class="recipe__secondary-info">
-                <ul class="recipe__ingredients">
-                    ${makeIngredientList()}
-                </ul>
-                <p class="recipe__steps">${this.description}</p>
-            </div>
-        </div>`
-        return recipeCard; */
     }
 
-    //  createFilterLists(type) {
-    //     // TODO : sort by alphabetical order
-
-    //     for (const iterator of this.type) {
-    //         console.log(iterator.type);
-    //         const listItem = document.createElement('li');
-    //         listItem.textContent = iterator.type;
-    //         document.querySelector(`.${type}-list`).appendChild(listItem);
-    //     }
-    //  }
-    // ? Use extend ?
+    // Display recipes card on page
+    displayRecipes(recipe) {
+        const mainResults = document.querySelector('.results');
+        recipe.forEach((element) => {
+            let recipeModel = new Recipe(element);
+            const recipeCard = recipeModel.createRecipeCard();
+            mainResults.append(recipeCard);
+        });
+    }
 }
