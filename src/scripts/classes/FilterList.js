@@ -90,9 +90,7 @@ export class FilterList {
 
     // Sort list
     sortList(list) {
-        list.sort((a, b) => {
-            return a.localeCompare(b);
-        });
+        list.sort((a, b) => a.localeCompare(b));
         console.log(list);
     }
 

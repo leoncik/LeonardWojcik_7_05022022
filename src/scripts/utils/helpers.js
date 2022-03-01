@@ -1,21 +1,9 @@
 // Empty an HTML element
-export const emptyHtmlElement = (element) => {
-    document.querySelector(element).innerHTML = '';
-};
+export const emptyHtmlElement = (element) =>
+    (document.querySelector(element).innerHTML = '');
 
-export const sortAlphabetically = (arr, list) => {
-    // 1) Filter array
-    arr.sort((a, b) => {
-        return a - b;
-    });
-    // 2) Empty previous results
-    emptyHtmlElement(list);
-    // 3) Display new results
-    // arr.array.forEach(element => {
-    //     let recipeModel = new FilterList(element);
-    //     recipeModel.createFilterList('ingredients');
-    // });
-};
+// Sort an array alphabetically
+export const sortAlphabetically = (arr) => arr.sort((a, b) => a - b);
 
 // TODO : add "attributes" argument
 export const createHtmlElement = (type, className, content) => {
