@@ -25,7 +25,8 @@ export class FilterList {
                 let innerIngredientsList = [];
                 // Get all ingredients objects from recipes
                 recipes.forEach((element) => {
-                    ingredientsList.push(element.ingredients);
+                    ingredientsList = [...ingredientsList, element.ingredients];
+                    // ingredientsList.push(element.ingredients);
                 });
                 // Get all individual ingredients from "ingredients"objects
                 ingredientsList.forEach((element) => {
@@ -36,7 +37,11 @@ export class FilterList {
                                 innerElement.ingredient
                             )
                         ) {
-                            innerIngredientsList.push(innerElement.ingredient);
+                            innerIngredientsList = [
+                                ...innerIngredientsList,
+                                innerElement.ingredient,
+                            ];
+                            // innerIngredientsList.push(innerElement.ingredient);
                         }
                     });
                 });
@@ -47,7 +52,8 @@ export class FilterList {
                 let applianceList = [];
                 recipes.forEach((element) => {
                     if (!applianceList.includes(element.appliance)) {
-                        applianceList.push(element.appliance);
+                        applianceList = [...applianceList, element.appliance];
+                        // applianceList.push(element.appliance);
                     }
                 });
                 return applianceList;
@@ -58,14 +64,19 @@ export class FilterList {
                 let innerUtensilsList = [];
                 // Get all utensils arrays from recipes
                 recipes.forEach((element) => {
-                    utensilsList.push(element.utensils);
+                    utensilsList = [...utensilsList, element.utensils];
+                    // utensilsList.push(element.utensils);
                 });
                 // Get all individual utensils from utensilsList
                 utensilsList.forEach((element) => {
                     element.forEach((innerElement) => {
                         // Prevent duplication of ingredients
                         if (!innerUtensilsList.includes(innerElement)) {
-                            innerUtensilsList.push(innerElement);
+                            innerUtensilsList = [
+                                ...innerUtensilsList,
+                                innerElement,
+                            ];
+                            // innerUtensilsList.push(innerElement);
                         }
                     });
                 });
