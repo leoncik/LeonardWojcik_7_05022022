@@ -5,6 +5,7 @@ import {
     enableDropdown,
     enableSelectFilter,
 } from './components/dropdownFilters.js';
+import { enableMainResearch } from './components/searchAlgorithm.js';
 
 // Initialize recipes page
 const initRecipesPage = () => {
@@ -30,6 +31,9 @@ const initRecipesPage = () => {
     // ENABLE DROPDOWN
     enableDropdown();
     enableSelectFilter();
+
+    // ENABLE RESEARCH
+    enableMainResearch();
 };
 
 initRecipesPage();

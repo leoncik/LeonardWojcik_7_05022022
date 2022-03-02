@@ -10,6 +10,14 @@ export class Recipe {
         this.time = data.time;
     }
 
+    getRecipesList(recipes) {
+        let recipesList = [];
+        recipes.forEach((element) => {
+            recipesList = [...recipesList, element];
+        });
+        return recipesList;
+    }
+
     createRecipeCard() {
         // Card structure
         /*
