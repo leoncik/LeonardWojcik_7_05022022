@@ -1,4 +1,5 @@
 import { createHtmlElement } from '../utils/helpers';
+import recipePreview from '../../../assets/preview-recipe.jpg';
 
 export class Recipe {
     constructor(data) {
@@ -59,7 +60,7 @@ export class Recipe {
         imageContainer.appendChild(recipeLink);
         // Recipe image
         const recipeImage = document.createElement('img');
-        recipeImage.setAttribute('src', 'assets/preview-recipe.jpg');
+        recipeImage.src = recipePreview;
         recipeImage.setAttribute('alt', `Image de la recette`);
         recipeLink.appendChild(recipeImage);
 

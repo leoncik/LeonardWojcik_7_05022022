@@ -4,33 +4,25 @@
   "description": "An OpenClassrooms project focusing on search algorithms",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve",
-    "sass": "sass --watch src/scss/main.scss:style/main.css",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^8.2.3",
-    "babel-polyfill": "^6.26.0",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.0",
     "lint-staged": "^12.3.3",
     "prettier": "^2.5.1",
-    "webpack": "^5.48.0",
-    "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "vite": "^2.8.6"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
   },
-  "dependencies": {
-    "sass": "^1.49.7"
-  }
+  "dependencies": {}
 }
