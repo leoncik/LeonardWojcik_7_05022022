@@ -54,6 +54,6 @@ yarn install
 
 Simply run `yarn dev` to launch a dev server and work on the project.
 
-To obtain a production version of this project, run `yarn dev` to build the project and then `yarn preview` to check if your build is successful (I am sure It will !).
+To build the production version of this project, run `yarn build` to build the project and then `yarn preview` to check if your build is successful (I am sure It will !).
 
 [⬆ Back to top](#les-petits-plats)

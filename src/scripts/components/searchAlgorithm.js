@@ -3,7 +3,7 @@ import { FilterList } from '../classes/FilterList';
 import { recipes } from '../../data/recipes';
 import { emptyHtmlElement } from '../utils/helpers';
 
-// NO RESULT MESSAGE
+// DISPLAY NO RESULT MESSAGE ON PAGE
 const noResultMessage = () => {
     document.querySelector(
         '.results'
@@ -71,3 +71,14 @@ export const enableMainResearch = () => {
 };
 
 // FILTER OPTIONS RESEARCH
+
+// Filter list elements while writing in search field
+const secondarySearchBars = document.querySelectorAll('.search-options input');
+secondarySearchBars.forEach((element) => {
+    element.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        // 1) Retrieve current filter list
+        // 2) Filter current list with typed text
+        // 3) Display results inside filter dropdown
+    });
+});

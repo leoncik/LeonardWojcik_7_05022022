@@ -137,8 +137,11 @@ export class FilterList {
     // Display list
     displayList(list, type) {
         list.forEach((element) => {
-            let recipeModel = new FilterList(element);
-            recipeModel.createFilterList(element, type);
+            // ! Old version
+            // let recipeModel = new FilterList(element);
+            // recipeModel.createFilterList(element, type);
+            // ! New version
+            this.createFilterList(element, type);
         });
     }
 }
