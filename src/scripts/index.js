@@ -25,8 +25,10 @@ const initRecipesPage = () => {
     filterList.displayList(utensilsList, 'utensils');
 
     // INIT RECIPES
-    const recipe = new Recipe(recipes);
-    recipe.displayRecipes(recipes);
+    recipes.map((recipe) => {
+        const recipeClass = new Recipe(recipe);
+        recipeClass.displayRecipes();
+    });
 
     // ENABLE DROPDOWN
     enableDropdown();

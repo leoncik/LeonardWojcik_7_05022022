@@ -4,13 +4,11 @@ import { recipes } from '../../data/recipes';
 import { emptyHtmlElement } from '../utils/helpers';
 
 // DISPLAY NO RESULT MESSAGE ON PAGE
-const noResultMessage = () => {
-    document.querySelector(
+const noResultMessage = () =>
+    (document.querySelector(
         '.results'
     ).innerHTML = `<p class="no-result-message">Aucune recette ne correspond à votre critère... vous pouvez
-  chercher «&nbsp;tarte aux pommes&nbsp;», «&nbsp;poisson&nbsp;», etc.</p>`;
-};
-
+  chercher «&nbsp;tarte aux pommes&nbsp;», «&nbsp;poisson&nbsp;», etc.</p>`);
 // UPDATE FILTERS AFTER MAIN RESEARCH
 const updateFilterOptions = (currentRecipes) => {
     // INIT FILTER LISTS

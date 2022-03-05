@@ -59,14 +59,11 @@ export class Recipe {
         recipeLink.setAttribute('href', '#');
         imageContainer.appendChild(recipeLink);
         // Recipe image
-        // ! Old
-        const recipeImage = document.createElement('img');
-        recipeImage.src = recipePreview;
-        recipeImage.setAttribute('alt', `Image de la recette`);
+        const recipeImage = createHtmlElement('img', '', '', [
+            { key: 'src', value: recipePreview },
+            { key: 'alt', value: 'Aperçu de la recette' },
+        ]);
         recipeLink.appendChild(recipeImage);
-        // ! New
-        // const recipeImage = createHtmlElement( 'img', {src:`${recipePreview}`, alt:"Aperçu de la recette"}, undefined, undefined);
-        // recipeLink.appendChild(recipeImage);
 
         // RECIPE DESCRIPTION
         // Description container
@@ -126,16 +123,9 @@ export class Recipe {
     }
 
     // Display recipes card on page
-    displayRecipes(recipe) {
+    displayRecipes() {
         const mainResults = document.querySelector('.results');
-        recipe.forEach((element) => {
-            // ! Old version
-            let recipeModel = new Recipe(element);
-            const recipeCard = recipeModel.createRecipeCard();
-            mainResults.append(recipeCard);
-            // ! New version (not working)
-            // const recipeCard = this.createRecipeCard();
-            // mainResults.append(recipeCard);
-        });
+        const recipeCard = this.createRecipeCard();
+        mainResults.append(recipeCard);
     }
 }

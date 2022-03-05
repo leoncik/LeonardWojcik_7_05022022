@@ -95,40 +95,6 @@ export class FilterList {
     }
 
     createFilterList(list, type) {
-        // Old version
-        // switch (type) {
-        //     case 'ingredients': {
-        //         const ingredientsListItem = document.createElement('li');
-        //         ingredientsListItem.textContent = list;
-        //         document
-        //             .querySelector('.ingredients__list')
-        //             .appendChild(ingredientsListItem);
-        //         break;
-        //     }
-
-        //     case 'appliance': {
-        //         const applianceListItem = document.createElement('li');
-        //         applianceListItem.textContent = list;
-        //         document
-        //             .querySelector('.appliance__list')
-        //             .appendChild(applianceListItem);
-        //         break;
-        //     }
-
-        //     case 'utensils': {
-        //         const utensilsListItem = document.createElement('li');
-        //         utensilsListItem.textContent = list;
-        //         document
-        //             .querySelector('.utensils__list')
-        //             .appendChild(utensilsListItem);
-        //         break;
-        //     }
-
-        //     default:
-        //         break;
-        // }
-
-        // Refactored version
         const listItem = document.createElement('li');
         listItem.textContent = list;
         document.querySelector(`.${type}__list`).appendChild(listItem);
@@ -137,10 +103,6 @@ export class FilterList {
     // Display list
     displayList(list, type) {
         list.forEach((element) => {
-            // ! Old version
-            // let recipeModel = new FilterList(element);
-            // recipeModel.createFilterList(element, type);
-            // ! New version
             this.createFilterList(element, type);
         });
     }

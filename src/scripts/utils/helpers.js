@@ -8,15 +8,15 @@ export const sortAlphabetically = (arr) => arr.sort((a, b) => a - b);
 // TODO : add "attributes" argument
 export const createHtmlElement = (
     type,
-    //attributes = [],
     className,
-    content
+    content,
+    attributes = []
 ) => {
     const element = document.createElement(type);
-    element.classList.add(`${className}`);
+    element.className = className;
     element.textContent = content;
-    // attributes.map(attribute => {
-    //     element.setAttribute(attribute.name, attribute.value)
-    // })
+    attributes.map((attribute) => {
+        element.setAttribute(attribute.key, attribute.value);
+    });
     return element;
 };
