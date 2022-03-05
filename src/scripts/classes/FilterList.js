@@ -3,19 +3,8 @@ export class FilterList {
         this.ingredients = data.ingredients;
         this.appliance = data.appliance;
         this.utensils = data.utensils;
+        this.lists = ['ingredients', 'appliance', 'utensils'];
     }
-
-    // get getIngredients() {
-    //     return this.ingredients;
-    // }
-
-    // get getAppliance() {
-    //     return this.appliance;
-    // }
-
-    // get getUtensils() {
-    //     return this.utensils;
-    // }
 
     // Get filters lists and avoids duplicates
     getFilterLists(recipes, type) {

@@ -13,25 +13,14 @@ const noResultMessage = () =>
 const updateFilterOptions = (currentRecipes) => {
     // INIT FILTER LISTS
     const filterList = new FilterList(currentRecipes);
-    // Get lists
-    let ingredientList = filterList.getFilterLists(
-        currentRecipes,
-        'ingredients'
-    );
-    let applianceList = filterList.getFilterLists(currentRecipes, 'appliance');
-    let utensilsList = filterList.getFilterLists(currentRecipes, 'utensils');
-    // Filter lists
-    filterList.sortList(ingredientList);
-    filterList.sortList(applianceList);
-    filterList.sortList(utensilsList);
-    // Remove previous options
-    emptyHtmlElement('.ingredients__list');
-    emptyHtmlElement('.appliance__list');
-    emptyHtmlElement('.utensils__list');
-    // Display lists
-    filterList.displayList(ingredientList, 'ingredients');
-    filterList.displayList(applianceList, 'appliance');
-    filterList.displayList(utensilsList, 'utensils');
+    const lists = filterList.lists;
+    // Get currents lists, filter them, empty previous lists and display filtered ones
+    lists.map((list) => {
+        let dataList = filterList.getFilterLists(currentRecipes, list);
+        filterList.sortList(dataList);
+        emptyHtmlElement(`.${list}__list`);
+        filterList.displayList(dataList, list);
+    });
 };
 
 // MAIN BAR RESEARCH
