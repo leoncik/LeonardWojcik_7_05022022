@@ -55,7 +55,10 @@ export const enableMainResearch = () => {
             emptyHtmlElement('.results');
             // Display recipes on page or "no found" message.
             if (filteredRecipes.length !== 0) {
-                recipeListObject.displayRecipes(filteredRecipes);
+                filteredRecipes.map((recipe) => {
+                    const recipeClass = new Recipe(recipe);
+                    recipeClass.displayRecipes();
+                });
                 updateFilterOptions(filteredRecipes);
             } else {
                 noResultMessage();
