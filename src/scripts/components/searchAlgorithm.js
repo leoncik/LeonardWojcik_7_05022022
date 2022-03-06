@@ -2,6 +2,7 @@ import { Recipe } from '../classes/Recipe';
 import { FilterList } from '../classes/FilterList';
 import { recipes } from '../../data/recipes';
 import { emptyHtmlElement } from '../utils/helpers';
+import { SelectedFilterOption } from '../classes/SelectedFilterOption';
 
 // DISPLAY NO RESULT MESSAGE ON PAGE
 const noResultMessage = () =>
@@ -79,18 +80,12 @@ export const enableMainResearch = () => {
 // let selectedApplianceOptions = [];
 // let selectedUtensilsOptions = [];
 
-// Todo : use a class to create selected options ?
 export const enableSelectFilter = () => {
     let dropdownOptions = document.querySelectorAll('.search-options li');
     for (const iterator of dropdownOptions) {
-        iterator.addEventListener('click', () => {
-            const selectedOption = document.createElement('li');
-            selectedOption.classList.add('selected-filters__item');
-            selectedOption.classList.add('selected-filters__item_ingredient');
-            selectedOption.textContent = iterator.textContent;
-            document
-                .querySelector('.selected-filters')
-                .appendChild(selectedOption);
+        iterator.addEventListener('click', (e) => {
+            const currentOption = new SelectedFilterOption(e.target);
+            currentOption.createOption();
         });
     }
 };
