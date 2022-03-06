@@ -24,18 +24,20 @@ const updateFilterOptions = (currentRecipes) => {
 };
 
 // MAIN BAR RESEARCH
-// TODO : reset results if mainResearchString.length < 3
 const mainSearchBar = document.querySelector('.primary-search input');
+let filteredRecipes = recipes;
 export const enableMainResearch = () => {
     mainSearchBar.addEventListener('input', (e) => {
+        console.log(filteredRecipes.length);
         const mainResearchString = e.target.value.toLowerCase();
+        // Filter recipes after typing 3 letters in main bar
         if (mainResearchString.length >= 3) {
             // Get recipes list
             const recipeListObject = new Recipe(recipes);
-            let recipeList = recipeListObject.getRecipesList(recipes);
+            const recipeList = recipeListObject.getRecipesList(recipes);
             // Filter recipes list
             // TODO : search inside utensils.
-            const filteredRecipes = recipeList.filter(
+            filteredRecipes = recipeList.filter(
                 (elt) =>
                     elt.name.toLowerCase().includes(mainResearchString) ||
                     elt.appliance.toLowerCase().includes(mainResearchString) ||
@@ -56,7 +58,18 @@ export const enableMainResearch = () => {
                 emptyHtmlElement('.utensils__list');
             }
         }
-        console.log(mainResearchString.length);
+        // Reset recipes if less than 3 letters inside main bar and if recipes has previously been filtered
+        if (
+            filteredRecipes.length !== recipes.length &&
+            mainResearchString.length < 3
+        ) {
+            emptyHtmlElement('.results');
+            recipes.map((recipe) => {
+                const recipeClass = new Recipe(recipe);
+                recipeClass.displayRecipes();
+            });
+            filteredRecipes = recipes;
+        }
     });
 };
 

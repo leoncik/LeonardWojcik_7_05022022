@@ -80,7 +80,7 @@ export class FilterList {
     // Sort list
     sortList(list) {
         list.sort((a, b) => a.localeCompare(b));
-        console.log(list);
+        // console.log(list);
     }
 
     createFilterList(list, type) {
