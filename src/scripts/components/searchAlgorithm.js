@@ -74,6 +74,27 @@ export const enableMainResearch = () => {
 
 // FILTER OPTIONS RESEARCH
 
+// Manage selected options
+// let selectedIngredientsOptions = [];
+// let selectedApplianceOptions = [];
+// let selectedUtensilsOptions = [];
+
+// Todo : use a class to create selected options ?
+export const enableSelectFilter = () => {
+    let dropdownOptions = document.querySelectorAll('.search-options li');
+    for (const iterator of dropdownOptions) {
+        iterator.addEventListener('click', () => {
+            const selectedOption = document.createElement('li');
+            selectedOption.classList.add('selected-filters__item');
+            selectedOption.classList.add('selected-filters__item_ingredient');
+            selectedOption.textContent = iterator.textContent;
+            document
+                .querySelector('.selected-filters')
+                .appendChild(selectedOption);
+        });
+    }
+};
+
 // Filter list elements while writing in search field
 const secondarySearchBars = document.querySelectorAll('.search-options input');
 secondarySearchBars.forEach((element) => {
@@ -91,6 +112,7 @@ secondarySearchBars.forEach((element) => {
                 );
                 emptyHtmlElement('.ingredients__list');
                 filterList.displayList(ingredientList, 'ingredients');
+                enableSelectFilter();
                 break;
             }
 
@@ -104,6 +126,7 @@ secondarySearchBars.forEach((element) => {
                 );
                 emptyHtmlElement('.appliance__list');
                 filterList.displayList(applianceList, 'appliance');
+                enableSelectFilter();
                 break;
             }
 
@@ -117,6 +140,7 @@ secondarySearchBars.forEach((element) => {
                 );
                 emptyHtmlElement('.utensils__list');
                 filterList.displayList(utensilsList, 'utensils');
+                enableSelectFilter();
                 break;
             }
 

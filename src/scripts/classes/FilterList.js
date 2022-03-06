@@ -86,6 +86,7 @@ export class FilterList {
     createFilterList(list, type) {
         const listItem = document.createElement('li');
         listItem.textContent = list;
+        listItem.classList.add(`${type}__item`);
         document.querySelector(`.${type}__list`).appendChild(listItem);
     }
 

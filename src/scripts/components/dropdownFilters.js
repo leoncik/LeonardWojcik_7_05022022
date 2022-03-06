@@ -95,12 +95,3 @@ export const enableDropdown = () => {
         });
     });
 };
-
-export const enableSelectFilter = () => {
-    let dropdownOptions = document.querySelectorAll('.search-options li');
-    for (const iterator of dropdownOptions) {
-        iterator.addEventListener('click', () => {
-            console.log("L'option X a été sélectionnée");
-        });
-    }
-};

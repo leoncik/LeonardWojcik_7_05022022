@@ -1,10 +1,8 @@
 import { recipes } from '../data/recipes.js';
 import { Recipe } from './classes/Recipe.js';
 import { FilterList } from './classes/FilterList.js';
-import {
-    enableDropdown,
-    enableSelectFilter,
-} from './components/dropdownFilters.js';
+import { enableDropdown } from './components/dropdownFilters.js';
+import { enableSelectFilter } from './components/searchAlgorithm.js';
 import { enableMainResearch } from './components/searchAlgorithm.js';
 
 // Initialize recipes page
@@ -32,10 +30,10 @@ const initRecipesPage = () => {
 
     // ENABLE DROPDOWN
     enableDropdown();
-    enableSelectFilter();
 
     // ENABLE RESEARCH
     enableMainResearch();
+    enableSelectFilter();
 };
 
 initRecipesPage();
