@@ -28,7 +28,6 @@ const mainSearchBar = document.querySelector('.primary-search input');
 let filteredRecipes = recipes;
 export const enableMainResearch = () => {
     mainSearchBar.addEventListener('input', (e) => {
-        console.log(filteredRecipes.length);
         const mainResearchString = e.target.value.toLowerCase();
         // Filter recipes after typing 3 letters in main bar
         if (mainResearchString.length >= 3) {
@@ -79,9 +78,50 @@ export const enableMainResearch = () => {
 const secondarySearchBars = document.querySelectorAll('.search-options input');
 secondarySearchBars.forEach((element) => {
     element.addEventListener('input', (e) => {
-        console.log(e.target.value);
-        // 1) Retrieve current filter list
-        // 2) Filter current list with typed text
-        // 3) Display results inside filter dropdown
+        const secondaryResearchString = e.target.value.toLowerCase();
+        const filterList = new FilterList(filteredRecipes);
+        switch (e.target.className) {
+            case 'ingredients__text-field text-field show': {
+                let ingredientList = filterList.getFilterLists(
+                    filteredRecipes,
+                    'ingredients'
+                );
+                ingredientList = ingredientList.filter((elt) =>
+                    elt.toLowerCase().includes(secondaryResearchString)
+                );
+                emptyHtmlElement('.ingredients__list');
+                filterList.displayList(ingredientList, 'ingredients');
+                break;
+            }
+
+            case 'appliance__text-field text-field show': {
+                let applianceList = filterList.getFilterLists(
+                    filteredRecipes,
+                    'appliance'
+                );
+                applianceList = applianceList.filter((elt) =>
+                    elt.toLowerCase().includes(secondaryResearchString)
+                );
+                emptyHtmlElement('.appliance__list');
+                filterList.displayList(applianceList, 'appliance');
+                break;
+            }
+
+            case 'utensils__text-field text-field show': {
+                let utensilsList = filterList.getFilterLists(
+                    filteredRecipes,
+                    'utensils'
+                );
+                utensilsList = utensilsList.filter((elt) =>
+                    elt.toLowerCase().includes(secondaryResearchString)
+                );
+                emptyHtmlElement('.utensils__list');
+                filterList.displayList(utensilsList, 'utensils');
+                break;
+            }
+
+            default:
+                break;
+        }
     });
 });
