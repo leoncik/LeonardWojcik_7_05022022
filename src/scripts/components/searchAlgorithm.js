@@ -36,11 +36,19 @@ export const enableMainResearch = () => {
             const recipeListObject = new Recipe(recipes);
             const recipeList = recipeListObject.getRecipesList(recipes);
             // Filter recipes list
-            // TODO : search inside utensils.
+            // ! fix : search inside nested arrays (utensils and ingredients).
             filteredRecipes = recipeList.filter(
                 (elt) =>
                     elt.name.toLowerCase().includes(mainResearchString) ||
+                    elt.ingredients.forEach((element) => {
+                        element.ingredient
+                            .toLowerCase()
+                            .includes(mainResearchString);
+                    }) ||
                     elt.appliance.toLowerCase().includes(mainResearchString) ||
+                    elt.utensils.forEach((element) => {
+                        element.toLowerCase().includes(mainResearchString);
+                    }) ||
                     elt.description.toLowerCase().includes(mainResearchString)
             );
             emptyHtmlElement('.results');
@@ -70,6 +78,7 @@ export const enableMainResearch = () => {
             });
             filteredRecipes = recipes;
         }
+        enableSelectFilter();
     });
 };
 
@@ -84,8 +93,49 @@ export const enableSelectFilter = () => {
     let dropdownOptions = document.querySelectorAll('.search-options li');
     for (const iterator of dropdownOptions) {
         iterator.addEventListener('click', (e) => {
+            // DISPLAY SELECTED OPTION ON PAGE
             const currentOption = new SelectedFilterOption(e.target);
             currentOption.createOption();
+            // FILTER DISPLAYED RECIPES USING SELECTED FILTER
+            const currentOptionContent = e.target.textContent.toLowerCase();
+            // Get recipes list
+            const recipeListObject = new Recipe(filteredRecipes);
+            const recipeList = recipeListObject.getRecipesList(filteredRecipes);
+            // Filter recipes list
+            // ! fix : search inside nested arrays (utensils and ingredients).
+            console.log(filteredRecipes);
+            filteredRecipes = recipeList.filter(
+                (elt) =>
+                    elt.name.toLowerCase().includes(currentOptionContent) ||
+                    elt.ingredients.forEach((element) => {
+                        element.ingredient
+                            .toLowerCase()
+                            .includes(currentOptionContent);
+                    }) ||
+                    elt.appliance
+                        .toLowerCase()
+                        .includes(currentOptionContent) ||
+                    elt.utensils.forEach((element) => {
+                        element.toLowerCase().includes(currentOptionContent);
+                    }) ||
+                    elt.description.toLowerCase().includes(currentOptionContent)
+            );
+            console.log(filteredRecipes);
+            emptyHtmlElement('.results');
+            // Display recipes on page or "no found" message.
+            if (filteredRecipes.length !== 0) {
+                filteredRecipes.map((recipe) => {
+                    const recipeClass = new Recipe(recipe);
+                    recipeClass.displayRecipes();
+                });
+                updateFilterOptions(filteredRecipes);
+            } else {
+                noResultMessage();
+                emptyHtmlElement('.ingredients__list');
+                emptyHtmlElement('.appliance__list');
+                emptyHtmlElement('.utensils__list');
+            }
+            enableSelectFilter();
         });
     }
 };
