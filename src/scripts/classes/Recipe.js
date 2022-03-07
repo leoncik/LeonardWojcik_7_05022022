@@ -19,6 +19,17 @@ export class Recipe {
         return recipesList;
     }
 
+    getRecipesIngredientsList(recipes) {
+        let recipesIngredientsList = [];
+        recipes.forEach((element) => {
+            recipesIngredientsList = [
+                ...recipesIngredientsList,
+                element.ingredients.map((el) => el.ingredient),
+            ];
+        });
+        return recipesIngredientsList;
+    }
+
     createRecipeCard() {
         // Card structure
         /*

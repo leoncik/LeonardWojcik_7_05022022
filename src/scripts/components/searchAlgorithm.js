@@ -35,6 +35,8 @@ export const enableMainResearch = () => {
             // Get recipes list
             const recipeListObject = new Recipe(recipes);
             const recipeList = recipeListObject.getRecipesList(recipes);
+            // const recipeIngredientsList = recipeListObject.getRecipesIngredientsList(recipes).flat();
+            // console.log(recipeIngredientsList);
             // Filter recipes list
             // ! fix : search inside nested arrays (utensils and ingredients).
             filteredRecipes = recipeList.filter(
