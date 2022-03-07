@@ -90,11 +90,8 @@
 }
 
 // Lists
-// TODO: test CSS grid for better responsivity
 .search-options ul {
     margin-left: 19px;
-    // fixing height is causing responsive bugs
-    // height: 150px;
     columns: 100px 5;
 }
 
@@ -119,4 +116,15 @@
 
 .show {
     display: block;
+}
+
+// RESPONSIVE MODE
+@media all and (max-width: 845px) {
+
+    .ingredients__label,
+    .appliance__label,
+    .utensils__label,
+    .dropdown-trigger {
+        width: 100%;
+    }
 }
