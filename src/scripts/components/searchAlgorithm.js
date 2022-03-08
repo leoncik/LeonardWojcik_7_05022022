@@ -6,7 +6,9 @@ import { recipes } from '../../data/recipes';
 import { emptyHtmlElement } from '../utils/helpers';
 import { SelectedFilterOption } from '../classes/SelectedFilterOption';
 
-// DISPLAY NO RESULT MESSAGE ON PAGE
+// NO RESULT FOUND FUNCTIONS
+
+// Display no result message on page
 const noResultMessage = () =>
     (document.querySelector(
         '.results'
@@ -26,40 +28,60 @@ const updateFilterOptions = (currentRecipes) => {
     });
 };
 
+// Show error message and empty dropdown filter options
+const triggerNoResult = () => {
+    noResultMessage();
+    emptyHtmlElement('.ingredients__list');
+    emptyHtmlElement('.appliance__list');
+    emptyHtmlElement('.utensils__list');
+};
+
+// FILTER AND RECIPES DISPLAY FUNCTIONS
+// ! fix : search inside nested arrays (utensils and ingredients).
+let filteredRecipes = recipes;
+const filterRecipes = (entry) => {
+    // Get recipes list
+    const recipeListObject = new Recipe(filteredRecipes);
+    const recipeList = recipeListObject.getRecipesList(filteredRecipes);
+    // Filter recipes
+    filteredRecipes = recipeList.filter(
+        (elt) =>
+            elt.name.toLowerCase().includes(entry) ||
+            elt.ingredients.forEach((element) => {
+                element.ingredient.toLowerCase().includes(entry);
+            }) ||
+            elt.appliance.toLowerCase().includes(entry) ||
+            elt.utensils.forEach((element) => {
+                element.toLowerCase().includes(entry);
+            }) ||
+            elt.description.toLowerCase().includes(entry)
+    );
+};
+
+const createRecipes = () => {
+    if (filteredRecipes.length !== 0) {
+        filteredRecipes.map((recipe) => {
+            const recipeClass = new Recipe(recipe);
+            recipeClass.displayRecipes();
+        });
+        updateFilterOptions(filteredRecipes);
+    } else {
+        triggerNoResult();
+    }
+};
+
 // MAIN BAR RESEARCH
 const mainSearchBar = document.querySelector('.primary-search input');
-let filteredRecipes = recipes;
 export const enableMainResearch = () => {
     mainSearchBar.addEventListener('input', (e) => {
         const mainResearchString = e.target.value.toLowerCase();
         // Filter recipes after typing 3 letters in main bar
         if (mainResearchString.length >= 3) {
-            // Get recipes list
-            const recipeListObject = new Recipe(recipes);
-            const recipeList = recipeListObject.getRecipesList(recipes);
-            // const recipeIngredientsList = recipeListObject.getRecipesIngredientsList(recipes).flat();
-            // console.log(recipeIngredientsList);
-            // Filter recipes list
-            // ! fix : search inside nested arrays (utensils and ingredients).
-            // Filter with main search bar
-            filteredRecipes = recipeList.filter(
-                (elt) =>
-                    elt.name.toLowerCase().includes(mainResearchString) ||
-                    elt.ingredients.forEach((element) => {
-                        element.ingredient
-                            .toLowerCase()
-                            .includes(mainResearchString);
-                    }) ||
-                    elt.appliance.toLowerCase().includes(mainResearchString) ||
-                    elt.utensils.forEach((element) => {
-                        element.toLowerCase().includes(mainResearchString);
-                    }) ||
-                    elt.description.toLowerCase().includes(mainResearchString)
-            );
+            // Get and filter recipes list with main search bar
+            filterRecipes(mainResearchString);
             // Filter with selected filter options
             if (selectedOptions.length !== 0) {
                 for (const iterator of selectedOptions) {
-                    console.log(iterator);
                     filteredRecipes = filteredRecipes.filter((elt) =>
                         elt.description.toLowerCase().includes(iterator)
                     );
@@ -67,18 +89,7 @@ export const enableMainResearch = () => {
             }
             emptyHtmlElement('.results');
             // Display recipes on page or "no found" message.
-            if (filteredRecipes.length !== 0) {
-                filteredRecipes.map((recipe) => {
-                    const recipeClass = new Recipe(recipe);
-                    recipeClass.displayRecipes();
-                });
-                updateFilterOptions(filteredRecipes);
-            } else {
-                noResultMessage();
-                emptyHtmlElement('.ingredients__list');
-                emptyHtmlElement('.appliance__list');
-                emptyHtmlElement('.utensils__list');
-            }
+            createRecipes();
         }
         // Reset recipes and filter lists if less than 3 letters inside main bar and if recipes has previously been filtered
         if (
@@ -129,42 +140,11 @@ export const enableSelectFilter = () => {
             currentOption.createOption();
             // FILTER DISPLAYED RECIPES USING SELECTED FILTER
             const currentOptionContent = e.target.textContent.toLowerCase();
-            // Get recipes list
-            const recipeListObject = new Recipe(filteredRecipes);
-            const recipeList = recipeListObject.getRecipesList(filteredRecipes);
-            // Filter recipes list
-            // ! fix : search inside nested arrays (utensils and ingredients).
-            filteredRecipes = recipeList.filter(
-                (elt) =>
-                    elt.name.toLowerCase().includes(currentOptionContent) ||
-                    elt.ingredients.forEach((element) => {
-                        element.ingredient
-                            .toLowerCase()
-                            .includes(currentOptionContent);
-                    }) ||
-                    elt.appliance
-                        .toLowerCase()
-                        .includes(currentOptionContent) ||
-                    elt.utensils.forEach((element) => {
-                        element.toLowerCase().includes(currentOptionContent);
-                    }) ||
-                    elt.description.toLowerCase().includes(currentOptionContent)
-            );
-            // console.log(selectedOptions);
+            // Get and filter recipes list
+            filterRecipes(currentOptionContent);
             emptyHtmlElement('.results');
             // Display recipes on page or "no found" message.
-            if (filteredRecipes.length !== 0) {
-                filteredRecipes.map((recipe) => {
-                    const recipeClass = new Recipe(recipe);
-                    recipeClass.displayRecipes();
-                });
-                updateFilterOptions(filteredRecipes);
-            } else {
-                noResultMessage();
-                emptyHtmlElement('.ingredients__list');
-                emptyHtmlElement('.appliance__list');
-                emptyHtmlElement('.utensils__list');
-            }
+            createRecipes();
             enableSelectFilter();
         });
     }
@@ -185,7 +165,7 @@ export const enableSelectFilter = () => {
             );
         });
     }
-    console.log(selectedOptions);
+    // console.log(selectedOptions);
 };
 
 // Filter list elements while writing in search field
