@@ -41,6 +41,7 @@ export const enableMainResearch = () => {
             // console.log(recipeIngredientsList);
             // Filter recipes list
             // ! fix : search inside nested arrays (utensils and ingredients).
+            // Filter with main search bar
             filteredRecipes = recipeList.filter(
                 (elt) =>
                     elt.name.toLowerCase().includes(mainResearchString) ||
@@ -55,6 +56,13 @@ export const enableMainResearch = () => {
                     }) ||
                     elt.description.toLowerCase().includes(mainResearchString)
             );
+            // Filter with selected filter options (test with one filter option only)
+            console.log(selectedOptions[0]);
+            if (selectedOptions.length !== 0) {
+                filteredRecipes = filteredRecipes.filter((elt) =>
+                    elt.description.toLowerCase().includes(selectedOptions[0])
+                );
+            }
             emptyHtmlElement('.results');
             // Display recipes on page or "no found" message.
             if (filteredRecipes.length !== 0) {
@@ -100,6 +108,7 @@ export const enableMainResearch = () => {
 // FILTER OPTIONS RESEARCH
 
 // Manage selected options
+let selectedOptions = [];
 // let selectedIngredientsOptions = [];
 // let selectedApplianceOptions = [];
 // let selectedUtensilsOptions = [];
@@ -109,6 +118,10 @@ export const enableSelectFilter = () => {
     for (const iterator of dropdownOptions) {
         iterator.addEventListener('click', (e) => {
             // DISPLAY SELECTED OPTION ON PAGE
+            selectedOptions = [
+                ...selectedOptions,
+                e.target.textContent.toLowerCase(),
+            ];
             const currentOption = new SelectedFilterOption(e.target);
             currentOption.createOption();
             // FILTER DISPLAYED RECIPES USING SELECTED FILTER
@@ -118,7 +131,6 @@ export const enableSelectFilter = () => {
             const recipeList = recipeListObject.getRecipesList(filteredRecipes);
             // Filter recipes list
             // ! fix : search inside nested arrays (utensils and ingredients).
-            console.log(filteredRecipes);
             filteredRecipes = recipeList.filter(
                 (elt) =>
                     elt.name.toLowerCase().includes(currentOptionContent) ||
@@ -135,7 +147,7 @@ export const enableSelectFilter = () => {
                     }) ||
                     elt.description.toLowerCase().includes(currentOptionContent)
             );
-            console.log(filteredRecipes);
+            console.log(selectedOptions);
             emptyHtmlElement('.results');
             // Display recipes on page or "no found" message.
             if (filteredRecipes.length !== 0) {
