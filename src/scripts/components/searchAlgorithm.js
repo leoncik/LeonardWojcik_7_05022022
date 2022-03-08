@@ -1,3 +1,5 @@
+// TODO : repeated code, needs refactoring
+
 import { Recipe } from '../classes/Recipe';
 import { FilterList } from '../classes/FilterList';
 import { recipes } from '../../data/recipes';
@@ -68,17 +70,28 @@ export const enableMainResearch = () => {
                 emptyHtmlElement('.utensils__list');
             }
         }
-        // Reset recipes if less than 3 letters inside main bar and if recipes has previously been filtered
+        // Reset recipes and filter lists if less than 3 letters inside main bar and if recipes has previously been filtered
         if (
             filteredRecipes.length !== recipes.length &&
             mainResearchString.length < 3
         ) {
+            // Reset recipes
             emptyHtmlElement('.results');
             recipes.map((recipe) => {
                 const recipeClass = new Recipe(recipe);
                 recipeClass.displayRecipes();
             });
             filteredRecipes = recipes;
+            // Reset filters lists
+            const filterList = new FilterList(recipes);
+            const lists = filterList.lists;
+            // Get currents lists, filter them, empty previous lists and display filtered ones
+            lists.map((list) => {
+                let dataList = filterList.getFilterLists(recipes, list);
+                filterList.sortList(dataList);
+                emptyHtmlElement(`.${list}__list`);
+                filterList.displayList(dataList, list);
+            });
         }
         enableSelectFilter();
     });
