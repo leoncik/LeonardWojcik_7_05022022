@@ -57,7 +57,7 @@ export const enableMainResearch = () => {
                     elt.description.toLowerCase().includes(mainResearchString)
             );
             // Filter with selected filter options (test with one filter option only)
-            console.log(selectedOptions[0]);
+            // console.log(selectedOptions[0]);
             if (selectedOptions.length !== 0) {
                 filteredRecipes = filteredRecipes.filter((elt) =>
                     elt.description.toLowerCase().includes(selectedOptions[0])
@@ -114,6 +114,7 @@ let selectedOptions = [];
 // let selectedUtensilsOptions = [];
 
 export const enableSelectFilter = () => {
+    // ADD FILTER OPTIONS
     let dropdownOptions = document.querySelectorAll('.search-options li');
     for (const iterator of dropdownOptions) {
         iterator.addEventListener('click', (e) => {
@@ -147,7 +148,7 @@ export const enableSelectFilter = () => {
                     }) ||
                     elt.description.toLowerCase().includes(currentOptionContent)
             );
-            console.log(selectedOptions);
+            // console.log(selectedOptions);
             emptyHtmlElement('.results');
             // Display recipes on page or "no found" message.
             if (filteredRecipes.length !== 0) {
@@ -165,6 +166,23 @@ export const enableSelectFilter = () => {
             enableSelectFilter();
         });
     }
+
+    // REMOVE FILTER OPTIONS
+    const displayedOptionsContainer =
+        document.querySelector('.selected-filters');
+    const displayedOptions = document.querySelectorAll(
+        '.selected-filters__item'
+    );
+    for (const iterator of displayedOptions) {
+        iterator.addEventListener('click', (e) => {
+            displayedOptionsContainer.removeChild(e.target);
+            const displayedOptionText = e.target.textContent.toLowerCase();
+            selectedOptions = selectedOptions.filter(
+                (elt) => elt != displayedOptionText
+            );
+        });
+    }
+    console.log(selectedOptions);
 };
 
 // Filter list elements while writing in search field
