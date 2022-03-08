@@ -56,12 +56,14 @@ export const enableMainResearch = () => {
                     }) ||
                     elt.description.toLowerCase().includes(mainResearchString)
             );
-            // Filter with selected filter options (test with one filter option only)
-            // console.log(selectedOptions[0]);
+            // Filter with selected filter options
             if (selectedOptions.length !== 0) {
-                filteredRecipes = filteredRecipes.filter((elt) =>
-                    elt.description.toLowerCase().includes(selectedOptions[0])
-                );
+                for (const iterator of selectedOptions) {
+                    console.log(iterator);
+                    filteredRecipes = filteredRecipes.filter((elt) =>
+                        elt.description.toLowerCase().includes(iterator)
+                    );
+                }
             }
             emptyHtmlElement('.results');
             // Display recipes on page or "no found" message.
@@ -168,6 +170,7 @@ export const enableSelectFilter = () => {
     }
 
     // REMOVE FILTER OPTIONS
+    // TODO : reset recipes after removing filter
     const displayedOptionsContainer =
         document.querySelector('.selected-filters');
     const displayedOptions = document.querySelectorAll(
