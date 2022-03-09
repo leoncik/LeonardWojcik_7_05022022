@@ -44,12 +44,30 @@ const filterRecipes = (entry) => {
     const recipeListObject = new Recipe(filteredRecipes);
     const recipeList = recipeListObject.getRecipesList(filteredRecipes);
     // Filter recipes
+    // ! Tests
+    // let testInitial = recipes.filter(recipe => recipe.ingredients.every(ingredient => (ingredient.ingredient == 'Ail' && console.log('Ail trouvé dans test initial'))))
+    // console.log(testInitial);
+    // let testIngredient = recipeList.map(elt => (elt.ingredients));
+    // console.log(testIngredient);
+    // let testEvery = testIngredient.every(ingredientArr => (ingredientArr.ingredient === 'Ail' && console.log('Ail test trouvé')));
+    // console.log(`testEvery est ${testEvery}`);
+    // let testEveryIncludes = test.every(ingredientArr => (ingredientArr.ingredient.toLowerCase().includes('Ail')));
+    // console.log(testEveryIncludes);
+    // let fidingIngredients = testIngredient.map(element => element.map(elt => (elt.ingredient))).includes('Ail');
+    // console.log(`fidingIngredients est ${fidingIngredients}`);
+    // let filterTest = recipeList.filter((elt) => elt.ingredients.map((elt) => elt.ingredient).includes('Ail'));
+    // console.log(filterTest);
     filteredRecipes = recipeList.filter(
         (elt) =>
             elt.name.toLowerCase().includes(entry) ||
-            elt.ingredients.forEach((element) => {
-                element.ingredient.toLowerCase().includes(entry);
-            }) ||
+            elt.ingredients
+                .map((elt) => elt.ingredient.toLowerCase())
+                .includes(entry) ||
+            // elt.ingredients.every(ingredientArr => (ingredientArr.ingredient.toLowerCase() === entry.toLowerCase() && console.log('trouvé'))) ||
+            // elt.ingredients.every(ingredient => (ingredient.ingredient === 'Ail' && console.log(ingredient.ingredient))) ||
+            // elt.ingredients.forEach((element) => {
+            //     element.ingredient.toLowerCase().includes(entry);
+            // }) ||
             elt.appliance.toLowerCase().includes(entry) ||
             elt.utensils.forEach((element) => {
                 element.toLowerCase().includes(entry);
