@@ -37,45 +37,45 @@ const triggerNoResult = () => {
 };
 
 // FILTER AND RECIPES DISPLAY FUNCTIONS
-// ! fix : search inside nested arrays (utensils and ingredients).
+// ! fix : search inside nested arrays (utensils (DONE) and ingredients (TODO)).
+// Get and filter recipes list
 let filteredRecipes = recipes;
 const filterRecipes = (entry) => {
     // Get recipes list
     const recipeListObject = new Recipe(filteredRecipes);
     const recipeList = recipeListObject.getRecipesList(filteredRecipes);
     // Filter recipes
-    // ! Tests
-    // let testInitial = recipes.filter(recipe => recipe.ingredients.every(ingredient => (ingredient.ingredient == 'Ail' && console.log('Ail trouvé dans test initial'))))
-    // console.log(testInitial);
-    // let testIngredient = recipeList.map(elt => (elt.ingredients));
-    // console.log(testIngredient);
-    // let testEvery = testIngredient.every(ingredientArr => (ingredientArr.ingredient === 'Ail' && console.log('Ail test trouvé')));
-    // console.log(`testEvery est ${testEvery}`);
-    // let testEveryIncludes = test.every(ingredientArr => (ingredientArr.ingredient.toLowerCase().includes('Ail')));
-    // console.log(testEveryIncludes);
-    // let fidingIngredients = testIngredient.map(element => element.map(elt => (elt.ingredient))).includes('Ail');
-    // console.log(`fidingIngredients est ${fidingIngredients}`);
-    // let filterTest = recipeList.filter((elt) => elt.ingredients.map((elt) => elt.ingredient).includes('Ail'));
-    // console.log(filterTest);
+    // ! Test to get individual utensils
+    console.log(recipeList);
+    let recup = filteredRecipes.map((elt) => elt.utensils);
+    let recupFilter = recup.map((elt) =>
+        elt.map((innerElt) => console.log(innerElt))
+    );
+    console.log(recupFilter);
+    console.log(recup);
+    // ! One line test
+    let oneLine = recipeList.map((elt) =>
+        elt.utensils.map((innerElt) => innerElt.toUpperCase())
+    );
+    console.log(oneLine);
     filteredRecipes = recipeList.filter(
         (elt) =>
             elt.name.toLowerCase().includes(entry) ||
             elt.ingredients
                 .map((elt) => elt.ingredient.toLowerCase())
                 .includes(entry) ||
-            // elt.ingredients.every(ingredientArr => (ingredientArr.ingredient.toLowerCase() === entry.toLowerCase() && console.log('trouvé'))) ||
-            // elt.ingredients.every(ingredient => (ingredient.ingredient === 'Ail' && console.log(ingredient.ingredient))) ||
-            // elt.ingredients.forEach((element) => {
-            //     element.ingredient.toLowerCase().includes(entry);
-            // }) ||
             elt.appliance.toLowerCase().includes(entry) ||
-            elt.utensils.forEach((element) => {
-                element.toLowerCase().includes(entry);
-            }) ||
+            // elt.utensils.forEach((element) => {
+            //     element.toLowerCase().includes(entry);
+            // }) ||
+            // ! Not working
+            // elt.utensils.map((elt) => elt.map((innerElt) => innerElt.toLowerCase().includes(entry))) ||
+            // elt.utensils.map((innerElt) => innerElt.toLowerCase().includes(entry)) ||
             elt.description.toLowerCase().includes(entry)
     );
 };
 
+// Display recipes on page or "no found" message.
 const createRecipes = () => {
     if (filteredRecipes.length !== 0) {
         filteredRecipes.map((recipe) => {
@@ -88,6 +88,17 @@ const createRecipes = () => {
     }
 };
 
+// Check if a filter option is selected and apply It to filter recipes.
+const checkAndApplyOptions = () => {
+    if (selectedOptions.length !== 0) {
+        for (const iterator of selectedOptions) {
+            filteredRecipes = filteredRecipes.filter((elt) =>
+                elt.description.toLowerCase().includes(iterator)
+            );
+        }
+    }
+};
+
 // MAIN BAR RESEARCH
 const mainSearchBar = document.querySelector('.primary-search input');
 export const enableMainResearch = () => {
@@ -95,21 +106,12 @@ export const enableMainResearch = () => {
         const mainResearchString = e.target.value.toLowerCase();
         // Filter recipes after typing 3 letters in main bar
         if (mainResearchString.length >= 3) {
-            // Get and filter recipes list with main search bar
             filterRecipes(mainResearchString);
-            // Filter with selected filter options
-            if (selectedOptions.length !== 0) {
-                for (const iterator of selectedOptions) {
-                    filteredRecipes = filteredRecipes.filter((elt) =>
-                        elt.description.toLowerCase().includes(iterator)
-                    );
-                }
-            }
+            checkAndApplyOptions();
             emptyHtmlElement('.results');
-            // Display recipes on page or "no found" message.
             createRecipes();
         }
-        // Reset recipes and filter lists if less than 3 letters inside main bar and if recipes has previously been filtered
+        // RESET recipes and filter lists if less than 3 letters inside main bar and if recipes has previously been filtered
         if (
             filteredRecipes.length !== recipes.length &&
             mainResearchString.length < 3
@@ -131,6 +133,9 @@ export const enableMainResearch = () => {
                 emptyHtmlElement(`.${list}__list`);
                 filterList.displayList(dataList, list);
             });
+            checkAndApplyOptions();
+            emptyHtmlElement('.results');
+            createRecipes();
         }
         enableSelectFilter();
     });
@@ -158,10 +163,8 @@ export const enableSelectFilter = () => {
             currentOption.createOption();
             // FILTER DISPLAYED RECIPES USING SELECTED FILTER
             const currentOptionContent = e.target.textContent.toLowerCase();
-            // Get and filter recipes list
             filterRecipes(currentOptionContent);
             emptyHtmlElement('.results');
-            // Display recipes on page or "no found" message.
             createRecipes();
             enableSelectFilter();
         });

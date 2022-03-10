@@ -19,6 +19,7 @@ export class Recipe {
         return recipesList;
     }
 
+    // ! Unused
     getRecipesIngredientsList(recipes) {
         let recipesIngredientsList = [];
         recipes.forEach((element) => {
