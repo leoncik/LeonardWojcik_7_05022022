@@ -56,8 +56,8 @@ h1 {
 
 .results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, max-content));
-    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, minmax(290px, max-content));
+    justify-content: center;
     gap: 30px;
     margin-top: 114px;
     margin-bottom: 50px;
@@ -66,6 +66,11 @@ h1 {
 /* RESPONSIVE MODE */
 
 @media all and (max-width: 845px) {
+
+    // Page
+    body {
+        margin: 17px 40px;
+    }
 
     // Secondary search
     .search-options {

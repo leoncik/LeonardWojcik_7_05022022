@@ -87,6 +87,10 @@
     outline: none;
     color: white;
     font-weight: bold;
+    &::placeholder {
+        color: white;
+        opacity: 0.6;
+    }
 }
 
 // Lists

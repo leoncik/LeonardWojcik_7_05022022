@@ -91,12 +91,14 @@ export class Recipe {
         const recipeName = createHtmlElement('h2', 'recipe__name', this.name);
         mainInfo.appendChild(recipeName);
         // Recipe duration
-        const recipeDuration = createHtmlElement(
-            'p',
-            'recipe__duration',
-            `${this.time} min`
-        );
-        mainInfo.appendChild(recipeDuration);
+        if (this.time !== 0) {
+            const recipeDuration = createHtmlElement(
+                'p',
+                'recipe__duration',
+                `${this.time} min`
+            );
+            mainInfo.appendChild(recipeDuration);
+        }
 
         // Secondary info
         const secondaryInfo = document.createElement('div');
