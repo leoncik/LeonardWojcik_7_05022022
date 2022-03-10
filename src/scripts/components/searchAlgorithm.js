@@ -46,18 +46,18 @@ const filterRecipes = (entry) => {
     const recipeList = recipeListObject.getRecipesList(filteredRecipes);
     // Filter recipes
     // ! Test to get individual utensils
-    console.log(recipeList);
-    let recup = filteredRecipes.map((elt) => elt.utensils);
-    let recupFilter = recup.map((elt) =>
-        elt.map((innerElt) => console.log(innerElt))
-    );
-    console.log(recupFilter);
-    console.log(recup);
+    // console.log(recipeList);
+    // let recup = filteredRecipes.map((elt) => elt.utensils);
+    // let recupFilter = recup.map((elt) =>
+    //     elt.map((innerElt) => console.log(innerElt))
+    // );
+    // console.log(recupFilter);
+    // console.log(recup);
     // ! One line test
-    let oneLine = recipeList.map((elt) =>
-        elt.utensils.map((innerElt) => innerElt.toUpperCase())
-    );
-    console.log(oneLine);
+    // let oneLine = recipeList.map((elt) =>
+    //     elt.utensils.map((innerElt) => innerElt.toUpperCase())
+    // );
+    // console.log(oneLine);
     filteredRecipes = recipeList.filter(
         (elt) =>
             elt.name.toLowerCase().includes(entry) ||
@@ -100,10 +100,11 @@ const checkAndApplyOptions = () => {
 };
 
 // MAIN BAR RESEARCH
+let mainResearchString = '';
 const mainSearchBar = document.querySelector('.primary-search input');
 export const enableMainResearch = () => {
     mainSearchBar.addEventListener('input', (e) => {
-        const mainResearchString = e.target.value.toLowerCase();
+        mainResearchString = e.target.value.toLowerCase();
         // Filter recipes after typing 3 letters in main bar
         if (mainResearchString.length >= 3) {
             filterRecipes(mainResearchString);
@@ -171,7 +172,6 @@ export const enableSelectFilter = () => {
     }
 
     // REMOVE FILTER OPTIONS
-    // TODO : reset recipes after removing filter
     const displayedOptionsContainer =
         document.querySelector('.selected-filters');
     const displayedOptions = document.querySelectorAll(
@@ -184,9 +184,20 @@ export const enableSelectFilter = () => {
             selectedOptions = selectedOptions.filter(
                 (elt) => elt != displayedOptionText
             );
+            // RESET RECIPES
+            emptyHtmlElement('.results');
+            filteredRecipes = recipes;
+            // Filter using main bar if more than 3 characters
+            if (mainResearchString.length >= 3) {
+                filterRecipes(mainResearchString);
+            }
+            // Apply filters if available
+            if (selectedOptions.length !== 0) {
+                selectedOptions.map((option) => filterRecipes(option));
+            }
+            createRecipes();
         });
     }
-    // console.log(selectedOptions);
 };
 
 // Filter list elements while writing in search field
