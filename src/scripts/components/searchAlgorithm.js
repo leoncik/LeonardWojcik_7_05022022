@@ -37,7 +37,6 @@ const triggerNoResult = () => {
 };
 
 // FILTER AND RECIPES DISPLAY FUNCTIONS
-// ! fix : search inside nested arrays (utensils (DONE) and ingredients (TODO)).
 // Get and filter recipes list
 let filteredRecipes = recipes;
 const filterRecipes = (entry) => {
@@ -45,19 +44,7 @@ const filterRecipes = (entry) => {
     const recipeListObject = new Recipe(filteredRecipes);
     const recipeList = recipeListObject.getRecipesList(filteredRecipes);
     // Filter recipes
-    // ! Test to get individual utensils
-    // console.log(recipeList);
-    // let recup = filteredRecipes.map((elt) => elt.utensils);
-    // let recupFilter = recup.map((elt) =>
-    //     elt.map((innerElt) => console.log(innerElt))
-    // );
-    // console.log(recupFilter);
-    // console.log(recup);
-    // ! One line test
-    // let oneLine = recipeList.map((elt) =>
-    //     elt.utensils.map((innerElt) => innerElt.toUpperCase())
-    // );
-    // console.log(oneLine);
+    console.log(entry);
     filteredRecipes = recipeList.filter(
         (elt) =>
             elt.name.toLowerCase().includes(entry) ||
@@ -65,18 +52,22 @@ const filterRecipes = (entry) => {
                 .map((elt) => elt.ingredient.toLowerCase())
                 .includes(entry) ||
             elt.appliance.toLowerCase().includes(entry) ||
-            // elt.utensils.forEach((element) => {
-            //     element.toLowerCase().includes(entry);
-            // }) ||
-            // ! Not working
-            // elt.utensils.map((elt) => elt.map((innerElt) => innerElt.toLowerCase().includes(entry))) ||
-            // elt.utensils.map((innerElt) => innerElt.toLowerCase().includes(entry)) ||
+            // ! Only works when clicking on filters
+            elt.utensils.map((elt) => elt.toLowerCase()).includes(entry) ||
+            // ! no result
+            // elt.utensils
+            // .map((elt) => elt.toLowerCase())
+            // .includes('conome') ||
+            // ! results
+            // elt.utensils
+            // .map((elt) => elt.toLowerCase())
+            // .includes('économe') ||
             elt.description.toLowerCase().includes(entry)
     );
 };
 
 // Display recipes on page or "no found" message.
-const createRecipes = () => {
+const displayRecipes = () => {
     if (filteredRecipes.length !== 0) {
         filteredRecipes.map((recipe) => {
             const recipeClass = new Recipe(recipe);
@@ -110,7 +101,7 @@ export const enableMainResearch = () => {
             filterRecipes(mainResearchString);
             checkAndApplyOptions();
             emptyHtmlElement('.results');
-            createRecipes();
+            displayRecipes();
         }
         // RESET recipes and filter lists if less than 3 letters inside main bar and if recipes has previously been filtered
         if (
@@ -136,7 +127,7 @@ export const enableMainResearch = () => {
             });
             checkAndApplyOptions();
             emptyHtmlElement('.results');
-            createRecipes();
+            displayRecipes();
         }
         enableSelectFilter();
     });
@@ -166,7 +157,7 @@ export const enableSelectFilter = () => {
             const currentOptionContent = e.target.textContent.toLowerCase();
             filterRecipes(currentOptionContent);
             emptyHtmlElement('.results');
-            createRecipes();
+            displayRecipes();
             enableSelectFilter();
         });
     }
@@ -195,7 +186,7 @@ export const enableSelectFilter = () => {
             if (selectedOptions.length !== 0) {
                 selectedOptions.map((option) => filterRecipes(option));
             }
-            createRecipes();
+            displayRecipes();
         });
     }
 };

@@ -99,6 +99,10 @@
     columns: 100px 5;
 }
 
+.utensils__item::first-letter {
+    text-transform: capitalize;
+}
+
 .search-options li:hover {
     cursor: pointer;
 }

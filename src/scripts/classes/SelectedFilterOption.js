@@ -1,13 +1,13 @@
 export class SelectedFilterOption {
     constructor(item) {
         this.text = item.textContent;
-        this.class = item.className;
+        this.className = item.className;
     }
 
     createOption() {
         const selectedOption = document.createElement('li');
         selectedOption.classList.add('selected-filters__item');
-        switch (this.class) {
+        switch (this.className) {
             case 'ingredients__item':
                 selectedOption.classList.add(
                     'selected-filters__item_ingredient'
