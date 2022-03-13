@@ -5,7 +5,6 @@ export const emptyHtmlElement = (element) =>
 // Sort an array alphabetically
 export const sortAlphabetically = (arr) => arr.sort((a, b) => a - b);
 
-// TODO : add "attributes" argument
 export const createHtmlElement = (
     type,
     className,

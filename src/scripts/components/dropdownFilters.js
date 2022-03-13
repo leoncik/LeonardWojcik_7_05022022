@@ -1,6 +1,4 @@
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
-// const textFields = document.querySelectorAll('.text-field');
-// const searchOptions = document.querySelectorAll('.search-options >*');
 
 // Open / close functions
 const openDropdown = (element, placeholder) => {

@@ -1,5 +1,3 @@
-// TODO : repeated code, needs refactoring
-
 import { Recipe } from '../classes/Recipe';
 import { FilterList } from '../classes/FilterList';
 import { recipes } from '../../data/recipes';
@@ -49,19 +47,22 @@ const filterRecipes = (entry) => {
     filteredRecipes = recipeList.filter(
         (elt) =>
             elt.name.toLowerCase().includes(entry) ||
+            // ! Only works when clicking on filters
             elt.ingredients
-                .map((elt) => elt.ingredient.toLowerCase())
+                .map((innerElt) => innerElt.ingredient.toLowerCase())
                 .includes(entry) ||
             elt.appliance.toLowerCase().includes(entry) ||
             // ! Only works when clicking on filters
-            elt.utensils.map((elt) => elt.toLowerCase()).includes(entry) ||
+            elt.utensils
+                .map((innerElt) => innerElt.toLowerCase())
+                .includes(entry) ||
             // ! no result
             // elt.utensils
-            // .map((elt) => elt.toLowerCase())
+            // .map((innerElt) => innerElt.toLowerCase())
             // .includes('conome') ||
             // ! results
             // elt.utensils
-            // .map((elt) => elt.toLowerCase())
+            // .map((innerElt) => innerElt.toLowerCase())
             // .includes('économe') ||
             elt.description.toLowerCase().includes(entry)
     );

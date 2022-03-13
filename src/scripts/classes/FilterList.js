@@ -15,7 +15,6 @@ export class FilterList {
                 // Get all ingredients objects from recipes
                 recipes.forEach((element) => {
                     ingredientsList = [...ingredientsList, element.ingredients];
-                    // ingredientsList.push(element.ingredients);
                 });
                 // Get all individual ingredients from "ingredients"objects
                 ingredientsList.forEach((element) => {
@@ -30,7 +29,6 @@ export class FilterList {
                                 ...innerIngredientsList,
                                 innerElement.ingredient,
                             ];
-                            // innerIngredientsList.push(innerElement.ingredient);
                         }
                     });
                 });
@@ -42,7 +40,6 @@ export class FilterList {
                 recipes.forEach((element) => {
                     if (!applianceList.includes(element.appliance)) {
                         applianceList = [...applianceList, element.appliance];
-                        // applianceList.push(element.appliance);
                     }
                 });
                 return applianceList;
@@ -54,7 +51,6 @@ export class FilterList {
                 // Get all utensils arrays from recipes
                 recipes.forEach((element) => {
                     utensilsList = [...utensilsList, element.utensils];
-                    // utensilsList.push(element.utensils);
                 });
                 // Get all individual utensils from utensilsList
                 utensilsList.forEach((element) => {
@@ -65,7 +61,6 @@ export class FilterList {
                                 ...innerUtensilsList,
                                 innerElement,
                             ];
-                            // innerUtensilsList.push(innerElement);
                         }
                     });
                 });
@@ -80,7 +75,6 @@ export class FilterList {
     // Sort list
     sortList(list) {
         list.sort((a, b) => a.localeCompare(b));
-        // console.log(list);
     }
 
     createFilterList(list, type) {

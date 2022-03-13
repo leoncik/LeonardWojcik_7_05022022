@@ -61,7 +61,6 @@ export class Recipe {
         recipeCard.classList.add('recipe');
 
         // PREVIEW IMAGE
-        // TODO : improve alt text.
         // Image container
         const imageContainer = document.createElement('div');
         imageContainer.classList.add('recipe__image-preview');
