@@ -14,6 +14,7 @@ const noResultMessage = () =>
         '.results'
     ).innerHTML = `<p class="no-result-message">Aucune recette ne correspond à votre critère... vous pouvez
   chercher «&nbsp;tarte aux pommes&nbsp;», «&nbsp;poisson&nbsp;», etc.</p>`);
+
 // UPDATE FILTERS AFTER MAIN RESEARCH
 const updateFilterOptions = (currentRecipes) => {
     // INIT FILTER LISTS
@@ -82,11 +83,7 @@ const displayRecipes = () => {
 // Check if a filter option is selected and apply It to filter recipes.
 const checkAndApplyOptions = () => {
     if (selectedOptions.length !== 0) {
-        for (const iterator of selectedOptions) {
-            filteredRecipes = filteredRecipes.filter((elt) =>
-                elt.description.toLowerCase().includes(iterator)
-            );
-        }
+        selectedOptions.map((option) => filterRecipes(option));
     }
 };
 
@@ -102,6 +99,7 @@ export const enableMainResearch = () => {
             checkAndApplyOptions();
             emptyHtmlElement('.results');
             displayRecipes();
+            enableSelectFilter();
         }
         // RESET recipes and filter lists if less than 3 letters inside main bar and if recipes has previously been filtered
         if (
@@ -109,11 +107,6 @@ export const enableMainResearch = () => {
             mainResearchString.length < 3
         ) {
             // Reset recipes
-            emptyHtmlElement('.results');
-            recipes.map((recipe) => {
-                const recipeClass = new Recipe(recipe);
-                recipeClass.displayRecipes();
-            });
             filteredRecipes = recipes;
             // Reset filters lists
             const filterList = new FilterList(recipes);
@@ -128,8 +121,8 @@ export const enableMainResearch = () => {
             checkAndApplyOptions();
             emptyHtmlElement('.results');
             displayRecipes();
+            enableSelectFilter();
         }
-        enableSelectFilter();
     });
 };
 
@@ -141,8 +134,8 @@ let selectedOptions = [];
 // let selectedApplianceOptions = [];
 // let selectedUtensilsOptions = [];
 
-export const enableSelectFilter = () => {
-    // ADD FILTER OPTIONS
+// ADD FILTER OPTIONS
+const addFilterOptions = () => {
     let dropdownOptions = document.querySelectorAll('.search-options li');
     for (const iterator of dropdownOptions) {
         iterator.addEventListener('click', (e) => {
@@ -161,8 +154,10 @@ export const enableSelectFilter = () => {
             enableSelectFilter();
         });
     }
+};
 
-    // REMOVE FILTER OPTIONS
+// REMOVE FILTER OPTIONS
+const removeFilterOptions = () => {
     const displayedOptionsContainer =
         document.querySelector('.selected-filters');
     const displayedOptions = document.querySelectorAll(
@@ -183,12 +178,16 @@ export const enableSelectFilter = () => {
                 filterRecipes(mainResearchString);
             }
             // Apply filters if available
-            if (selectedOptions.length !== 0) {
-                selectedOptions.map((option) => filterRecipes(option));
-            }
+            checkAndApplyOptions();
             displayRecipes();
+            enableSelectFilter();
         });
     }
+};
+
+export const enableSelectFilter = () => {
+    addFilterOptions();
+    removeFilterOptions();
 };
 
 // Filter list elements while writing in search field
