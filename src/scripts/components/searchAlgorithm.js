@@ -52,18 +52,20 @@ const filterRecipes = (entry) => {
                 .map((innerElt) => innerElt.ingredient.toLowerCase())
                 .includes(entry) ||
             elt.appliance.toLowerCase().includes(entry) ||
-            // ! Only works when clicking on filters
+            // ! Only gives results when clicking on filters
             elt.utensils
                 .map((innerElt) => innerElt.toLowerCase())
                 .includes(entry) ||
-            // ! no result
+            // ! gives no result
             // elt.utensils
             // .map((innerElt) => innerElt.toLowerCase())
             // .includes('conome') ||
-            // ! results
+            // ! gives results
             // elt.utensils
             // .map((innerElt) => innerElt.toLowerCase())
             // .includes('économe') ||
+            // ! test with flattened array. Only gives results when clicking on filters
+            // elt.utensils.map((innerElt) => innerElt.toString().toLowerCase()).includes(entry) ||
             elt.description.toLowerCase().includes(entry)
     );
 };

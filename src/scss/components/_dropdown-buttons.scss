@@ -99,6 +99,7 @@
     columns: 100px 5;
 }
 
+.ingredients__item::first-letter,
 .utensils__item::first-letter {
     text-transform: capitalize;
 }
