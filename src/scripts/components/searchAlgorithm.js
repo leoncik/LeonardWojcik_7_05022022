@@ -66,6 +66,8 @@ const filterRecipes = (entry) => {
             // .includes('économe') ||
             // ! test with flattened array. Only gives results when clicking on filters
             // elt.utensils.map((innerElt) => innerElt.toString().toLowerCase()).includes(entry) ||
+            // ! Works fine, except for utensils starting with uppercase
+            elt.utensils.some((currentValue) => currentValue.includes(entry)) ||
             elt.description.toLowerCase().includes(entry)
     );
 };
