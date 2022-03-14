@@ -47,11 +47,15 @@ const filterRecipes = (entry) => {
     filteredRecipes = recipeList.filter(
         (elt) =>
             elt.name.toLowerCase().includes(entry) ||
+            // ! Works fine, except for ingredients starting with uppercase and with main bar (filters are OK)
+            elt.ingredients.some((currentValue) =>
+                currentValue.ingredient.includes(entry)
+            ) ||
             // ! Only works when clicking on filters
-            elt.ingredients
-                .map((innerElt) => innerElt.ingredient.toLowerCase())
-                .includes(entry) ||
-            elt.appliance.toLowerCase().includes(entry) ||
+            // elt.ingredients
+            //     .map((innerElt) => innerElt.ingredient.toLowerCase())
+            //     .includes(entry) ||
+            // elt.appliance.toLowerCase().includes(entry) ||
             // ! Only gives results when clicking on filters
             elt.utensils
                 .map((innerElt) => innerElt.toLowerCase())
@@ -66,7 +70,7 @@ const filterRecipes = (entry) => {
             // .includes('économe') ||
             // ! test with flattened array. Only gives results when clicking on filters
             // elt.utensils.map((innerElt) => innerElt.toString().toLowerCase()).includes(entry) ||
-            // ! Works fine, except for utensils starting with uppercase
+            // ! Works fine, except for utensils starting with uppercase and with main bar (filters are OK)
             elt.utensils.some((currentValue) => currentValue.includes(entry)) ||
             elt.description.toLowerCase().includes(entry)
     );
