@@ -43,35 +43,16 @@ const filterRecipes = (entry) => {
     const recipeListObject = new Recipe(filteredRecipes);
     const recipeList = recipeListObject.getRecipesList(filteredRecipes);
     // Filter recipes
-    console.log(entry);
     filteredRecipes = recipeList.filter(
         (elt) =>
             elt.name.toLowerCase().includes(entry) ||
-            // ! Works fine, except for ingredients starting with uppercase and with main bar (filters are OK)
             elt.ingredients.some((currentValue) =>
-                currentValue.ingredient.includes(entry)
+                currentValue.ingredient.toLowerCase().includes(entry)
             ) ||
-            // ! Only works when clicking on filters
-            // elt.ingredients
-            //     .map((innerElt) => innerElt.ingredient.toLowerCase())
-            //     .includes(entry) ||
-            // elt.appliance.toLowerCase().includes(entry) ||
-            // ! Only gives results when clicking on filters
-            elt.utensils
-                .map((innerElt) => innerElt.toLowerCase())
-                .includes(entry) ||
-            // ! gives no result
-            // elt.utensils
-            // .map((innerElt) => innerElt.toLowerCase())
-            // .includes('conome') ||
-            // ! gives results
-            // elt.utensils
-            // .map((innerElt) => innerElt.toLowerCase())
-            // .includes('économe') ||
-            // ! test with flattened array. Only gives results when clicking on filters
-            // elt.utensils.map((innerElt) => innerElt.toString().toLowerCase()).includes(entry) ||
-            // ! Works fine, except for utensils starting with uppercase and with main bar (filters are OK)
-            elt.utensils.some((currentValue) => currentValue.includes(entry)) ||
+            elt.appliance.toLowerCase().includes(entry) ||
+            elt.utensils.some((currentValue) =>
+                currentValue.toLowerCase().includes(entry)
+            ) ||
             elt.description.toLowerCase().includes(entry)
     );
 };
@@ -139,9 +120,6 @@ export const enableMainResearch = () => {
 
 // Manage selected options
 let selectedOptions = [];
-// let selectedIngredientsOptions = [];
-// let selectedApplianceOptions = [];
-// let selectedUtensilsOptions = [];
 
 // ADD FILTER OPTIONS
 const addFilterOptions = () => {
@@ -214,6 +192,7 @@ secondarySearchBars.forEach((element) => {
                 ingredientList = ingredientList.filter((elt) =>
                     elt.toLowerCase().includes(secondaryResearchString)
                 );
+                filterList.sortList(ingredientList);
                 emptyHtmlElement('.ingredients__list');
                 filterList.displayList(ingredientList, 'ingredients');
                 enableSelectFilter();
@@ -228,6 +207,7 @@ secondarySearchBars.forEach((element) => {
                 applianceList = applianceList.filter((elt) =>
                     elt.toLowerCase().includes(secondaryResearchString)
                 );
+                filterList.sortList(applianceList);
                 emptyHtmlElement('.appliance__list');
                 filterList.displayList(applianceList, 'appliance');
                 enableSelectFilter();
@@ -242,6 +222,7 @@ secondarySearchBars.forEach((element) => {
                 utensilsList = utensilsList.filter((elt) =>
                     elt.toLowerCase().includes(secondaryResearchString)
                 );
+                filterList.sortList(utensilsList);
                 emptyHtmlElement('.utensils__list');
                 filterList.displayList(utensilsList, 'utensils');
                 enableSelectFilter();
