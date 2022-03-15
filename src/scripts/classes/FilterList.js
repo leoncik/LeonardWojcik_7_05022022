@@ -19,8 +19,7 @@ export class FilterList {
                 // Get all individual ingredients from "ingredients"objects
                 ingredientsList.forEach((element) => {
                     element.forEach((innerElement) => {
-                        // Prevent duplication of ingredients and use regex to be specific
-                        // todo : add " ou " to regex.
+                        // Prevent duplication of ingredients and use regex to be specific (ex : "Thon rouge" instead of "Thon rouge ou blanc")
                         innerElement.ingredient =
                             innerElement.ingredient.toLowerCase();
                         if (
@@ -31,7 +30,7 @@ export class FilterList {
                             innerIngredientsList = [
                                 ...innerIngredientsList,
                                 innerElement.ingredient
-                                    .split(/[()0123456789]/)
+                                    .split(/[()0123456789]|\sou\s/)
                                     .shift(),
                             ];
                         }
@@ -60,7 +59,7 @@ export class FilterList {
                 // Get all individual utensils from utensilsList
                 utensilsList.forEach((element) => {
                     element.forEach((innerElement) => {
-                        // Prevent duplication of ingredients and use regex to be specific
+                        // Prevent duplication of utensils and use regex to prevent display of quantity (ex: "moule à tartelettes" instead of "moule à tartelettes (6)")
                         innerElement = innerElement.toLowerCase();
                         if (!innerUtensilsList.includes(innerElement)) {
                             innerUtensilsList = [
