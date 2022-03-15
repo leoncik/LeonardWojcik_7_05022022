@@ -10,26 +10,30 @@
 
 .selected-filters__item {
     position: relative;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
     height: 37px;
-    padding: 8px 22px 9px 20px;
+    padding: 8px 52px 9px 20px;
     border-radius: variables.$common-radius;
     font-weight: bold;
     cursor: pointer;
     &::after {
-        content: "";
+        content: url("/assets/icons/remove-filter.svg");
         display: block;
-        background-image: url("/assets/icons/remove-filter.svg");
-        background-size: 28px 28px;
-        height: 28px;
-        width: 28px;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%) scale(1.2);
     }
     &:hover::after {
-        transform: scale(1.1);
+        transform: translateY(-50%) scale(1.4);
     }
+    &::first-letter {
+    text-transform: capitalize;
+}
 
 }
 
