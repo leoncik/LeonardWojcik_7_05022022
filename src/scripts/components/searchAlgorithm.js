@@ -38,23 +38,56 @@ const triggerNoResult = () => {
 // FILTER AND RECIPES DISPLAY FUNCTIONS
 // Get and filter recipes list
 let filteredRecipes = recipes;
-const filterRecipes = (entry) => {
-    // Get recipes list
-    const recipeListObject = new Recipe(filteredRecipes);
-    const recipeList = recipeListObject.getRecipesList(filteredRecipes);
-    // Filter recipes
-    filteredRecipes = recipeList.filter(
-        (elt) =>
-            elt.name.toLowerCase().includes(entry) ||
-            elt.ingredients.some((currentValue) =>
-                currentValue.ingredient.toLowerCase().includes(entry)
-            ) ||
-            elt.appliance.toLowerCase().includes(entry) ||
-            elt.utensils.some((currentValue) =>
-                currentValue.toLowerCase().includes(entry)
-            ) ||
-            elt.description.toLowerCase().includes(entry)
-    );
+const filterRecipes = (entry, entrySource, entrySourceType = '') => {
+    if (entrySource === 'mainBar') {
+        // Get recipes list
+        const recipeListObject = new Recipe(filteredRecipes);
+        const recipeList = recipeListObject.getRecipesList(filteredRecipes);
+        // Filter recipes
+        filteredRecipes = recipeList.filter(
+            (elt) =>
+                elt.name.toLowerCase().includes(entry) ||
+                elt.ingredients.some((currentValue) =>
+                    currentValue.ingredient.toLowerCase().includes(entry)
+                ) ||
+                elt.appliance.toLowerCase().includes(entry) ||
+                elt.utensils.some((currentValue) =>
+                    currentValue.toLowerCase().includes(entry)
+                ) ||
+                elt.description.toLowerCase().includes(entry)
+        );
+    } else if (entrySource === 'filterOption') {
+        // Get recipes list
+        const recipeListObject = new Recipe(filteredRecipes);
+        const recipeList = recipeListObject.getRecipesList(filteredRecipes);
+        // Filter recipes
+        switch (entrySourceType) {
+            case 'ingredients':
+                filteredRecipes = recipeList.filter((elt) =>
+                    elt.ingredients.some((currentValue) =>
+                        currentValue.ingredient.toLowerCase().includes(entry)
+                    )
+                );
+                break;
+
+            case 'appliance':
+                filteredRecipes = recipeList.filter((elt) =>
+                    elt.appliance.toLowerCase().includes(entry)
+                );
+                break;
+
+            case 'utensils':
+                filteredRecipes = recipeList.filter((elt) =>
+                    elt.utensils.some((currentValue) =>
+                        currentValue.toLowerCase().includes(entry)
+                    )
+                );
+                break;
+
+            default:
+                break;
+        }
+    }
 };
 
 // Display recipes on page or "no found" message.
@@ -73,7 +106,21 @@ const displayRecipes = () => {
 // Check if a filter option is selected and apply It to filter recipes.
 const checkAndApplyOptions = () => {
     if (selectedOptions.length !== 0) {
-        selectedOptions.map((option) => filterRecipes(option));
+        if (selectedIngredientsOptions.length !== 0) {
+            selectedIngredientsOptions.map((option) =>
+                filterRecipes(option, 'filterOption', 'ingredients')
+            );
+        }
+        if (selectedApplianceOptions.length !== 0) {
+            selectedApplianceOptions.map((option) =>
+                filterRecipes(option, 'filterOption', 'appliance')
+            );
+        }
+        if (selectedUtensilsOptions.length !== 0) {
+            selectedUtensilsOptions.map((option) =>
+                filterRecipes(option, 'filterOption', 'utensils')
+            );
+        }
     }
 };
 
@@ -85,7 +132,7 @@ export const enableMainResearch = () => {
         mainResearchString = e.target.value.toLowerCase();
         // Filter recipes after typing 3 letters in main bar
         if (mainResearchString.length >= 3) {
-            filterRecipes(mainResearchString);
+            filterRecipes(mainResearchString, 'mainBar');
             checkAndApplyOptions();
             emptyHtmlElement('.results');
             displayRecipes();
@@ -120,6 +167,9 @@ export const enableMainResearch = () => {
 
 // Manage selected options
 let selectedOptions = [];
+let selectedIngredientsOptions = [];
+let selectedApplianceOptions = [];
+let selectedUtensilsOptions = [];
 
 // ADD FILTER OPTIONS
 const addFilterOptions = () => {
@@ -135,9 +185,50 @@ const addFilterOptions = () => {
                 ];
                 const currentOption = new SelectedFilterOption(e.target);
                 currentOption.createOption();
-                // FILTER DISPLAYED RECIPES USING SELECTED FILTER
                 const currentOptionContent = e.target.textContent.toLowerCase();
-                filterRecipes(currentOptionContent);
+                switch (e.target.parentNode.className) {
+                    case 'ingredients__list show':
+                        selectedIngredientsOptions = [
+                            ...selectedIngredientsOptions,
+                            e.target.textContent.toLowerCase(),
+                        ];
+                        // FILTER DISPLAYED RECIPES USING SELECTED FILTER
+                        filterRecipes(
+                            currentOptionContent,
+                            'filterOption',
+                            'ingredients'
+                        );
+                        break;
+
+                    case 'appliance__list show':
+                        selectedApplianceOptions = [
+                            ...selectedApplianceOptions,
+                            e.target.textContent.toLowerCase(),
+                        ];
+                        // FILTER DISPLAYED RECIPES USING SELECTED FILTER
+                        filterRecipes(
+                            currentOptionContent,
+                            'filterOption',
+                            'appliance'
+                        );
+                        break;
+
+                    case 'utensils__list show':
+                        selectedUtensilsOptions = [
+                            ...selectedUtensilsOptions,
+                            e.target.textContent.toLowerCase(),
+                        ];
+                        // FILTER DISPLAYED RECIPES USING SELECTED FILTER
+                        filterRecipes(
+                            currentOptionContent,
+                            'filterOption',
+                            'utensils'
+                        );
+                        break;
+
+                    default:
+                        break;
+                }
                 emptyHtmlElement('.results');
                 displayRecipes();
                 enableSelectFilter();
@@ -159,15 +250,41 @@ const removeFilterOptions = () => {
             if (e.target.parentElement === displayedOptionsContainer) {
                 displayedOptionsContainer.removeChild(e.target);
                 const displayedOptionText = e.target.textContent.toLowerCase();
+                // Remove option from selected options lists
                 selectedOptions = selectedOptions.filter(
                     (elt) => elt != displayedOptionText
                 );
+                switch (e.target.className) {
+                    case 'selected-filters__item selected-filters__item_ingredient':
+                        selectedIngredientsOptions =
+                            selectedIngredientsOptions.filter(
+                                (elt) => elt != displayedOptionText
+                            );
+                        break;
+
+                    case 'selected-filters__item selected-filters__item_appliance':
+                        selectedApplianceOptions =
+                            selectedApplianceOptions.filter(
+                                (elt) => elt != displayedOptionText
+                            );
+                        break;
+
+                    case 'selected-filters__item selected-filters__item_utensils':
+                        selectedUtensilsOptions =
+                            selectedUtensilsOptions.filter(
+                                (elt) => elt != displayedOptionText
+                            );
+                        break;
+
+                    default:
+                        break;
+                }
                 // RESET RECIPES
                 emptyHtmlElement('.results');
                 filteredRecipes = recipes;
                 // Filter using main bar if more than 3 characters
                 if (mainResearchString.length >= 3) {
-                    filterRecipes(mainResearchString);
+                    filterRecipes(mainResearchString, 'mainBar');
                 }
                 // Apply filters if available
                 checkAndApplyOptions();
