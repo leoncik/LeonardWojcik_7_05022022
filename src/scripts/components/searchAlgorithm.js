@@ -127,18 +127,21 @@ const addFilterOptions = () => {
     for (const iterator of dropdownOptions) {
         iterator.addEventListener('click', (e) => {
             // DISPLAY SELECTED OPTION ON PAGE
-            selectedOptions = [
-                ...selectedOptions,
-                e.target.textContent.toLowerCase(),
-            ];
-            const currentOption = new SelectedFilterOption(e.target);
-            currentOption.createOption();
-            // FILTER DISPLAYED RECIPES USING SELECTED FILTER
-            const currentOptionContent = e.target.textContent.toLowerCase();
-            filterRecipes(currentOptionContent);
-            emptyHtmlElement('.results');
-            displayRecipes();
-            enableSelectFilter();
+            // Check if target element is not already selected
+            if (!selectedOptions.includes(e.target.textContent.toLowerCase())) {
+                selectedOptions = [
+                    ...selectedOptions,
+                    e.target.textContent.toLowerCase(),
+                ];
+                const currentOption = new SelectedFilterOption(e.target);
+                currentOption.createOption();
+                // FILTER DISPLAYED RECIPES USING SELECTED FILTER
+                const currentOptionContent = e.target.textContent.toLowerCase();
+                filterRecipes(currentOptionContent);
+                emptyHtmlElement('.results');
+                displayRecipes();
+                enableSelectFilter();
+            }
         });
     }
 };
@@ -152,22 +155,25 @@ const removeFilterOptions = () => {
     );
     for (const iterator of displayedOptions) {
         iterator.addEventListener('click', (e) => {
-            displayedOptionsContainer.removeChild(e.target);
-            const displayedOptionText = e.target.textContent.toLowerCase();
-            selectedOptions = selectedOptions.filter(
-                (elt) => elt != displayedOptionText
-            );
-            // RESET RECIPES
-            emptyHtmlElement('.results');
-            filteredRecipes = recipes;
-            // Filter using main bar if more than 3 characters
-            if (mainResearchString.length >= 3) {
-                filterRecipes(mainResearchString);
+            // Check if target element if present on page.
+            if (e.target.parentElement === displayedOptionsContainer) {
+                displayedOptionsContainer.removeChild(e.target);
+                const displayedOptionText = e.target.textContent.toLowerCase();
+                selectedOptions = selectedOptions.filter(
+                    (elt) => elt != displayedOptionText
+                );
+                // RESET RECIPES
+                emptyHtmlElement('.results');
+                filteredRecipes = recipes;
+                // Filter using main bar if more than 3 characters
+                if (mainResearchString.length >= 3) {
+                    filterRecipes(mainResearchString);
+                }
+                // Apply filters if available
+                checkAndApplyOptions();
+                displayRecipes();
+                enableSelectFilter();
             }
-            // Apply filters if available
-            checkAndApplyOptions();
-            displayRecipes();
-            enableSelectFilter();
         });
     }
 };
