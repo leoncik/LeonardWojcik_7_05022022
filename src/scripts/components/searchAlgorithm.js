@@ -303,10 +303,11 @@ export const enableSelectFilter = () => {
 };
 
 // Filter list elements while writing in search field
+let secondaryResearchString = '';
 const secondarySearchBars = document.querySelectorAll('.search-options input');
 secondarySearchBars.forEach((element) => {
     element.addEventListener('input', (e) => {
-        const secondaryResearchString = e.target.value.toLowerCase();
+        secondaryResearchString = e.target.value.toLowerCase();
         const filterList = new FilterList(filteredRecipes);
         switch (e.target.className) {
             case 'ingredients__text-field text-field show': {
@@ -359,3 +360,29 @@ secondarySearchBars.forEach((element) => {
         }
     });
 });
+
+// TODO : add parameters to make reset more specific
+export const resetSecondarySearch = () => {
+    secondaryResearchString = '';
+    // INIT FILTER LISTS
+    const filterList = new FilterList(filteredRecipes);
+    // Get lists
+    let ingredientList = filterList.getFilterLists(
+        filteredRecipes,
+        'ingredients'
+    );
+    let applianceList = filterList.getFilterLists(filteredRecipes, 'appliance');
+    let utensilsList = filterList.getFilterLists(filteredRecipes, 'utensils');
+    // Sort lists alphabetically
+    filterList.sortList(ingredientList);
+    filterList.sortList(applianceList);
+    filterList.sortList(utensilsList);
+    // Empty previous elements
+    emptyHtmlElement('.ingredients__list');
+    emptyHtmlElement('.appliance__list');
+    emptyHtmlElement('.utensils__list');
+    // Display lists
+    filterList.displayList(ingredientList, 'ingredients');
+    filterList.displayList(applianceList, 'appliance');
+    filterList.displayList(utensilsList, 'utensils');
+};

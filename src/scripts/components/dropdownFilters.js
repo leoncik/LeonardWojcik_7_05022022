@@ -1,3 +1,4 @@
+import { resetSecondarySearch } from './searchAlgorithm';
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
 
 // Open / close functions
@@ -40,6 +41,7 @@ const closeDropdown = (element) => {
     currentOption.classList.remove('active-option');
     currentDropdownArrow.classList.toggle('dropdown-arrow_rotate');
     currentTrigger.classList.remove('hide');
+    resetSecondarySearch();
 };
 
 // Enable dropdown

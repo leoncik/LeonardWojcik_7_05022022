@@ -13,7 +13,7 @@ const initRecipesPage = () => {
     let ingredientList = filterList.getFilterLists(recipes, 'ingredients');
     let applianceList = filterList.getFilterLists(recipes, 'appliance');
     let utensilsList = filterList.getFilterLists(recipes, 'utensils');
-    // Filter lists
+    // Sort lists alphabetically
     filterList.sortList(ingredientList);
     filterList.sortList(applianceList);
     filterList.sortList(utensilsList);
