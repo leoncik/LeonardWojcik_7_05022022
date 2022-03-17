@@ -186,7 +186,7 @@ export const recipes = [
         ],
         time: 45,
         description:
-            'Étaler la pâte feuilleté aux dimensions du moule, étaler la moutarde sur la pâte feuilleté, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de crème fraîche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes',
+            'Étaler la pâte feuilletée aux dimensions du moule, étaler la moutarde sur la pâte feuilleté, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de crème fraîche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes',
         appliance: 'Four',
         utensils: ['moule à tarte', 'râpe à fromage', 'couteau'],
     },
@@ -200,7 +200,7 @@ export const recipes = [
                 quantity: 1,
             },
             {
-                ingredient: 'Pomme',
+                ingredient: 'Pommes',
                 quantity: 3,
             },
             {
@@ -225,7 +225,7 @@ export const recipes = [
         ],
         time: 50,
         description:
-            "Commencez par mélanger les œufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la crème fraîche aux œufs. Une fois que tout est pret, étalez la tarte dans le moule. N'oubliez pas de piquer le fond avec une fourchette avant de positionner les pommes sur la tarte. Finalement verser la préparation à base d'œufs et de crème fraîche. Laisser cuire au four pendant 30 minutes",
+            "Commencez par mélanger les œufs le sucre et le sucre vanillé dans un saladier, découper les pommes en tranches, ajouter la crème fraîche aux œufs. Une fois que tout est prêt, étalez la tarte dans le moule. N'oubliez pas de piquer le fond avec une fourchette avant de positionner les pommes sur la tarte. Finalement verser la préparation à base d'œufs et de crème fraîche. Laisser cuire au four pendant 30 minutes",
         appliance: 'Four',
         utensils: ['moule à tarte', 'saladier', 'fourchette'],
     },
@@ -260,7 +260,7 @@ export const recipes = [
         ],
         time: 50,
         description:
-            "Étaler la pate dans les moules à tartelette. Faire cuire la pate 30 minutes. Découper le chocolat en morceau et le faire chauffer, y ajouter la crème liquide, ajouter le beurre et remuer jusqu'à avoir une pâte homogène. Verser la pate sur les tartelettes. Couper les fraises en 2 et les positionner sur ",
+            "Étaler la pâte dans les moules à tartelette. Faire cuire la pate 30 minutes. Découper le chocolat en morceau et le faire chauffer, y ajouter la crème liquide, ajouter le beurre et remuer jusqu'à avoir une pâte homogène. Verser la pâte sur les tartelettes. Couper les fraises en 2 et les positionner sur ",
         appliance: 'Four',
         utensils: ['moule à tartelettes (6)', 'casserole'],
     },
@@ -301,7 +301,7 @@ export const recipes = [
         ],
         time: 60,
         description:
-            "Hachez les noix grossièrement. Faire fondre le chocolat avec le beurre. Mélanger les œuf et le sucre et mélanger au chocolat. Ajouter la farine. Mélanger afin d'avoir quelque chose d'homogène puis incorporer les noix. Verser la préparation dans un moule de préférence rectangulaire. Cuire 2O à 25 minutes à 180°. Sortez du four et attendez quelques minutes pour démouler. Servir avec une boule de glace pour plus de gourmandise.",
+            "Hachez les noix grossièrement. Faire fondre le chocolat avec le beurre. Mélanger les œufs et le sucre et mélanger au chocolat. Ajouter la farine. Mélanger afin d'avoir quelque chose d'homogène puis incorporer les noix. Verser la préparation dans un moule de préférence rectangulaire. Cuire 20 à 25 minutes à 180°. Sortez du four et attendez quelques minutes pour démouler. Servir avec une boule de glace pour plus de gourmandise.",
         appliance: 'Four',
         utensils: ['moule à gateaux', 'casserole'],
     },
@@ -395,7 +395,7 @@ export const recipes = [
                 unit: 'tranches',
             },
             {
-                ingredient: 'Pommes',
+                ingredient: 'Pomme',
                 quantity: 1,
             },
             {
@@ -1381,7 +1381,7 @@ export const recipes = [
         servings: 40,
         ingredients: [
             {
-                ingredient: 'Pomme',
+                ingredient: 'Pommes',
                 quantity: 2,
             },
             {
