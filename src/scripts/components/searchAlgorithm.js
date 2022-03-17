@@ -126,9 +126,11 @@ const checkAndApplyOptions = () => {
 
 // MAIN BAR RESEARCH
 let mainResearchString = '';
+let previousMainResearchString = '';
 const mainSearchBar = document.querySelector('.primary-search input');
 export const enableMainResearch = () => {
     mainSearchBar.addEventListener('input', (e) => {
+        previousMainResearchString = mainResearchString;
         mainResearchString = e.target.value.toLowerCase();
         // Filter recipes after typing 3 letters in main bar
         if (mainResearchString.length >= 3) {
@@ -138,11 +140,8 @@ export const enableMainResearch = () => {
             displayRecipes();
             enableSelectFilter();
         }
-        // RESET recipes and filter lists if less than 3 letters inside main bar and if recipes has previously been filtered
-        if (
-            filteredRecipes.length !== recipes.length &&
-            mainResearchString.length < 3
-        ) {
+        // RESET recipes and filter lists if main research input length has been decremented
+        if (previousMainResearchString.length > mainResearchString.length) {
             // Reset recipes
             filteredRecipes = recipes;
             // Reset filters lists
@@ -155,6 +154,9 @@ export const enableMainResearch = () => {
                 emptyHtmlElement(`.${list}__list`);
                 filterList.displayList(dataList, list);
             });
+            if (mainResearchString.length >= 3) {
+                filterRecipes(mainResearchString, 'mainBar');
+            }
             checkAndApplyOptions();
             emptyHtmlElement('.results');
             displayRecipes();
