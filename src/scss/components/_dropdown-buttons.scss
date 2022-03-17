@@ -3,6 +3,7 @@
 // Dropdown button (static style)
 .search-options {
     position: absolute;
+    margin-right: 100px;
 }
 
 .dropdown-trigger {
@@ -96,7 +97,7 @@
 // Lists
 .search-options ul {
     margin-left: 19px;
-    columns: 100px 5;
+    columns: 161px 5;
 }
 
 .ingredients__item::first-letter,
@@ -104,6 +105,10 @@
     text-transform: capitalize;
 }
 
+.search-options li {
+    white-space: nowrap;
+    margin-bottom: 0.3rem;
+}
 .search-options li:hover {
     cursor: pointer;
 }
