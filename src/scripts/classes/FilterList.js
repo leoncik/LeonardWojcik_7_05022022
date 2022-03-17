@@ -1,3 +1,5 @@
+import { filterRegex } from '../utils/helpers';
+
 export class FilterList {
     constructor(data) {
         this.ingredients = data.ingredients;
@@ -30,7 +32,7 @@ export class FilterList {
                             innerIngredientsList = [
                                 ...innerIngredientsList,
                                 innerElement.ingredient
-                                    .split(/[()0123456789]|\sou\s/)
+                                    .split(filterRegex)
                                     .shift(),
                             ];
                         }
@@ -64,7 +66,7 @@ export class FilterList {
                         if (!innerUtensilsList.includes(innerElement)) {
                             innerUtensilsList = [
                                 ...innerUtensilsList,
-                                innerElement.split(/[()]/).shift(),
+                                innerElement.split(filterRegex).shift(),
                             ];
                         }
                     });
