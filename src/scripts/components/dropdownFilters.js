@@ -41,7 +41,7 @@ const closeDropdown = (element) => {
     currentOption.classList.remove('active-option');
     currentDropdownArrow.classList.toggle('dropdown-arrow_rotate');
     currentTrigger.classList.remove('hide');
-    resetSecondarySearch();
+    resetSecondarySearch(element);
 };
 
 // Enable dropdown

@@ -361,28 +361,45 @@ secondarySearchBars.forEach((element) => {
     });
 });
 
-// TODO : add parameters to make reset more specific
-export const resetSecondarySearch = () => {
+// Reset secondary search text and lists inside dropdown.
+export const resetSecondarySearch = (listElement) => {
     secondaryResearchString = '';
-    // INIT FILTER LISTS
     const filterList = new FilterList(filteredRecipes);
-    // Get lists
-    let ingredientList = filterList.getFilterLists(
-        filteredRecipes,
-        'ingredients'
-    );
-    let applianceList = filterList.getFilterLists(filteredRecipes, 'appliance');
-    let utensilsList = filterList.getFilterLists(filteredRecipes, 'utensils');
-    // Sort lists alphabetically
-    filterList.sortList(ingredientList);
-    filterList.sortList(applianceList);
-    filterList.sortList(utensilsList);
-    // Empty previous elements
-    emptyHtmlElement('.ingredients__list');
-    emptyHtmlElement('.appliance__list');
-    emptyHtmlElement('.utensils__list');
-    // Display lists
-    filterList.displayList(ingredientList, 'ingredients');
-    filterList.displayList(applianceList, 'appliance');
-    filterList.displayList(utensilsList, 'utensils');
+    switch (listElement) {
+        case 'ingredients': {
+            let ingredientList = filterList.getFilterLists(
+                filteredRecipes,
+                'ingredients'
+            );
+            filterList.sortList(ingredientList);
+            emptyHtmlElement('.ingredients__list');
+            filterList.displayList(ingredientList, 'ingredients');
+            break;
+        }
+
+        case 'appliance': {
+            let applianceList = filterList.getFilterLists(
+                filteredRecipes,
+                'appliance'
+            );
+            filterList.sortList(applianceList);
+            emptyHtmlElement('.appliance__list');
+            filterList.displayList(applianceList, 'appliance');
+            break;
+        }
+
+        case 'utensils': {
+            let utensilsList = filterList.getFilterLists(
+                filteredRecipes,
+                'utensils'
+            );
+            filterList.sortList(utensilsList);
+            emptyHtmlElement('.utensils__list');
+            filterList.displayList(utensilsList, 'utensils');
+            break;
+        }
+
+        default:
+            break;
+    }
 };
