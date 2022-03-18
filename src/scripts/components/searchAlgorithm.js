@@ -31,7 +31,7 @@ const updateFilterOptions = (currentRecipes) => {
 const quantityMessageContainer = document.querySelector(
     '.recipes-quantity-message'
 );
-const showResultMessage = () => {
+export const showResultMessage = () => {
     if (filteredRecipes.length === 1) {
         console.log(quantityMessageContainer);
         quantityMessageContainer.innerHTML = `<p>1 recette a été trouvée</p>`;
