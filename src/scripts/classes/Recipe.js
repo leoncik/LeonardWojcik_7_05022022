@@ -19,40 +19,28 @@ export class Recipe {
         return recipesList;
     }
 
-    // ! Unused
-    getRecipesIngredientsList(recipes) {
-        let recipesIngredientsList = [];
-        recipes.forEach((element) => {
-            recipesIngredientsList = [
-                ...recipesIngredientsList,
-                element.ingredients.map((el) => el.ingredient),
-            ];
-        });
-        return recipesIngredientsList;
-    }
-
     createRecipeCard() {
         // Card structure
         /*
         <article class="recipe">
             <div class="recipe__image-preview">
                 <a href="#">
-                    <img src="./assets/preview-recipe.jpg" alt="preview recette">
-                 </a>
-             </div>
+                    <img class="" src="/assets/preview-recipe.f9d7375c.jpg" alt="Aperçu de la recette">
+                </a>
+            </div>
             <div class="recipe__description">
                 <div class="recipe__main-info">
-                    <h2 class="recipe__name">Titre recette</h2>
-                    <p class="recipe__duration">Xmin</p>
+                    <h2 class="recipe__name">Nom de la recette</h2>
+                    <p class="recipe__duration">XX min</p>
                 </div>
-
                 <div class="recipe__secondary-info">
                     <ul class="recipe__ingredients">
-                        <li><span class="recipe__ingredient-name">Ingrédient 1:</span> <span class="recipe__ingredient-quantity">quantité1</span></li>
-                        <li><span class="recipe__ingredient-name">Ingrédient 2:</span> <span class="recipe__ingredient-quantity">quantité2</span></li>
-                        <li><span class="recipe__ingredient-name">Ingrédient 3:</span> <span class="recipe__ingredient-quantity">quantité3</span></li>
+                        <li>
+                            <span class="recipe__ingredient-name">ingredient1:</span>
+                            <span class="recipe__ingredient-quantity">quantité1</span>
+                        </li>
                     </ul>
-                    <p class="recipe__steps">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio provident assumenda suscipit corrupti odit ullam.</p>
+                    <p class="recipe__steps">Étapes de la recette</p>
                 </div>
             </div>
         </article> */

@@ -54,6 +54,13 @@ h1 {
 
 /* RESULTS */
 
+.recipes-quantity-message {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 110px;
+}
+
 .results {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(290px, max-content));
@@ -61,6 +68,10 @@ h1 {
     gap: 30px;
     margin-top: 114px;
     margin-bottom: 50px;
+}
+
+.no-result-message {
+    position: absolute;
 }
 
 /* RESPONSIVE MODE */
@@ -81,5 +92,8 @@ h1 {
     // Results
     .results {
         margin-top: 300px;
+    }
+    .recipes-quantity-message {
+        top: 300px;
     }
 }

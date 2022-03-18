@@ -27,9 +27,23 @@ const updateFilterOptions = (currentRecipes) => {
     });
 };
 
+// RESULT MESSAGE
+const quantityMessageContainer = document.querySelector(
+    '.recipes-quantity-message'
+);
+const showResultMessage = () => {
+    if (filteredRecipes.length === 1) {
+        console.log(quantityMessageContainer);
+        quantityMessageContainer.innerHTML = `<p>1 recette a été trouvée</p>`;
+    } else if (filteredRecipes.length > 1) {
+        quantityMessageContainer.innerHTML = `<p>${filteredRecipes.length} recettes ont été trouvées</p>`;
+    }
+};
+
 // Show error message and empty dropdown filter options
 const triggerNoResult = () => {
     noResultMessage();
+    emptyHtmlElement('.recipes-quantity-message');
     emptyHtmlElement('.ingredients__list');
     emptyHtmlElement('.appliance__list');
     emptyHtmlElement('.utensils__list');
@@ -50,10 +64,10 @@ const filterRecipes = (entry, entrySource, entrySourceType = '') => {
                 elt.ingredients.some((currentValue) =>
                     currentValue.ingredient.toLowerCase().includes(entry)
                 ) ||
-                elt.appliance.toLowerCase().includes(entry) ||
-                elt.utensils.some((currentValue) =>
-                    currentValue.toLowerCase().includes(entry)
-                ) ||
+                // elt.appliance.toLowerCase().includes(entry) ||
+                // elt.utensils.some((currentValue) =>
+                //     currentValue.toLowerCase().includes(entry)
+                // ) ||
                 elt.description.toLowerCase().includes(entry)
         );
     } else if (entrySource === 'filterOption') {
@@ -137,6 +151,7 @@ export const enableMainResearch = () => {
             filterRecipes(mainResearchString, 'mainBar');
             checkAndApplyOptions();
             emptyHtmlElement('.results');
+            showResultMessage();
             displayRecipes();
             enableSelectFilter();
         }
@@ -159,6 +174,7 @@ export const enableMainResearch = () => {
             }
             checkAndApplyOptions();
             emptyHtmlElement('.results');
+            showResultMessage();
             displayRecipes();
             enableSelectFilter();
         }
@@ -232,6 +248,7 @@ const addFilterOptions = () => {
                         break;
                 }
                 emptyHtmlElement('.results');
+                showResultMessage();
                 displayRecipes();
                 enableSelectFilter();
             }
@@ -248,7 +265,7 @@ const removeFilterOptions = () => {
     );
     for (const iterator of displayedOptions) {
         iterator.addEventListener('click', (e) => {
-            // Check if target element if present on page.
+            // Check if target element is present on page.
             if (e.target.parentElement === displayedOptionsContainer) {
                 displayedOptionsContainer.removeChild(e.target);
                 const displayedOptionText = e.target.textContent.toLowerCase();
@@ -290,6 +307,7 @@ const removeFilterOptions = () => {
                 }
                 // Apply filters if available
                 checkAndApplyOptions();
+                showResultMessage();
                 displayRecipes();
                 enableSelectFilter();
             }
