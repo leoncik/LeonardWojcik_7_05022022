@@ -1,4 +1,4 @@
-import { resetSecondarySearch } from './searchAlgorithm';
+import { resetSecondarySearch } from '../utils/searchAlgorithm';
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
 
 // Open / close functions

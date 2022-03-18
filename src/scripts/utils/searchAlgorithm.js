@@ -1,7 +1,7 @@
 import { Recipe } from '../classes/Recipe';
 import { FilterList } from '../classes/FilterList';
 import { recipes } from '../../data/recipes';
-import { emptyHtmlElement } from '../utils/helpers';
+import { emptyHtmlElement } from './helpers';
 import { SelectedFilterOption } from '../classes/SelectedFilterOption';
 
 // NO RESULT FOUND FUNCTIONS
@@ -33,7 +33,6 @@ const quantityMessageContainer = document.querySelector(
 );
 export const showResultMessage = () => {
     if (filteredRecipes.length === 1) {
-        console.log(quantityMessageContainer);
         quantityMessageContainer.innerHTML = `<p>1 recette a été trouvée</p>`;
     } else if (filteredRecipes.length > 1) {
         quantityMessageContainer.innerHTML = `<p>${filteredRecipes.length} recettes ont été trouvées</p>`;
@@ -119,22 +118,22 @@ const displayRecipes = () => {
 
 // Check if a filter option is selected and apply It to filter recipes.
 const checkAndApplyOptions = () => {
-    if (selectedOptions.length !== 0) {
-        if (selectedIngredientsOptions.length !== 0) {
-            selectedIngredientsOptions.map((option) =>
-                filterRecipes(option, 'filterOption', 'ingredients')
-            );
-        }
-        if (selectedApplianceOptions.length !== 0) {
-            selectedApplianceOptions.map((option) =>
-                filterRecipes(option, 'filterOption', 'appliance')
-            );
-        }
-        if (selectedUtensilsOptions.length !== 0) {
-            selectedUtensilsOptions.map((option) =>
-                filterRecipes(option, 'filterOption', 'utensils')
-            );
-        }
+    if (!selectedOptions.length) return;
+
+    if (selectedIngredientsOptions.length !== 0) {
+        selectedIngredientsOptions.map((option) =>
+            filterRecipes(option, 'filterOption', 'ingredients')
+        );
+    }
+    if (selectedApplianceOptions.length !== 0) {
+        selectedApplianceOptions.map((option) =>
+            filterRecipes(option, 'filterOption', 'appliance')
+        );
+    }
+    if (selectedUtensilsOptions.length !== 0) {
+        selectedUtensilsOptions.map((option) =>
+            filterRecipes(option, 'filterOption', 'utensils')
+        );
     }
 };
 

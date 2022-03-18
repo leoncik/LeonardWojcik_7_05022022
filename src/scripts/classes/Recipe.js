@@ -19,10 +19,10 @@ export class Recipe {
         return recipesList;
     }
 
-    createRecipeCard() {
-        // Card structure
-        /*
-        <article class="recipe">
+    /**
+     * Should create a recipe card
+     * Card structure
+     * <article class="recipe">
             <div class="recipe__image-preview">
                 <a href="#">
                     <img class="" src="/assets/preview-recipe.f9d7375c.jpg" alt="Aperçu de la recette">
@@ -43,8 +43,10 @@ export class Recipe {
                     <p class="recipe__steps">Étapes de la recette</p>
                 </div>
             </div>
-        </article> */
-
+        </article>
+     * @returns HTML code for card structure
+     */
+    createRecipeCard() {
         const recipeCard = document.createElement('article');
         recipeCard.classList.add('recipe');
 
@@ -101,16 +103,14 @@ export class Recipe {
             // if name, quantity and unit available
             if (iterator.ingredient && iterator.quantity && iterator.unit) {
                 recipeIngredients.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}:</span> <span class="recipe__ingredient-quantity">${iterator.quantity} ${iterator.unit}</span>`;
-                ingredientsList.appendChild(recipeIngredients);
                 // if name and quantity is available
             } else if (iterator.ingredient && iterator.quantity) {
-                recipeIngredients.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}:</span> <span class="recipe__ingredient-quantity">${iterator.quantity}`;
-                ingredientsList.appendChild(recipeIngredients);
+                recipeIngredients.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}:</span> <span class="recipe__ingredient-quantity">${iterator.quantity}</span>`;
                 // if name only
             } else if (iterator.ingredient) {
                 recipeIngredients.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}:</span> `;
-                ingredientsList.appendChild(recipeIngredients);
             }
+            ingredientsList.appendChild(recipeIngredients);
         }
         // Recipe steps
         const recipeSteps = createHtmlElement(
