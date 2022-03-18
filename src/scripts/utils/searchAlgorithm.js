@@ -391,6 +391,7 @@ export const resetSecondarySearch = (listElement) => {
             filterList.sortList(ingredientList);
             emptyHtmlElement('.ingredients__list');
             filterList.displayList(ingredientList, 'ingredients');
+            enableSelectFilter();
             break;
         }
 
@@ -402,6 +403,7 @@ export const resetSecondarySearch = (listElement) => {
             filterList.sortList(applianceList);
             emptyHtmlElement('.appliance__list');
             filterList.displayList(applianceList, 'appliance');
+            enableSelectFilter();
             break;
         }
 
@@ -413,6 +415,7 @@ export const resetSecondarySearch = (listElement) => {
             filterList.sortList(utensilsList);
             emptyHtmlElement('.utensils__list');
             filterList.displayList(utensilsList, 'utensils');
+            enableSelectFilter();
             break;
         }
 
