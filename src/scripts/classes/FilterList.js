@@ -1,56 +1,100 @@
-/*
+import { filterRegex } from '../utils/helpers';
+
 export class FilterList {
     constructor(data) {
         this.ingredients = data.ingredients;
         this.appliance = data.appliance;
         this.utensils = data.utensils;
+        this.lists = ['ingredients', 'appliance', 'utensils'];
     }
 
-    // get ingredients() {
-    //     return this.ingredients;
-    // }
-
-    // get appliance() {
-    //     return this.appliance;
-    // }
-
-    // get utensils() {
-    //     return this.utensils;
-    // }
-
-    createFilterList(type) {
-
+    // Get filters lists and avoids duplicates
+    getFilterLists(recipes, type) {
         switch (type) {
-            case 'ingredients':
-                const ingredientsListItem = document.createElement('li');
-                for (const iterator of this.ingredients) {
-                    ingredientsListItem.textContent = iterator.ingredient;                    
-                }
-                document.querySelector('.ingredients-list').appendChild(ingredientsListItem);
-                break;
+            case 'ingredients': {
+                let ingredientsList = [];
+                let innerIngredientsList = [];
+                // Get all ingredients objects from recipes
+                recipes.forEach((element) => {
+                    ingredientsList = [...ingredientsList, element.ingredients];
+                });
+                // Get all individual ingredients from "ingredients" objects
+                ingredientsList.forEach((element) => {
+                    element.forEach((innerElement) => {
+                        // Prevent duplication of ingredients and use regex to be specific (ex : "Thon rouge" instead of "Thon rouge ou blanc")
+                        innerElement.ingredient =
+                            innerElement.ingredient.toLowerCase();
+                        if (
+                            !innerIngredientsList.includes(
+                                innerElement.ingredient
+                            )
+                        ) {
+                            innerIngredientsList = [
+                                ...innerIngredientsList,
+                                innerElement.ingredient
+                                    .split(filterRegex)
+                                    .shift(),
+                            ];
+                        }
+                    });
+                });
+                return innerIngredientsList;
+            }
 
-            case 'appliance':
-                const applianceListItem = document.createElement('li');
-                applianceListItem.textContent = `${this.appliance}`
-                document.querySelector('.appliance-list').appendChild(applianceListItem);
-                break;
+            case 'appliance': {
+                let applianceList = [];
+                recipes.forEach((element) => {
+                    if (!applianceList.includes(element.appliance)) {
+                        applianceList = [...applianceList, element.appliance];
+                    }
+                });
+                return applianceList;
+            }
 
-            case 'utensils':
-                const utensilsListItem = document.createElement('li');
-                utensilsListItem.textContent = `${this.utensils}`
-                document.querySelector('.utensils-list').appendChild(utensilsListItem);
-        
+            case 'utensils': {
+                let utensilsList = [];
+                let innerUtensilsList = [];
+                // Get all utensils arrays from recipes
+                recipes.forEach((element) => {
+                    utensilsList = [...utensilsList, element.utensils];
+                });
+                // Get all individual utensils from utensilsList
+                utensilsList.forEach((element) => {
+                    element.forEach((innerElement) => {
+                        // Prevent duplication of utensils and use regex to prevent display of quantity (ex: "moule à tartelettes" instead of "moule à tartelettes (6)")
+                        innerElement = innerElement.toLowerCase();
+                        if (!innerUtensilsList.includes(innerElement)) {
+                            innerUtensilsList = [
+                                ...innerUtensilsList,
+                                innerElement.split(filterRegex).shift(),
+                            ];
+                        }
+                    });
+                });
+                return innerUtensilsList;
+            }
+
             default:
                 break;
         }
-
-    // Test : generic creation of filter list
-    // for (const iterator of this.type) {
-    //     console.log(iterator.type);
-    //     const listItem = document.createElement('li');
-    //     listItem.textContent = iterator.type;
-    //     document.querySelector(`.${type}-list`).appendChild(listItem);
-    // }
-
     }
-} */
+
+    // Sort list alphabetically
+    sortList(list) {
+        list.sort((a, b) => a.localeCompare(b));
+    }
+
+    createFilterList(list, type) {
+        const listItem = document.createElement('li');
+        listItem.textContent = list;
+        listItem.classList.add(`${type}__item`);
+        document.querySelector(`.${type}__list`).appendChild(listItem);
+    }
+
+    // Display list
+    displayList(list, type) {
+        list.forEach((element) => {
+            this.createFilterList(element, type);
+        });
+    }
+}

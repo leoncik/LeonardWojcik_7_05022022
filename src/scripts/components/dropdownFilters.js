@@ -1,6 +1,5 @@
+import { resetSecondarySearch } from '../utils/searchAlgorithm';
 const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
-// const textFields = document.querySelectorAll('.text-field');
-// const searchOptions = document.querySelectorAll('.search-options >*');
 
 // Open / close functions
 const openDropdown = (element, placeholder) => {
@@ -42,6 +41,7 @@ const closeDropdown = (element) => {
     currentOption.classList.remove('active-option');
     currentDropdownArrow.classList.toggle('dropdown-arrow_rotate');
     currentTrigger.classList.remove('hide');
+    resetSecondarySearch(element);
 };
 
 // Enable dropdown
@@ -70,84 +70,28 @@ export const enableDropdown = () => {
     }
 
     // Close dropdown
-    // ! Needs refactor
+    const filterContainers = document.querySelectorAll('.search-options > *');
+    const filterLabels = document.querySelectorAll('.search-options label');
     document.addEventListener('click', (e) => {
-        // ingredients
-        let specifiedElementIngredients =
-            document.querySelector('.ingredients');
-        let specifiedElementLabelIngredients = document.querySelector(
-            '.ingredients__label'
-        );
-        let isClickInsideIngredients = specifiedElementIngredients.contains(
-            e.target
-        );
-        let isClickInsideLabelIngredients =
-            specifiedElementLabelIngredients.contains(e.target);
-        // appliance
-        let specifiedElementAppliance = document.querySelector('.appliance');
-        let specifiedElementLabelAppliance =
-            document.querySelector('.appliance__label');
-        let isClickInsideAppliance = specifiedElementAppliance.contains(
-            e.target
-        );
-        let isClickInsideLabelAppliance =
-            specifiedElementLabelAppliance.contains(e.target);
-        // utensils
-        let specifiedElementUtensils = document.querySelector('.utensils');
-        let specifiedElementLabel = document.querySelector('.utensils__label');
-        let isClickInsideUtensils = specifiedElementUtensils.contains(e.target);
-        let isClickInsideLabelUtensils = specifiedElementLabel.contains(
-            e.target
-        );
-
-        /* Close ingredients dropdown if clicked outside container and if container is active */
-        if (
-            !isClickInsideIngredients &&
-            specifiedElementIngredients.classList.contains('active-option')
-        ) {
-            closeDropdown('ingredients');
-            console.log('fermeture ingrédients');
-            /* Close ingredients dropdown if clicked on label and if label is expanded */
-        } else if (
-            isClickInsideLabelIngredients &&
-            e.target.classList.contains('ingredients__label_expanded')
-        ) {
-            closeDropdown('ingredients');
-            console.log('fermeture ingredients via label');
-            /* Repetition for appliance and utensils... */
-        } else if (
-            !isClickInsideAppliance &&
-            specifiedElementAppliance.classList.contains('active-option')
-        ) {
-            closeDropdown('appliance');
-            console.log('fermeture appareils');
-        } else if (
-            isClickInsideLabelAppliance &&
-            e.target.classList.contains('appliance__label_expanded')
-        ) {
-            closeDropdown('appliance');
-            console.log('fermeture appareils via label');
-        } else if (
-            !isClickInsideUtensils &&
-            specifiedElementUtensils.classList.contains('active-option')
-        ) {
-            closeDropdown('utensils');
-            console.log('fermeture ustensiles');
-        } else if (
-            isClickInsideLabelUtensils &&
-            e.target.classList.contains('utensils__label_expanded')
-        ) {
-            closeDropdown('utensils');
-            console.log('fermeture ustensiles via label');
-        }
-    });
-};
-
-export const enableSelectFilter = () => {
-    let dropdownOptions = document.querySelectorAll('.search-options li');
-    for (const iterator of dropdownOptions) {
-        iterator.addEventListener('click', () => {
-            console.log("L'option X a été sélectionnée");
+        // Close targeted dropdown if clicked outside container and if container is active
+        filterContainers.forEach((element) => {
+            if (
+                !element.contains(e.target) &&
+                element.classList.contains('active-option')
+            ) {
+                closeDropdown(`${element.classList[0]}`);
+            }
+            // Close dropdown if clicked on label and if label is expanded
+            filterLabels.forEach((element) => {
+                if (
+                    element.contains(e.target) &&
+                    e.target.classList.contains(
+                        `${element.classList[0]}_expanded`
+                    )
+                ) {
+                    closeDropdown(`${element.parentNode.classList[0]}`);
+                }
+            });
         });
-    }
+    });
 };

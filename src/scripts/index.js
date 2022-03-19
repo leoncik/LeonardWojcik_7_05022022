@@ -1,40 +1,41 @@
-// import { recipes } from '../data/recipes.js';
-// import { Recipe } from './classes/Recipe.js';
-// import { FilterList } from './classes/FilterList.js';
-import {
-    enableDropdown,
-    //enableSelectFilter,
-} from './components/dropdownFilters.js';
-
-// DOM elements
-// const mainResults = document.querySelector('.results');
-
-// Display recipes card on page
-// const displayRecipes = (recipe) => {
-//     recipe.forEach((element) => {
-//         let recipeModel = new Recipe(element);
-//         const recipeCard = recipeModel.createRecipeCard();
-//         mainResults.append(recipeCard);
-//     });
-// };
-
-// Display filter options lists
-// const displayFilterLists = (recipes) => {
-//     recipes.forEach((element) => {
-//         let recipeModel = new FilterList(element);
-//         const listOptionIngredients =
-//             recipeModel.createFilterList('ingredients');
-//         const listOptionAppliance = recipeModel.createFilterList('appliance');
-//         const listOptionUtensils = recipeModel.createFilterList('utensils');
-//     });
-// };
+import { recipes } from '../data/recipes.js';
+import { Recipe } from './classes/Recipe.js';
+import { FilterList } from './classes/FilterList.js';
+import { enableDropdown } from './components/dropdownFilters.js';
+import { enableSelectFilter } from './utils/searchAlgorithm.js';
+import { enableMainResearch } from './utils/searchAlgorithm.js';
+import { showResultMessage } from './utils/searchAlgorithm.js';
 
 // Initialize recipes page
 const initRecipesPage = () => {
-    // displayRecipes(recipes);
-    //displayFilterLists(recipes);
+    // INIT FILTER LISTS
+    const filterList = new FilterList(recipes);
+    // Get lists
+    let ingredientList = filterList.getFilterLists(recipes, 'ingredients');
+    let applianceList = filterList.getFilterLists(recipes, 'appliance');
+    let utensilsList = filterList.getFilterLists(recipes, 'utensils');
+    // Sort lists alphabetically
+    filterList.sortList(ingredientList);
+    filterList.sortList(applianceList);
+    filterList.sortList(utensilsList);
+    // Display lists
+    filterList.displayList(ingredientList, 'ingredients');
+    filterList.displayList(applianceList, 'appliance');
+    filterList.displayList(utensilsList, 'utensils');
+
+    // INIT RECIPES
+    recipes.map((recipe) => {
+        const recipeClass = new Recipe(recipe);
+        recipeClass.displayRecipes();
+    });
+    showResultMessage();
+
+    // ENABLE DROPDOWN
     enableDropdown();
-    //enableSelectFilter();
+
+    // ENABLE RESEARCH
+    enableMainResearch();
+    enableSelectFilter();
 };
 
 initRecipesPage();

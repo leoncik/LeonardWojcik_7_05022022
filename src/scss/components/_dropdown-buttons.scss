@@ -3,6 +3,7 @@
 // Dropdown button (static style)
 .search-options {
     position: absolute;
+    margin-right: 100px;
 }
 
 .dropdown-trigger {
@@ -87,17 +88,27 @@
     outline: none;
     color: white;
     font-weight: bold;
+    &::placeholder {
+        color: white;
+        opacity: 0.6;
+    }
 }
 
 // Lists
-// TODO: test CSS grid for better responsivity
 .search-options ul {
     margin-left: 19px;
-    // fixing height is causing responsive bugs
-    // height: 150px;
-    columns: 100px 3;
+    columns: 161px 5;
 }
 
+.ingredients__item::first-letter,
+.utensils__item::first-letter {
+    text-transform: capitalize;
+}
+
+.search-options li {
+    white-space: nowrap;
+    margin-bottom: 0.3rem;
+}
 .search-options li:hover {
     cursor: pointer;
 }
@@ -119,4 +130,15 @@
 
 .show {
     display: block;
+}
+
+// RESPONSIVE MODE
+@media all and (max-width: 845px) {
+
+    .ingredients__label,
+    .appliance__label,
+    .utensils__label,
+    .dropdown-trigger {
+        width: 100%;
+    }
 }
