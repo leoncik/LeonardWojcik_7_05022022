@@ -108,7 +108,7 @@ export class Recipe {
                 recipeIngredients.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}:</span> <span class="recipe__ingredient-quantity">${iterator.quantity}</span>`;
                 // if name only
             } else if (iterator.ingredient) {
-                recipeIngredients.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}:</span> `;
+                recipeIngredients.innerHTML = `<span class="recipe__ingredient-name">${iterator.ingredient}</span> `;
             }
             ingredientsList.appendChild(recipeIngredients);
         }

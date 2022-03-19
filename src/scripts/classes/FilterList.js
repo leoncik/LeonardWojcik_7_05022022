@@ -18,7 +18,7 @@ export class FilterList {
                 recipes.forEach((element) => {
                     ingredientsList = [...ingredientsList, element.ingredients];
                 });
-                // Get all individual ingredients from "ingredients"objects
+                // Get all individual ingredients from "ingredients" objects
                 ingredientsList.forEach((element) => {
                     element.forEach((innerElement) => {
                         // Prevent duplication of ingredients and use regex to be specific (ex : "Thon rouge" instead of "Thon rouge ou blanc")
@@ -79,7 +79,7 @@ export class FilterList {
         }
     }
 
-    // Sort list
+    // Sort list alphabetically
     sortList(list) {
         list.sort((a, b) => a.localeCompare(b));
     }

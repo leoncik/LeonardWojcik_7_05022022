@@ -13,10 +13,7 @@ const createHtmlElement = (type, className, content, attributes = []) => {
     return element;
 };
 
-// Sort an array alphabetically
-const sortAlphabetically = (arr) => arr.sort((a, b) => a - b);
-
 // Regex to manage what is displayed inside recipes, appliance and utensils lists
 const filterRegex = /\s[0123456789]|\sou\s|[()]/;
 
-export { emptyHtmlElement, createHtmlElement, sortAlphabetically, filterRegex };
+export { emptyHtmlElement, createHtmlElement, filterRegex };
