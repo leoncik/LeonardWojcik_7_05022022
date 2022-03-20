@@ -57,18 +57,30 @@ const filterRecipes = (entry, entrySource, entrySourceType = '') => {
         const recipeListObject = new Recipe(filteredRecipes);
         const recipeList = recipeListObject.getRecipesList(filteredRecipes);
         // Filter recipes
-        filteredRecipes = recipeList.filter(
-            (elt) =>
-                elt.name.toLowerCase().includes(entry) ||
-                elt.ingredients.some((currentValue) =>
+        // Check if recipe includes entry and if recipe has not already been pushed inside filteredRecipes
+        filteredRecipes = [];
+        for (let i = recipeList.length; i--; ) {
+            if (
+                recipeList[i].name.toLowerCase().includes(entry) &&
+                !filteredRecipes.includes(recipeList[i])
+            ) {
+                filteredRecipes.push(recipeList[i]);
+            }
+            if (
+                recipeList[i].ingredients.some((currentValue) =>
                     currentValue.ingredient.toLowerCase().includes(entry)
-                ) ||
-                // elt.appliance.toLowerCase().includes(entry) ||
-                // elt.utensils.some((currentValue) =>
-                //     currentValue.toLowerCase().includes(entry)
-                // ) ||
-                elt.description.toLowerCase().includes(entry)
-        );
+                ) &&
+                !filteredRecipes.includes(recipeList[i])
+            ) {
+                filteredRecipes.push(recipeList[i]);
+            }
+            if (
+                recipeList[i].description.toLowerCase().includes(entry) &&
+                !filteredRecipes.includes(recipeList[i])
+            ) {
+                filteredRecipes.push(recipeList[i]);
+            }
+        }
     } else if (entrySource === 'filterOption') {
         // Get recipes list
         const recipeListObject = new Recipe(filteredRecipes);
