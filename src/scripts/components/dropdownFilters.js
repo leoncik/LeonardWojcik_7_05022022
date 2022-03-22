@@ -48,7 +48,7 @@ const closeDropdown = (element) => {
 export const enableDropdown = () => {
     // Open dropdown
     for (const iterator of dropdownTriggers) {
-        iterator.addEventListener('click', (e) => {
+        iterator.addEventListener('mousedown', (e) => {
             e.preventDefault();
             switch (e.target.className) {
                 case 'ingredients__dropdown-trigger dropdown-trigger':
@@ -72,7 +72,7 @@ export const enableDropdown = () => {
     // Close dropdown
     const filterContainers = document.querySelectorAll('.search-options > *');
     const filterLabels = document.querySelectorAll('.search-options label');
-    document.addEventListener('click', (e) => {
+    document.addEventListener('mousedown', (e) => {
         // Close targeted dropdown if clicked outside container and if container is active
         filterContainers.forEach((element) => {
             if (

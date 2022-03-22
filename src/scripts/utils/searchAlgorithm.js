@@ -204,7 +204,7 @@ const addFilterOptions = () => {
                 currentOption.createOption();
                 const currentOptionContent = e.target.textContent.toLowerCase();
                 switch (e.target.parentNode.className) {
-                    case 'ingredients__list show':
+                    case 'ingredients__list show': {
                         selectedIngredientsOptions = [
                             ...selectedIngredientsOptions,
                             e.target.textContent.toLowerCase(),
@@ -215,9 +215,17 @@ const addFilterOptions = () => {
                             'filterOption',
                             'ingredients'
                         );
+                        // Empty dropdown text field if not empty
+                        const ingredientInput = document.querySelector(
+                            `.ingredients__text-field`
+                        );
+                        if (ingredientInput.value) {
+                            ingredientInput.value = '';
+                        }
                         break;
+                    }
 
-                    case 'appliance__list show':
+                    case 'appliance__list show': {
                         selectedApplianceOptions = [
                             ...selectedApplianceOptions,
                             e.target.textContent.toLowerCase(),
@@ -228,9 +236,17 @@ const addFilterOptions = () => {
                             'filterOption',
                             'appliance'
                         );
+                        // Empty dropdown text field if not empty
+                        const applianceInput = document.querySelector(
+                            `.appliance__text-field`
+                        );
+                        if (applianceInput.value) {
+                            applianceInput.value = '';
+                        }
                         break;
+                    }
 
-                    case 'utensils__list show':
+                    case 'utensils__list show': {
                         selectedUtensilsOptions = [
                             ...selectedUtensilsOptions,
                             e.target.textContent.toLowerCase(),
@@ -241,7 +257,15 @@ const addFilterOptions = () => {
                             'filterOption',
                             'utensils'
                         );
+                        // Empty dropdown text field if not empty
+                        const utensilsInput = document.querySelector(
+                            `.utensils__text-field`
+                        );
+                        if (utensilsInput.value) {
+                            utensilsInput.value = '';
+                        }
                         break;
+                    }
 
                     default:
                         break;
