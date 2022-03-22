@@ -1778,13 +1778,27 @@ const recipes = [
     },
 ];
 
-let filteredRecipes = recipes;
-filteredRecipes = recipes.filter(
-    (elt) =>
-        elt.name.toLowerCase().includes('coco') ||
-        elt.ingredients.some((currentValue) =>
+let filteredRecipes = [];
+for (let i = recipes.length; i--; ) {
+    if (
+        recipes[i].name.toLowerCase().includes('coco') &&
+        !filteredRecipes.includes(recipes[i])
+    ) {
+        filteredRecipes.push(recipes[i]);
+    }
+    if (
+        recipes[i].ingredients.some((currentValue) =>
             currentValue.ingredient.toLowerCase().includes('coco')
-        ) ||
-        elt.description.toLowerCase().includes('coco')
-);
+        ) &&
+        !filteredRecipes.includes(recipes[i])
+    ) {
+        filteredRecipes.push(recipes[i]);
+    }
+    if (
+        recipes[i].description.toLowerCase().includes('coco') &&
+        !filteredRecipes.includes(recipes[i])
+    ) {
+        filteredRecipes.push(recipes[i]);
+    }
+}
 console.log(filteredRecipes);
