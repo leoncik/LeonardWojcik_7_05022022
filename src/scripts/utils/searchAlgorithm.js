@@ -66,13 +66,15 @@ const filterRecipes = (entry, entrySource, entrySourceType = '') => {
             ) {
                 filteredRecipes.push(recipeList[i]);
             }
-            if (
-                recipeList[i].ingredients.some((currentValue) =>
-                    currentValue.ingredient.toLowerCase().includes(entry)
-                ) &&
-                !filteredRecipes.includes(recipeList[i])
-            ) {
-                filteredRecipes.push(recipeList[i]);
+            for (let j = recipeList[i].ingredients.length; j--; ) {
+                if (
+                    recipeList[i].ingredients[j].ingredient
+                        .toLowerCase()
+                        .includes(entry) &&
+                    !filteredRecipes.includes(recipeList[i])
+                ) {
+                    filteredRecipes.push(recipeList[i]);
+                }
             }
             if (
                 recipeList[i].description.toLowerCase().includes(entry) &&
