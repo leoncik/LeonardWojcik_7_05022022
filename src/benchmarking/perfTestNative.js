@@ -1786,13 +1786,15 @@ for (let i = recipes.length; i--; ) {
     ) {
         filteredRecipes.push(recipes[i]);
     }
-    if (
-        recipes[i].ingredients.some((currentValue) =>
-            currentValue.ingredient.toLowerCase().includes('coco')
-        ) &&
-        !filteredRecipes.includes(recipes[i])
-    ) {
-        filteredRecipes.push(recipes[i]);
+    for (let j = recipes[i].ingredients.length; j--; ) {
+        if (
+            recipes[i].ingredients[j].ingredient
+                .toLowerCase()
+                .includes('coco') &&
+            !filteredRecipes.includes(recipes[i])
+        ) {
+            filteredRecipes.push(recipes[i]);
+        }
     }
     if (
         recipes[i].description.toLowerCase().includes('coco') &&
