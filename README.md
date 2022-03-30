@@ -23,20 +23,31 @@ Use this link to try the project : https://leonard-wojcik-p7.netlify.app/
 
 ## File structure
 
--   WIP
+`assets/` : contains the favicons and the images used in the project.
+
+`src/` :
+
+-   `benchmarking/` : contains the scripts used for the benchmarking tests.
+-   `data/` contains the original file with all recipes and a second one that have been improved (typos).
+-   `scripts/` contains all JavaScript files.
+    -   `classes/` contains the classes used to create the elements of the page.
+    -   `components/` contains the script to handle the dropdowns.
+    -   `utils/` contains the search algorithm and some generic functions.
+-   `scss/` contains all SCSS files. Their organisation follow the [7-1 pattern](https://sass-guidelin.es/#the-7-1-pattern).
 
 ## List of dependencies
 
+-   [Autoprefixer](https://github.com/postcss/autoprefixer) — [PostCSS](https://github.com/postcss/postcss) plugin to parse CSS and add vendor prefixes to CSS rules using values from [Can I Use](https://caniuse.com/).
 -   [Eslint](https://eslint.org/) — A JavaScript linter.
 -   [Husky](https://typicode.github.io/husky) — Git hooks manager.
 -   [lint-staged](https://www.npmjs.com/package/lint-staged) — Run linters against staged git files.
 -   [Prettier](https://prettier.io/) — A code formatter.
+-   [Sass](https://sass-lang.com/) — A CSS preprocessor.
 -   [Vite](https://vitejs.dev/) — Next Generation Frontend Tooling.
 
 ## Installation
 
 1. Clone this repository or fork It.
-
 
 ```sh
 git clone https://github.com/leoncik/LeonardWojcik_6_24112021
