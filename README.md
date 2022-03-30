@@ -15,7 +15,7 @@ Project carried out as part of the Front-End Web Development Career Path of Open
 
 ## Description
 
--   WIP
+-   The mission of this project was to develop a search algorithm to filter and display dynamically a list of recipes with two copenents : the main search bar and the filter options. To how It works, I made a detaled document about It's structure and the choices made during it's development : ([EN](https://github.com/leoncik/LeonardWojcik_7_05022022/files/8379956/Fiche.investigation.algorithme.-.EN.pdf) / [FR](https://github.com/leoncik/LeonardWojcik_7_05022022/files/8379960/Fiche.investigation.algorithme.-.FR.pdf)).
 
 ## Live demo
 
@@ -27,7 +27,6 @@ Use this link to try the project : https://leonard-wojcik-p7.netlify.app/
 
 ## List of dependencies
 
--   [Babel](https://babel.dev/) — A JavaScript transpiler.
 -   [Eslint](https://eslint.org/) — A JavaScript linter.
 -   [Husky](https://typicode.github.io/husky) — Git hooks manager.
 -   [lint-staged](https://www.npmjs.com/package/lint-staged) — Run linters against staged git files.
@@ -37,6 +36,7 @@ Use this link to try the project : https://leonard-wojcik-p7.netlify.app/
 ## Installation
 
 1. Clone this repository or fork It.
+
 
 ```sh
 git clone https://github.com/leoncik/LeonardWojcik_6_24112021
