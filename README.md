@@ -15,7 +15,7 @@ Project carried out as part of the Front-End Web Development Career Path of Open
 
 ## Description
 
-The mission of this project was to develop a search algorithm to filter and display dynamically a list of recipes with two components : the main search bar and the filter options. To understand how It works, I made a detailed document about It's structure and the choices made during it's development : ([EN](https://github.com/leoncik/LeonardWojcik_7_05022022/files/8379956/Fiche.investigation.algorithme.-.EN.pdf) / [FR](https://github.com/leoncik/LeonardWojcik_7_05022022/files/8379960/Fiche.investigation.algorithme.-.FR.pdf)).
+The mission of this project was to develop a search algorithm to filter and display dynamically a list of recipes with two components : the main search bar and the filter options. To understand how It works, I made a detailed document about It's structure and the choices made during it's development : ([EN](https://github.com/leoncik/LeonardWojcik_7_05022022/files/8399336/Fiche.investigation.algorithme.-.EN.pdf) / [FR](https://github.com/leoncik/LeonardWojcik_7_05022022/files/8399341/Fiche.investigation.algorithme.-.FR.pdf)).
 
 ## Live demo
 
